@@ -1,0 +1,37 @@
+# general data files (track manually)
+*.csv
+
+# Proteomics data files
+*.raw
+*.mzML
+*.mzXML
+*.mzTab
+
+# logs
+*.log
+*.log.*
+
+# local mac files
+*.DS_Store
+
+# local results folder
+results/
+
+# vuegenerated files
+streamlit_report/
+quarto_report/
+logs/
+lib/
+
+# local nextflow cache folder
+.nextflow/
+work/
+
+
+# ipynb checkpoints
+.ipynb_checkpoints
+
+# Sphinx build files
+_build
+jupyter_execute
+
