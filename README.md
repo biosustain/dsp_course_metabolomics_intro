@@ -11,7 +11,7 @@ for the downstream analysis.
 
 | Time          | Topic                                                         | lecturer                 |
 | ------------- | ------------------------------------------------------------- | ------------------------ |
-| 09.00 - 09:10 | Welcome, coffee, and setup                                    | -                        |
+| 09.00 - 09.10 | Welcome, coffee, and setup                                    | -                        |
 | 09.10 - 10.30 | Introduction with overview of metabolomics                    | Maria Barranco-Altirriba |
 | 10.30 - 11.45 | break                                                         | -                        |
 | 11.45 - 12.15 | Steps in data processing and running metaboigniter (hands-on) | Henry Webel              |
@@ -26,9 +26,9 @@ for the downstream analysis.
 
 See the slides for introduction: will be here
 
-#### 10.30-12.00 - data processing and hands-on quantms
+#### 10.30-12.00 - data processing and hands-on metaboigniter
 
-Find the instruction [here](material/intro_metabolomics.md) and
+Find the instruction [here](material/nf_core_metaboigniter.md) and
 the slides
 
 Steps in data processing

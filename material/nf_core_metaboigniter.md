@@ -1,6 +1,6 @@
 # Metaboigniter
 
-We will run a the last version `2.0.1` using an example dataset.
+We will run the latest version `2.0.1` using an example dataset.
 
 
 - uses `nextflow.config` and the following parameters:

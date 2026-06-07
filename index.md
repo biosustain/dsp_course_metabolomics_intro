@@ -19,7 +19,7 @@ material/nf_core_metaboigniter
 material/intro_data_analysis
 ```
 
-```bash
+```{toctree}
 :maxdepth: 2
 :caption: Datasets
 :hidden:

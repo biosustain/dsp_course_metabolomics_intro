@@ -18,7 +18,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input_dir",
         "-i",
-        nargs="?",
         default=".",
         help="Folder containing mzML files. Defaults to the current directory.",
     )
