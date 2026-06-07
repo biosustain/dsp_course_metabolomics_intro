@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MS-based metabolomics &#8212; Mass spectrometry-based Proteomics introduction  documentation</title>
+    <title>Data &#8212; Mass spectrometry-based Proteomics introduction  documentation</title>
   
   
   
@@ -47,12 +47,12 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'material/intro_metabolomics';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data/README';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Metaboigniter" href="nf_core_metaboigniter.html" />
-    <link rel="prev" title="Mass spectrometry-based metabolomics introduction" href="../index.html" />
+    <link rel="next" title="Container info" href="../.devcontainer/README.html" />
+    <link rel="prev" title="Downstream Data Analysis" href="../material/intro_data_analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -158,17 +158,17 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Metaboigniter</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">MS-based metabolomics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nf_core_metaboigniter.html">Metaboigniter</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../material/intro_metabolomics.html">MS-based metabolomics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material/nf_core_metaboigniter.html">Metaboigniter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro_data_analysis.html">Downstream Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material/intro_data_analysis.html">Downstream Data Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data/README.html">Data</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Codespace</span></p>
 <ul class="nav bd-sidenav">
@@ -247,7 +247,7 @@
       
       
       
-      <li><a href="../_sources/material/intro_metabolomics.md" target="_blank"
+      <li><a href="../_sources/data/README.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -310,7 +310,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -321,11 +323,19 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>MS-based metabolomics</h1>
+    <h1>Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#samplesheet">Samplesheet</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -335,8 +345,29 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ms-based-metabolomics">
-<h1>MS-based metabolomics<a class="headerlink" href="#ms-based-metabolomics" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="data">
+<h1>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h1>
+<p>Example data from Metabonaut, see introduction
+<a class="reference external" href="https://rformassspectrometry.github.io/Metabonaut/articles/dataset-investigation.html#dataset-description" rel="noreferrer" target="_blank">here</a></p>
+<ul class="simple">
+<li><p>three ardiovascular disease (CVD) patients</p></li>
+<li><p>three healthy controls</p></li>
+<li><p>four quality control samples (QC)</p></li>
+</ul>
+<p>The data and metadata for this workflow are available on the MetaboLights database
+under the ID: <a class="reference external" href="https://www.ebi.ac.uk/metabolights/editor/MTBLS8735/overview" rel="noreferrer" target="_blank">MTBLS8735</a>.</p>
+<p>Both MS1 and MS2 spectra samples are available:</p>
+<p>Note from the tutorial:
+“Compared to the number of MS2 spectra, far less MS1 spectra were acquired.
+The configuration of the MS instrument was set to ensure that the ions specified in
+the inclusion list were selected for fragmentation, even if their intensity might be
+very low. With this setting, however, most of the recorded MS2 spectra will represent
+only noise. The plot below shows the location of precursor ions in the m/z -
+retention time plane for the three files.”</p>
+<section id="samplesheet">
+<h2>Samplesheet<a class="headerlink" href="#samplesheet" title="Link to this heading">#</a></h2>
+<p>Check format on <a class="reference external" href="https://nf-co.re/metaboigniter/2.0.1/" rel="noreferrer" target="_blank">nf-core/metaboigniter</a></p>
+</section>
 </section>
 
 
@@ -351,20 +382,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="../material/intro_data_analysis.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Mass spectrometry-based metabolomics introduction</p>
+        <p class="prev-next-title">Downstream Data Analysis</p>
       </div>
     </a>
     <a class="right-next"
-       href="nf_core_metaboigniter.html"
+       href="../.devcontainer/README.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Metaboigniter</p>
+        <p class="prev-next-title">Container info</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -374,6 +405,23 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#samplesheet">Samplesheet</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
