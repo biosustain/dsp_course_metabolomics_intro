@@ -8,6 +8,7 @@
 :hidden:
 
 material/intro_metabolomics
+material/nf_core_metaboigniter
 ```
 
 ```{toctree}
@@ -16,6 +17,14 @@ material/intro_metabolomics
 :hidden:
 
 material/intro_data_analysis
+```
+
+```bash
+:maxdepth: 2
+:caption: Datasets
+:hidden:
+
+data/README.md
 ```
 
 ```{toctree}
