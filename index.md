@@ -24,7 +24,7 @@ material/intro_data_analysis
 :caption: Datasets
 :hidden:
 
-data/README.md
+data/README
 ```
 
 ```{toctree}
@@ -32,5 +32,5 @@ data/README.md
 :caption: Codespace
 :hidden:
 
-.devcontainer/README.md
+.devcontainer/README
 ```
