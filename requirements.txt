@@ -1,4 +1,6 @@
 jupyter
-acore
-vuecore
-vuegen
+pandas
+dsp-pandas
+# acore
+# vuecore
+# vuegen
