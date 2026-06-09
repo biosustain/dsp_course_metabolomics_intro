@@ -9,24 +9,26 @@ for the downstream analysis.
 
 ## Agenda
 
-| Time          | Topic                                                         | lecturer                 |
-| ------------- | ------------------------------------------------------------- | ------------------------ |
-| 09.00 - 09.10 | Welcome, coffee, and setup                                    | -                        |
-| 09.10 - 10.30 | Introduction with overview of metabolomics                    | Maria Barranco-Altirriba |
-| 10.30 - 11.45 | break                                                         | -                        |
-| 11.45 - 12.15 | Steps in data processing and running metaboigniter (hands-on) | Henry Webel              |
-| 12.15 - 13.00 | Lunch (sandwiches are provided)                               | -                        |
-| 13.00 - 14.30 | Steps in statistical analysis (lecture )                      | Maria Barranco-Altirriba |
-| 14.30 - 15.00 | break                                                         | -                        |
-| 15.00 - 16.30 | Steps in statistical analysis (hands-On)                      | Henry Webel              |
+| Time          | Topic                                                            | lecturer                 |
+| ------------- | ---------------------------------------------------------------- | ------------------------ |
+| 09.00 - 09.10 | Welcome, coffee, and setup                                       | -                        |
+| 09.10 - 10.30 | Introduction with overview of metabolomics and preprocessing     | Maria Barranco-Altirriba |
+| 10.30 - 10.45 | break                                                            | -                        |
+| 10.45 - 12.15 | Steps in data processing and running metaboigniter (hands-on)    | Henry Webel              |
+| 12.15 - 13.00 | Lunch (sandwiches are provided)                                  | -                        |
+| 13.00 - 13.45 | Data cleaning, normalization and statistical analysis (lecture)  | Maria Barranco-Altirriba |
+| 13.45 - 14.30 | Data cleaning, normalization and statistical analysis (Hands-On) | Maria Barranco-Altirriba |
+| 14.30 - 15.00 | break                                                            | -                        |
+| 15.00 - 15.45 | Annotation and Interpretation (lecture)                          | Felicia Schulz           |
+| 15.45 - 16.30 | Annotation and Interpretation (hands-On)                         | Felicia Schulz           |
 
 ### Some details to the agenda points
 
-#### 09.10-10.30 - introduction
+#### 09.10-10.30 - Introduction with overview of metabolomics and preprocessing
 
 See the slides for introduction: will be here
 
-#### 10.30-12.00 - data processing and hands-on metaboigniter
+#### 10.45-12.15 - Steps in data processing and running metaboigniter
 
 Find the instruction [here](material/nf_core_metaboigniter.md) and
 the slides
@@ -35,11 +37,11 @@ Steps in data processing
 
 - ...
 
-### 13.00 - 14.30 - statistical analysis lecture
+### 13.00 - 14.30 - Data cleaning, normalization and statistical analysis
 
 See the slides for the statistical analysis: will be here
 
-#### 15.00 - 16.30 - hands-on statistical analysis
+#### 15.00 - 16.30 - Data cleaning, normalization and statistical analysis
 
 Find the instruction [here](material/intro_data_analysis.md) and
 the slides: will be here
