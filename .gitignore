@@ -35,3 +35,5 @@ work/
 _build
 jupyter_execute
 
+# results
+results*
