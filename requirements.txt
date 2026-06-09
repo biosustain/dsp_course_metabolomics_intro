@@ -1,6 +1,7 @@
 jupyter
 pandas
 dsp-pandas
+pyopenms
 # acore
 # vuecore
 # vuegen

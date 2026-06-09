@@ -1,5 +1,14 @@
 # Metaboigniter
 
+## Getting the data
+
+```bash
+bash  data/MTBLS8735/download.sh
+python bin/reindex_mzml.py -i data/MTBLS8735/
+```
+
+## Run Metaboigniter
+
 We will run the latest version `2.0.1` using an example dataset.
 
 
@@ -13,9 +22,9 @@ nextflow run nf-core/metaboigniter -profile docker,arm -r 2.0.1
 more verbosely this run without setting a config file:
 
 ```bash
-nextflow run nf-core/metaboigniter -profile docker,arm --outdir results \
---input data/samplesheet.csv \
---identification -r 2.0.1 -resume --run_sirius --run_ms2query \
+nextflow run nf-core/metaboigniter -profile docker,arm --outdir results_MTBLS8735 \
+--input data/MTBLS8735/samplesheet.csv \
+--identification -r 2.0.1 -resume \
 --max_cpus 4 --max_memory '6.GB' --max_time '6.h' 
 ```
 
