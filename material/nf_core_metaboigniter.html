@@ -168,7 +168,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data/README.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/README.html">Datasets overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/MTBLS8735/README.html">Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Codespace</span></p>
 <ul class="nav bd-sidenav">
@@ -333,6 +334,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-metaboigniter">Run Metaboigniter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensure-mzml-files-are-correctly-indexed">Ensure mzML files are correctly indexed</a></li>
 </ul>
@@ -352,6 +355,15 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="metaboigniter">
 <h1>Metaboigniter<a class="headerlink" href="#metaboigniter" title="Link to this heading">#</a></h1>
+<section id="getting-the-data">
+<h2>Getting the data<a class="headerlink" href="#getting-the-data" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w">  </span>data/MTBLS8735/download.sh
+python<span class="w"> </span>bin/reindex_mzml.py<span class="w"> </span>-i<span class="w"> </span>data/MTBLS8735/
+</pre></div>
+</div>
+</section>
+<section id="run-metaboigniter">
+<h2>Run Metaboigniter<a class="headerlink" href="#run-metaboigniter" title="Link to this heading">#</a></h2>
 <p>We will run the latest version <code class="docutils literal notranslate"><span class="pre">2.0.1</span></code> using an example dataset.</p>
 <ul class="simple">
 <li><p>uses <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and the following parameters:</p></li>
@@ -360,12 +372,13 @@
 </pre></div>
 </div>
 <p>more verbosely this run without setting a config file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nextflow<span class="w"> </span>run<span class="w"> </span>nf-core/metaboigniter<span class="w"> </span>-profile<span class="w"> </span>docker,arm<span class="w"> </span>--outdir<span class="w"> </span>results<span class="w"> </span><span class="se">\</span>
---input<span class="w"> </span>data/samplesheet.csv<span class="w"> </span><span class="se">\</span>
---identification<span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>.0.1<span class="w"> </span>-resume<span class="w"> </span>--run_sirius<span class="w"> </span>--run_ms2query<span class="w"> </span><span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nextflow<span class="w"> </span>run<span class="w"> </span>nf-core/metaboigniter<span class="w"> </span>-profile<span class="w"> </span>docker,arm<span class="w"> </span>--outdir<span class="w"> </span>results_MTBLS8735<span class="w"> </span><span class="se">\</span>
+--input<span class="w"> </span>data/MTBLS8735/samplesheet.csv<span class="w"> </span><span class="se">\</span>
+--identification<span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>.0.1<span class="w"> </span>-resume<span class="w"> </span><span class="se">\</span>
 --max_cpus<span class="w"> </span><span class="m">4</span><span class="w"> </span>--max_memory<span class="w"> </span><span class="s1">&#39;6.GB&#39;</span><span class="w"> </span>--max_time<span class="w"> </span><span class="s1">&#39;6.h&#39;</span><span class="w"> </span>
 </pre></div>
 </div>
+</section>
 <section id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
 <section id="ensure-mzml-files-are-correctly-indexed">
@@ -611,6 +624,8 @@ https://github.com/nf-core/metaboigniter/blob/master/CITATIONS.md</p></li>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-metaboigniter">Run Metaboigniter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensure-mzml-files-are-correctly-indexed">Ensure mzML files are correctly indexed</a></li>
 </ul>
