@@ -9,7 +9,11 @@ python bin/reindex_mzml.py -i data/MTBLS8735/
 
 ## Inspect Metaboigniter arguments
 
-```bash
+<details>
+<summary>Help message for nf-core/metaboigniter v2.0.1</summary>
+
+
+```
 >>> nextflow run nf-core/metaboigniter --help
 
  N E X T F L O W   ~  version 25.10.4
@@ -319,6 +323,8 @@ If you use nf-core/metaboigniter for your analysis please cite:
 ------------------------------------------------------
 
 ```
+
+</details>
 
 ## Run Metaboigniter
 
