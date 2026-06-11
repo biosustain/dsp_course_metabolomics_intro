@@ -1,0 +1,4 @@
+{
+    "nextflow.telemetry.enabled": false,
+    "todo-tree.ripgrep.ripgrep": "/usr/bin/rg"
+}
