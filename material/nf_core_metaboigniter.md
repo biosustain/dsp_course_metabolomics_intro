@@ -344,7 +344,7 @@ more verbosely this run without setting a config file:
 nextflow run nf-core/metaboigniter -profile docker,arm --outdir results_MTBLS8735 \
 --input data/MTBLS8735/samplesheet.csv \
 --identification -r 2.0.1 -resume \
---max_cpus 4 --max_memory '6.GB' --max_time '6.h' 
+--max_cpus 4 --max_memory '15.GB' --max_time '6.h' 
 ```
 
 ## Troubleshooting
