@@ -7,6 +7,13 @@ bash  data/MTBLS8735/download.sh
 python bin/reindex_mzml.py -i data/MTBLS8735/
 ```
 
+## Inspect the general config
+
+The config file `nextflow.config` in the root directory contains the general configuration
+for the run, including the input data, output directory and resource limits. You can edit
+this file to change these settings, or you can override them on the command line when you
+run the pipeline.
+
 ## Inspect Metaboigniter arguments
 
 <details>
@@ -341,9 +348,10 @@ nextflow run nf-core/metaboigniter -profile docker,arm -r 2.0.1
 more verbosely this run without setting a config file:
 
 ```bash
-nextflow run nf-core/metaboigniter -profile docker,arm --outdir results_MTBLS8735 \
---input data/MTBLS8735/samplesheet.csv \
---identification -r 2.0.1 -resume \
+nextflow run nf-core/metaboigniter -profile docker,arm -r 2.0.1 -resume \
+--input data/cutA/samplesheet.csv \
+--outdir results_cutA \
+--identification --run_ms2query \
 --max_cpus 4 --max_memory '15.GB' --max_time '6.h' 
 ```
 
@@ -512,44 +520,6 @@ Launching<span style="color:purple;"> `https://github.com/nf-core/metaboigniter`
   <span style="color:blue;">max_memory                                                                                        : </span><span style="color:green;">14.GB</span>
   <span style="color:blue;">max_time                                                                                          : </span><span style="color:green;">6.h</span>
 
-Only displaying parameters that differ from the pipeline defaults
-------------------------------------------------------
-If you use nf-core/metaboigniter for your analysis please cite:
-
-- The pipeline
-- The nf-core framework
-  https://doi.org/10.1038/s41587-020-0439-x
-- Software dependencies
-  https://github.com/nf-core/metaboigniter/blob/master/CITATIONS.md
-------------------------------------------------------
-<span style="color:olive;">WARN: No Sirius user account information found. Please enter `--sirius_email` and `sirius_password`.</span>
-
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_FEATUREFINDERMETABO                      -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPALIGNERPOSECLUSTERING                 -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPRTTRANSFORMER                         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:OPENMS_METABOLITEADDUCTDECHARGER                    -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:PYOPENMS_C13DETECTION                               -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:LINKER:OPENMS_FEATURELINKERUNLABELEDKD                         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_MSMAPPING                              -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:OPENMS_FILEFILTER                               -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_SPLITCONSENSUS                         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_GENERATESEARCHPARAMS                   -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_CONCTSV_UNMAPPED                       -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMSFILE                             -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMGFFILE                            -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:SIRIUS_SEARCH                      -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:PYOPENMS_CONCTSVSIRIUS             -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:PYOPENMS_CONCTSVFINGERID           -
-[<span style="color:blue;">-        </span>] NFC…R:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_MODELDOWNLOADER:MS2QUERY_DOWNLOADMODEL -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_CHECKMODELFILES         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_SEARCH                  -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:PYOPENMS_CONCTSVMS2QUERY         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:PYOPENMS_EXPORTIDENTIFICATION                                  -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:MULTIQC                                                        -
-<span style="color:olive;">WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition</span>
-<span style="color:olive;">WARN: Input `tuple` must define at least two elements -- Check process `NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_SEARCH`</span>
-
-executor &gt;  local (1)
 [<span style="color:blue;">81/f8c70e</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_FEATUREFINDERMETABO<span style="color:olive;"> (MS_D_POS)</span>           [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
 [<span style="color:blue;">31/91ac9e</span>] NFC…E_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPALIGNERPOSECLUSTERING<span style="color:olive;"> (Multiple files)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
 [<span style="color:blue;">04/074ef6</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPRTTRANSFORMER<span style="color:olive;"> (MS_B_POS)</span>              [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
