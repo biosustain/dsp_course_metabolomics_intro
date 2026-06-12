@@ -8,7 +8,10 @@ COPY requirements.txt requirements_docs.txt /tmp/
 
 RUN conda init bash
 
-RUN apt-get update && apt-get install -y azcopy && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    &&  apt-get install -y azcopy \
+    && apt-get install ripgrep \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN source /opt/conda/etc/profile.d/conda.sh && \
     conda activate base && \

@@ -6,7 +6,7 @@
 //
 {
   "name": "nextflow-training",
-  "image": "ghcr.io/nextflow-io/training:3.5",
+  "image": "ghcr.io/biosustain/dsp_course_metabolomics_intro:latest", // sha-0cff39d
   "workspaceFolder": "/workspaces/dsp_course_metabolomics_intro",
   "remoteUser": "root",
   "remoteEnv": {
