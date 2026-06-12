@@ -335,13 +335,16 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-the-general-config">Inspect the general config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-metaboigniter-arguments">Inspect Metaboigniter arguments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-metaboigniter">Run Metaboigniter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensure-mzml-files-are-correctly-indexed">Ensure mzML files are correctly indexed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrupt-files">Corrupt files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ms2query-downloads">MS2Query downloads</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-output-of-a-local-run">Example output of a local run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#only-displaying-parameters-that-differ-from-the-pipeline-defaults">Only displaying parameters that differ from the pipeline defaults</a></li>
 </ul>
             </nav>
         </div>
@@ -362,6 +365,329 @@ python<span class="w"> </span>bin/reindex_mzml.py<span class="w"> </span>-i<span
 </pre></div>
 </div>
 </section>
+<section id="inspect-the-general-config">
+<h2>Inspect the general config<a class="headerlink" href="#inspect-the-general-config" title="Link to this heading">#</a></h2>
+<p>The config file <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> in the root directory contains the general configuration
+for the run, including the input data, output directory and resource limits. You can edit
+this file to change these settings, or you can override them on the command line when you
+run the pipeline.</p>
+</section>
+<section id="inspect-metaboigniter-arguments">
+<h2>Inspect Metaboigniter arguments<a class="headerlink" href="#inspect-metaboigniter-arguments" title="Link to this heading">#</a></h2>
+<details>
+<summary>Help message for nf-core/metaboigniter v2.0.1</summary>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nextflow</span> <span class="n">run</span> <span class="n">nf</span><span class="o">-</span><span class="n">core</span><span class="o">/</span><span class="n">metaboigniter</span> <span class="o">--</span><span class="n">help</span>
+
+<span class="go"> N E X T F L O W   ~  version 25.10.4</span>
+
+<span class="go">Launching `https://github.com/nf-core/metaboigniter` [reverent_joliot] DSL2 - revision: 55d8254760 [2.0.1]</span>
+
+
+
+<span class="go">------------------------------------------------------</span>
+<span class="go">                                        ,--./,-.</span>
+<span class="go">        ___     __   __   __   ___     /,-._.--~&#39;</span>
+<span class="go">  |\ | |__  __ /  ` /  \ |__) |__         }  {</span>
+<span class="go">  | \| |       \__, \__/ |  \ |___     \`-._,-`-,</span>
+<span class="go">                                        `._,._,&#39;</span>
+<span class="go">  nf-core/metaboigniter v2.0.1-g55d8254</span>
+<span class="go">------------------------------------------------------</span>
+<span class="go">Typical pipeline command:</span>
+
+<span class="go">  nextflow run nf-core/metaboigniter -profile &lt;docker/singularity/.../institute&gt; --input samplesheet.csv --outdir &lt;OUTDIR&gt;</span>
+
+<span class="go">Generic controls</span>
+<span class="go">  --requantification                                                                                   [boolean] If set to true, requantification will be </span>
+<span class="go">                                                                                                                 performed </span>
+<span class="go">  --identification                                                                                     [boolean] If set to true, identification will be </span>
+<span class="go">                                                                                                                 performed. Remember to set identification </span>
+<span class="go">                                                                                                                 specific parameters </span>
+<span class="go">  --polarity                                                                                           [string]  Polarity of the data (accepted: positive, </span>
+<span class="go">                                                                                                                 negative) [default: positive] </span>
+<span class="go">  --parallel_linking                                                                                   [boolean] If set, the linking will be performed in </span>
+<span class="go">                                                                                                                 parallel, see nr_partitions in linking </span>
+<span class="go">  --ms2_collection_model                                                                               [string]  Set wether the MS2 collections have been done </span>
+<span class="go">                                                                                                                 on all the MS1 data. If there is a separate MS2 </span>
+<span class="go">                                                                                                                 file, set to separate (accepted: separate, </span>
+<span class="go">                                                                                                                 paired) [default: paired] </span>
+
+<span class="go">Mapping and Identification</span>
+<span class="go">  --mz_tolerance_pyopenms                                                                              [number]  mz tolerance (ppm) for finding C13 </span>
+<span class="go">                                                                                                                 [default: 20] </span>
+<span class="go">  --rt_tolerance_pyopenms                                                                              [number]  rt tolerance for finding C13 [default: </span>
+<span class="go">                                                                                                                 5] </span>
+<span class="go">  --ms2_use_feature_ionization                                                                         [boolean] If set, detected adduct will be used in </span>
+<span class="go">                                                                                                                 identification </span>
+<span class="go">  --sirius_sirius_ppm_max                                                                              [number]  Maximum allowed mass deviation in ppm for </span>
+<span class="go">                                                                                                                 decomposing  masses (ppm) [default: 10] </span>
+<span class="go">  --sirius_sirius_ppm_max_ms2                                                                          [number]  Maximum allowed mass deviation in ppm for </span>
+<span class="go">                                                                                                                 decomposing masses in MS2 (ppm).If not </span>
+<span class="go">                                                                                                                 specified, the same value as for the MS1 is </span>
+<span class="go">                                                                                                                 used. [default: 10] </span>
+<span class="go">  --sirius_sirius_no_recalibration                                                                     [boolean] Disable recalibration of input spectra</span>
+<span class="go">  --sirius_sirius_profile                                                                              [string]  Name of the configuration profile </span>
+<span class="go">                                                                                                                 (accepted: default, qtof, orbitrap, fticr) </span>
+<span class="go">                                                                                                                 [default: default] </span>
+<span class="go">  --sirius_sirius_candidates                                                                           [integer] The number of formula candidates in the SIRIUS </span>
+<span class="go">                                                                                                                 output [default: 10] </span>
+<span class="go">  --sirius_sirius_candidates_per_ion                                                                   [integer] Minimum number of candidates in the output for </span>
+<span class="go">                                                                                                                 each ionization. Set to force output of results </span>
+<span class="go">                                                                                                                 for each possible ionization, even if not part </span>
+<span class="go">                                                                                                                 of highest ranked results. [default: 1] </span>
+<span class="go">  --sirius_sirius_ions_considered                                                                      [string]  the iontype/adduct of the MS/MS data. Example: </span>
+<span class="go">                                                                                                                 [M+H]+, [M-H]-, [M+Cl]-, [M+Na]+, [M]+. You can </span>
+<span class="go">                                                                                                                 also provide a comma separated list of </span>
+<span class="go">                                                                                                                 adducts. [default: </span>
+<span class="go">                                                                                                                 [M+H]+,[M+K]+,[M+Na]+,[M+H-H2O]+,[M+H-H4O2]+,[M+NH4]+,[M-H]-,[M+Cl]-,[M-H2O-H]-,[M+Br]-] </span>
+<span class="go">  --sirius_sirius_db                                                                                   [string]  Search formulas in the Union of the given </span>
+<span class="go">                                                                                                                 databases db-name1,db-name2,db-name3. If no </span>
+<span class="go">                                                                                                                 database is given all possible molecular </span>
+<span class="go">                                                                                                                 formulas will be respected (no database is </span>
+<span class="go">                                                                                                                 used). Example: possible DBs: </span>
+<span class="go">                                                                                                                 ALL,BIO,PUBCHEM,MESH,HMDB,KNAPSACK,CHEBI,PUBMED,KEGG,HSDB,MACONDA,METACYC,GNPS,ZINCBIO,UNDP,YMDB,PLANTCYC,NORMAN,ADDITIONAL,PUBCHEMANNOTATIONBIO,PUBCHEMANNOTATIONDRUG,PUBCHEMANNOTATIONSAFETYANDTOXIC,PUBCHEMANNOTATIONFOOD,KEGGMINE,ECOCYCMINE,YMDBMINE </span>
+<span class="go">  --sirius_runpassatutto                                                                               [boolean] If set, passatutto will be run</span>
+<span class="go">  --sirius_fingerid_db                                                                                 [string]  Search structures in the Union of the given </span>
+<span class="go">                                                                                                                 databases db-name1,db-name2,db-name3. If no </span>
+<span class="go">                                                                                                                 database is given all possible molecular </span>
+<span class="go">                                                                                                                 formulas will be respected (no database is </span>
+<span class="go">                                                                                                                 used). Example: possible DBs: </span>
+<span class="go">                                                                                                                 ALL,BIO,PUBCHEM,MESH,HMDB,KNAPSACK,CHEBI,PUBMED,KEGG,HSDB,MACONDA,METACYC,GNPS,ZINCBIO,UNDP,YMDB,PLANTCYC,NORMAN,ADDITIONAL,PUBCHEMANNOTATIONBIO,PUBCHEMANNOTATIONDRUG,PUBCHEMANNOTATIONSAFETYANDTOXIC,PUBCHEMANNOTATIONFOOD,KEGGMINE,ECOCYCMINE,YMDBMINE </span>
+<span class="go">  --sirius_email                                                                                       [string]  E-mail for your SIRIUS account.</span>
+<span class="go">  --sirius_password                                                                                    [string]  Password for your SIRIUS account.</span>
+<span class="go">  --sirius_split                                                                                       [boolean] If set, SIRIUS will be run in parallel. See </span>
+<span class="go">                                                                                                                 mgf_splitmgf_pyopenms parameter for </span>
+<span class="go">                                                                                                                 segmentation </span>
+<span class="go">  --split_consensus_parts                                                                              [integer] For running MS2 mapping in parallel set this </span>
+<span class="go">                                                                                                                 higher than 1 [default: 20] </span>
+<span class="go">  --run_ms2query                                                                                       [boolean] If set, MS2Query will be run</span>
+<span class="go">  --sirius_runfid                                                                                      [boolean] If set, FingerID will be run. This has to be </span>
+<span class="go">                                                                                                                 run together with run_sirius </span>
+<span class="go">  --run_sirius                                                                                         [boolean] If set SIRIUS will run</span>
+
+<span class="go">Annotation</span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_charge_min_metaboliteadductdecharger_openms               [integer] Minimal possible charge [default: 1]</span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_charge_max_metaboliteadductdecharger_openms               [integer] Maximal possible charge [default: 1]</span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_charge_span_max_metaboliteadductdecharger_openms          [integer] Maximal range of charges for a single analyte, </span>
+<span class="go">                                                                                                                 i.e. observing q1=[5,6,7] implies span=3. </span>
+<span class="go">                                                                                                                 Setting this to 1 will only find adduct </span>
+<span class="go">                                                                                                                 variants of the same charge [default: </span>
+<span class="go">                                                                                                                 1] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_q_try_metaboliteadductdecharger_openms                    [string]  Try different values of charge for each feature </span>
+<span class="go">                                                                                                                 according to the above settings (&#39;heuristic&#39; </span>
+<span class="go">                                                                                                                 [does not test all charges, just the likely </span>
+<span class="go">                                                                                                                 ones] or &#39;all&#39; ), or leave feature charge </span>
+<span class="go">                                                                                                                 untouched (&#39;feature&#39;). (accepted: feature, </span>
+<span class="go">                                                                                                                 heuristic, all) [default: feature] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_retention_max_diff_metaboliteadductdecharger_openms       [number]  Maximum allowed RT difference between any two </span>
+<span class="go">                                                                                                                 features if their relation shall be </span>
+<span class="go">                                                                                                                 determined [default: 1] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_retention_max_diff_local_metaboliteadductdecharger_openms [number]  Maximum allowed RT difference between between </span>
+<span class="go">                                                                                                                 two co-features, after adduct shifts have been </span>
+<span class="go">                                                                                                                 accounted for (if you do not have any adduct </span>
+<span class="go">                                                                                                                 shifts, this value should be equal to </span>
+<span class="go">                                                                                                                 &#39;retention_max_diff&#39;, otherwise it should be </span>
+<span class="go">                                                                                                                 smaller!) [default: 1] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_mass_max_diff_metaboliteadductdecharger_openms            [number]  Maximum allowed mass tolerance per feature. </span>
+<span class="go">                                                                                                                 Defines a symmetric tolerance window around the </span>
+<span class="go">                                                                                                                 feature. When looking at possible feature </span>
+<span class="go">                                                                                                                 pairs, the allowed feature-wise errors are </span>
+<span class="go">                                                                                                                 combined for consideration of possible adduct </span>
+<span class="go">                                                                                                                 shifts. For ppm tolerances, each window is </span>
+<span class="go">                                                                                                                 based on the respective observed feature mz </span>
+<span class="go">                                                                                                                 (instead of putative experimental mzs causing </span>
+<span class="go">                                                                                                                 the observed one)! [default: 5] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_unit_metaboliteadductdecharger_openms                     [string]  Unit of the &#39;max_difference&#39; parameter </span>
+<span class="go">                                                                                                                 (accepted: Da, ppm) [default: ppm] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_max_neutrals_metaboliteadductdecharger_openms             [integer] Maximal number of neutral adducts(q=0) allowed. </span>
+<span class="go">                                                                                                                 Add them in the &#39;potential_adducts&#39; </span>
+<span class="go">                                                                                                                 section! [default: 1] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_use_minority_bound_metaboliteadductdecharger_openms       [boolean] Prune the considered adduct transitions by </span>
+<span class="go">                                                                                                                 transition probabilities. [default: </span>
+<span class="go">                                                                                                                 true] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_max_minority_bound_metaboliteadductdecharger_openms       [integer] Limits allowed adduct compositions and changes </span>
+<span class="go">                                                                                                                 between compositions in the underlying graph </span>
+<span class="go">                                                                                                                 optimization problem by introducing a </span>
+<span class="go">                                                                                                                 probability-based threshold: the minority bound </span>
+<span class="go">                                                                                                                 sets the maximum count of the least probable </span>
+<span class="go">                                                                                                                 adduct (according to &#39;potential_adducts&#39; param) </span>
+<span class="go">                                                                                                                 within a charge variant with maximum charge </span>
+<span class="go">                                                                                                                 only containing the most likely adduct </span>
+<span class="go">                                                                                                                 otherwise. E.g., for &#39;charge_max&#39; 4 and </span>
+<span class="go">                                                                                                                 &#39;max_minority_bound&#39; 2 with most probable </span>
+<span class="go">                                                                                                                 adduct being H+ and least probable adduct being </span>
+<span class="go">                                                                                                                 Na+, this will allow adduct compositions of </span>
+<span class="go">                                                                                                                 &#39;2(H+),2(Na+)&#39; but not of &#39;1(H+),3(Na+)&#39;. </span>
+<span class="go">                                                                                                                 Further, adduct compositions/changes less </span>
+<span class="go">                                                                                                                 likely than &#39;2(H+),2(Na+)&#39; will be discarded as </span>
+<span class="go">                                                                                                                 well. [default: 1] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_min_rt_overlap_metaboliteadductdecharger_openms           [number]  Minimum overlap of the convex hull&#39; RT </span>
+<span class="go">                                                                                                                 intersection measured against the union from </span>
+<span class="go">                                                                                                                 two features (if CHs are given) [default: </span>
+<span class="go">                                                                                                                 0.66] </span>
+<span class="go">  --algorithm_metabolitefeaturedeconvolution_intensity_filter_metaboliteadductdecharger_openms         [boolean] Enable the intensity filter, which will only </span>
+<span class="go">                                                                                                                 allow edges between two equally charged </span>
+<span class="go">                                                                                                                 features if the intensity of the feature with </span>
+<span class="go">                                                                                                                 less likely adducts is smaller than that of the </span>
+<span class="go">                                                                                                                 other feature. It is not used for features of </span>
+<span class="go">                                                                                                                 different charge. </span>
+<span class="go">  --adducts_pos                                                                                        [string]  possible positive adducts for adduct detection </span>
+<span class="go">                                                                                                                 in the format of adduct:charge:probablity </span>
+<span class="go">                                                                                                                 [default: H:+:0.6 Na:+:0.1 NH4:+:0.1 </span>
+<span class="go">                                                                                                                 H-1O-1:+:0.1 H-3O-2:+:0.1] </span>
+<span class="go">  --adducts_neg                                                                                        [string]  possible negative adducts for adduct detection </span>
+<span class="go">                                                                                                                 in the format of adduct:charge:probablity </span>
+<span class="go">                                                                                                                 [default: H-1:-:0.8 H-3O-1:-:0.2] </span>
+
+<span class="go">Alignment and Linking</span>
+<span class="go">  --algorithm_max_num_peaks_considered_mapalignerposeclustering_openms                                 [integer] The maximal number of peaks/features to be </span>
+<span class="go">                                                                                                                 considered per map. To use all, set to </span>
+<span class="go">                                                                                                                 &#39;-1&#39;. [default: 1000] </span>
+<span class="go">  --algorithm_superimposer_mz_pair_max_distance_mapalignerposeclustering_openms                        [number]  Maximum of m/z deviation of corresponding </span>
+<span class="go">                                                                                                                 elements in different maps.  This condition </span>
+<span class="go">                                                                                                                 applies to the pairs considered in hashing. </span>
+<span class="go">                                                                                                                 [default: 0.5] </span>
+<span class="go">  --algorithm_superimposer_num_used_points_mapalignerposeclustering_openms                             [integer] Maximum number of elements considered in each </span>
+<span class="go">                                                                                                                 map (selected by intensity).  Use this to </span>
+<span class="go">                                                                                                                 reduce the running time and to disregard weak </span>
+<span class="go">                                                                                                                 signals during alignment.  For using all </span>
+<span class="go">                                                                                                                 points, set this to -1. [default: 2000] </span>
+<span class="go">  --algorithm_pairfinder_ignore_charge_mapalignerposeclustering_openms                                 [boolean] false [default]: pairing requires equal charge </span>
+<span class="go">                                                                                                                 state (or at least one unknown charge &#39;0&#39;); </span>
+<span class="go">                                                                                                                 true: Pairing irrespective of charge </span>
+<span class="go">                                                                                                                 state </span>
+<span class="go">  --algorithm_pairfinder_distance_rt_max_difference_mapalignerposeclustering_openms                    [number]  Never pair features with a larger RT distance </span>
+<span class="go">                                                                                                                 (in seconds). [default: 100.0] </span>
+<span class="go">  --algorithm_pairfinder_distance_mz_max_difference_mapalignerposeclustering_openms                    [number]  Never pair features with larger m/z distance </span>
+<span class="go">                                                                                                                 (unit defined by &#39;unit&#39;) [default: 0.3] </span>
+<span class="go">  --algorithm_pairfinder_distance_mz_unit_mapalignerposeclustering_openms                              [string]  Unit of the &#39;max_difference&#39; parameter </span>
+<span class="go">                                                                                                                 (accepted: Da, ppm) [default: Da] </span>
+<span class="go">  --algorithm_mz_unit_featurelinkerunlabeledkd_openms                                                  [string]  Unit of m/z tolerance (accepted: ppm, Da) </span>
+<span class="go">                                                                                                                 [default: ppm] </span>
+<span class="go">  --algorithm_nr_partitions_featurelinkerunlabeledkd_openms                                            [integer] Number of partitions in m/z space [default: </span>
+<span class="go">                                                                                                                 100] </span>
+<span class="go">  --algorithm_warp_enabled_featurelinkerunlabeledkd_openms                                             [boolean] Whether or not to internally warp feature RTs </span>
+<span class="go">                                                                                                                 using LOWESS transformation before linking </span>
+<span class="go">                                                                                                                 (reported RTs in results will always be the </span>
+<span class="go">                                                                                                                 original RTs) [default: true] </span>
+<span class="go">  --algorithm_warp_rt_tol_featurelinkerunlabeledkd_openms                                              [number]  Width of RT tolerance window (sec) </span>
+<span class="go">                                                                                                                 [default: 100.0] </span>
+<span class="go">  --algorithm_warp_mz_tol_featurelinkerunlabeledkd_openms                                              [number]  m/z tolerance (in ppm or Da) [default: </span>
+<span class="go">                                                                                                                 5.0] </span>
+<span class="go">  --algorithm_link_rt_tol_featurelinkerunlabeledkd_openms                                              [number]  Width of RT tolerance window (sec) </span>
+<span class="go">                                                                                                                 [default: 30] </span>
+<span class="go">  --algorithm_link_mz_tol_featurelinkerunlabeledkd_openms                                              [number]  m/z tolerance (in ppm or Da) [default: </span>
+<span class="go">                                                                                                                 10] </span>
+<span class="go">  --algorithm_link_charge_merging_featurelinkerunlabeledkd_openms                                      [string]  whether to disallow charge mismatches </span>
+<span class="go">                                                                                                                 (Identical), allow to link charge zero (i.e., </span>
+<span class="go">                                                                                                                 unknown charge state) with every charge state, </span>
+<span class="go">                                                                                                                 or disregard charges (Any). (accepted: </span>
+<span class="go">                                                                                                                 Identical, With_charge_zero, Any) [default: </span>
+<span class="go">                                                                                                                 With_charge_zero] </span>
+<span class="go">  --algorithm_link_adduct_merging_featurelinkerunlabeledkd_openms                                      [string]  whether to only allow the same adduct for </span>
+<span class="go">                                                                                                                 linking (Identical), also allow linking </span>
+<span class="go">                                                                                                                 features with adduct-free ones, or disregard </span>
+<span class="go">                                                                                                                 adducts (Any). (accepted: Identical, </span>
+<span class="go">                                                                                                                 With_unknown_adducts, Any) [default: Any] </span>
+
+<span class="go">Re-Quantification</span>
+<span class="go">  --extract_mz_window_featurefindermetaboident_openms                                                  [number]  m/z window size for chromatogram extraction </span>
+<span class="go">                                                                                                                 (unit: ppm if 1 or greater, else Da/Th) </span>
+<span class="go">  --extract_n_isotopes_featurefindermetaboident_openms                                                 [integer] Number of isotopes to include in each peptide </span>
+<span class="go">                                                                                                                 assay. </span>
+<span class="go">  --detect_peak_width_featurefindermetaboident_openms                                                  [number]  Expected elution peak width in seconds, for </span>
+<span class="go">                                                                                                                 smoothing (Gauss filter). Also determines the </span>
+<span class="go">                                                                                                                 RT extration window, unless set explicitly via </span>
+<span class="go">                                                                                                                 &#39;extract:rt_window&#39;. </span>
+<span class="go">  --model_type_featurefindermetaboident_openms                                                         [string]  Type of elution model to fit to features </span>
+<span class="go">                                                                                                                 (accepted: symmetric, asymmetric, none) </span>
+<span class="go">                                                                                                                 [default: symmetric] </span>
+<span class="go">  --emgscoring_max_iteration_featurefindermetaboident_openms                                           [integer] Maximum number of iterations for EMG </span>
+<span class="go">                                                                                                                 fitting. </span>
+<span class="go">  --emgscoring_init_mom_featurefindermetaboident_openms                                                [boolean] Alternative initial parameters for fitting </span>
+<span class="go">                                                                                                                 through method of moments. </span>
+
+<span class="go">Quantification</span>
+<span class="go">  --algorithm_signal_to_noise_peakpickerhires_openms                                                   [number]  Minimal signal-to-noise ratio for a peak to be </span>
+<span class="go">                                                                                                                 picked (0.0 disables SNT estimation!) </span>
+<span class="go">  --algorithm_common_noise_threshold_int_featurefindermetabo_openms                                    [number]  Intensity threshold below which peaks are </span>
+<span class="go">                                                                                                                 regarded as noise. [default: 10] </span>
+<span class="go">  --algorithm_common_chrom_peak_snr_featurefindermetabo_openms                                         [number]  Minimum signal-to-noise a mass trace should </span>
+<span class="go">                                                                                                                 have. [default: 3] </span>
+<span class="go">  --algorithm_common_chrom_fwhm_featurefindermetabo_openms                                             [number]  Expected chromatographic peak width (in </span>
+<span class="go">                                                                                                                 seconds). [default: 5] </span>
+<span class="go">  --algorithm_mtd_mass_error_ppm_featurefindermetabo_openms                                            [number]  Allowed mass deviation (in ppm). [default: </span>
+<span class="go">                                                                                                                 20] </span>
+<span class="go">  --algorithm_mtd_reestimate_mt_sd_featurefindermetabo_openms                                          [boolean] Enables dynamic re-estimation of m/z variance </span>
+<span class="go">                                                                                                                 during mass trace collection stage. </span>
+<span class="go">                                                                                                                 [default: true] </span>
+<span class="go">  --algorithm_mtd_quant_method_featurefindermetabo_openms                                              [string]  Method of quantification for mass traces. For </span>
+<span class="go">                                                                                                                 LC data &#39;area&#39; is recommended, &#39;median&#39; for </span>
+<span class="go">                                                                                                                 direct injection data. &#39;max_height&#39; simply uses </span>
+<span class="go">                                                                                                                 the most intense peak in the trace. </span>
+<span class="go">                                                                                                                 (accepted: area, median, max_height) [default: </span>
+<span class="go">                                                                                                                 area] </span>
+<span class="go">  --algorithm_epd_enabled_featurefindermetabo_openms                                                   [boolean] Enable splitting of isobaric mass traces by </span>
+<span class="go">                                                                                                                 chromatographic peak detection. Disable for </span>
+<span class="go">                                                                                                                 direct injection. [default: true] </span>
+<span class="go">  --algorithm_epd_width_filtering_featurefindermetabo_openms                                           [string]  Enable filtering of unlikely peak widths. The </span>
+<span class="go">                                                                                                                 fixed setting filters out mass traces outside </span>
+<span class="go">                                                                                                                 the [min_fwhm, max_fwhm] interval (set </span>
+<span class="go">                                                                                                                 parameters accordingly!). The auto setting </span>
+<span class="go">                                                                                                                 filters with the 5 and 95% quantiles of the </span>
+<span class="go">                                                                                                                 peak width distribution. (accepted: off, </span>
+<span class="go">                                                                                                                 fixed, auto) [default: fixed] </span>
+<span class="go">  --algorithm_ffm_enable_rt_filtering_featurefindermetabo_openms                                       [boolean] Require sufficient overlap in RT while </span>
+<span class="go">                                                                                                                 assembling mass traces. Disable for direct </span>
+<span class="go">                                                                                                                 injection data.. [default: true] </span>
+<span class="go">  --algorithm_ffm_isotope_filtering_model_featurefindermetabo_openms                                   [string]  Remove/score candidate assemblies based on </span>
+<span class="go">                                                                                                                 isotope intensities. SVM isotope models for </span>
+<span class="go">                                                                                                                 metabolites were trained with either 2% or 5% </span>
+<span class="go">                                                                                                                 RMS error. For peptides, an averagine cosine </span>
+<span class="go">                                                                                                                 scoring is used. Select the appropriate noise </span>
+<span class="go">                                                                                                                 model according to the quality of measurement </span>
+<span class="go">                                                                                                                 or MS device. (accepted: metabolites (2% </span>
+<span class="go">                                                                                                                 RMS), ...) [default: metabolites (5% RMS)] </span>
+<span class="go">  --algorithm_ffm_mz_scoring_13c_featurefindermetabo_openms                                            [boolean] Use the 13C isotope peak position (~1.003355 </span>
+<span class="go">                                                                                                                 Da) as the expected shift in m/z for isotope </span>
+<span class="go">                                                                                                                 mass traces (highly recommended for </span>
+<span class="go">                                                                                                                 lipidomics!). Disable for general metabolites </span>
+<span class="go">                                                                                                                 (as described in Kenar et al. 2014, </span>
+<span class="go">                                                                                                                 MCP.). </span>
+
+<span class="go">Input/output options</span>
+<span class="go">  --input                                                                                              [string]  Path to comma-separated file containing </span>
+<span class="go">                                                                                                                 information about the samples in the </span>
+<span class="go">                                                                                                                 experiment. </span>
+<span class="go">  --outdir                                                                                             [string]  The output directory where the results will be </span>
+<span class="go">                                                                                                                 saved. You have to use absolute paths to </span>
+<span class="go">                                                                                                                 storage on Cloud infrastructure. </span>
+<span class="go">  --email                                                                                              [string]  Email address for completion summary.</span>
+<span class="go">  --multiqc_title                                                                                      [string]  MultiQC report title. Printed as page header, </span>
+<span class="go">                                                                                                                 used for filename if not otherwise </span>
+<span class="go">                                                                                                                 specified. </span>
+
+<span class="go">Generic options</span>
+<span class="go">  --multiqc_methods_description                                                                        [string]  Custom MultiQC yaml file containing HTML </span>
+<span class="go">                                                                                                                 including a methods description. </span>
+
+<span class="go"> !! Hiding 150 params, use --validationShowHiddenParams to show them !!</span>
+<span class="go">------------------------------------------------------</span>
+<span class="go">If you use nf-core/metaboigniter for your analysis please cite:</span>
+
+<span class="go">* The pipeline</span>
+<span class="go">  </span>
+
+<span class="go">* The nf-core framework</span>
+<span class="go">  https://doi.org/10.1038/s41587-020-0439-x</span>
+
+<span class="go">* Software dependencies</span>
+<span class="go">  https://github.com/nf-core/metaboigniter/blob/master/CITATIONS.md</span>
+<span class="go">------------------------------------------------------</span>
+
+</pre></div>
+</div>
+</details>
+</section>
 <section id="run-metaboigniter">
 <h2>Run Metaboigniter<a class="headerlink" href="#run-metaboigniter" title="Link to this heading">#</a></h2>
 <p>We will run the latest version <code class="docutils literal notranslate"><span class="pre">2.0.1</span></code> using an example dataset.</p>
@@ -372,10 +698,11 @@ python<span class="w"> </span>bin/reindex_mzml.py<span class="w"> </span>-i<span
 </pre></div>
 </div>
 <p>more verbosely this run without setting a config file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nextflow<span class="w"> </span>run<span class="w"> </span>nf-core/metaboigniter<span class="w"> </span>-profile<span class="w"> </span>docker,arm<span class="w"> </span>--outdir<span class="w"> </span>results_MTBLS8735<span class="w"> </span><span class="se">\</span>
---input<span class="w"> </span>data/MTBLS8735/samplesheet.csv<span class="w"> </span><span class="se">\</span>
---identification<span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>.0.1<span class="w"> </span>-resume<span class="w"> </span><span class="se">\</span>
---max_cpus<span class="w"> </span><span class="m">4</span><span class="w"> </span>--max_memory<span class="w"> </span><span class="s1">&#39;6.GB&#39;</span><span class="w"> </span>--max_time<span class="w"> </span><span class="s1">&#39;6.h&#39;</span><span class="w"> </span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nextflow<span class="w"> </span>run<span class="w"> </span>nf-core/metaboigniter<span class="w"> </span>-profile<span class="w"> </span>docker,arm<span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>.0.1<span class="w"> </span>-resume<span class="w"> </span><span class="se">\</span>
+--input<span class="w"> </span>data/cutA/samplesheet.csv<span class="w"> </span><span class="se">\</span>
+--outdir<span class="w"> </span>results_cutA<span class="w"> </span><span class="se">\</span>
+--identification<span class="w"> </span>--run_ms2query<span class="w"> </span><span class="se">\</span>
+--max_cpus<span class="w"> </span><span class="m">4</span><span class="w"> </span>--max_memory<span class="w"> </span><span class="s1">&#39;15.GB&#39;</span><span class="w"> </span>--max_time<span class="w"> </span><span class="s1">&#39;6.h&#39;</span><span class="w"> </span>
 </pre></div>
 </div>
 </section>
@@ -392,6 +719,26 @@ for an example of how to do this.</p>
 <span class="c1"># python -m pip install pyopenms</span>
 python<span class="w"> </span>bin/reindex_mzml.py<span class="w"> </span>-h
 python<span class="w"> </span>bin/reindex_mzml.py<span class="w"> </span>--input_dir<span class="w"> </span>data/
+</pre></div>
+</div>
+</section>
+<section id="corrupt-files">
+<h3>Corrupt files<a class="headerlink" href="#corrupt-files" title="Link to this heading">#</a></h3>
+<p>When downloading the files, it is possible that error occur. Try to redownload any file that
+fails to be processed.</p>
+</section>
+<section id="ms2query-downloads">
+<h3>MS2Query downloads<a class="headerlink" href="#ms2query-downloads" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># downloaded into your work folder by a process</span>
+<span class="c1"># e.g. ls -lh work/5f/c28db2c487c595610fa3108e5bd8cb/downloads</span>
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>483M<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:27<span class="w"> </span>library_GNPS_15_12_2021_ms2ds_embeddings.pickle
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>722M<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:27<span class="w"> </span>library_GNPS_15_12_2021_s2v_embeddings.pickle
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">  </span>62M<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:27<span class="w"> </span>ms2ds_model_GNPS_15_12_2021.hdf5
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>327M<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:27<span class="w"> </span>ms2query_library.sqlite
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>574K<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:27<span class="w"> </span>ms2query_random_forest_model.onnx
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">3</span>.9M<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:27<span class="w"> </span>spec2vec_model_GNPS_15_12_2021.model
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>133M<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:28<span class="w"> </span>spec2vec_model_GNPS_15_12_2021.model.syn1neg.npy
+-rw-rw-rw-<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>133M<span class="w"> </span>Jun<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">11</span>:28<span class="w"> </span>spec2vec_model_GNPS_15_12_2021.model.wv.vectors.npy
 </pre></div>
 </div>
 </section>
@@ -508,45 +855,7 @@ python<span class="w"> </span>bin/reindex_mzml.py<span class="w"> </span>--input
 <span style="color:blue;">max_cpus                                                                                          : </span><span style="color:green;">8</span>
 <span style="color:blue;">max_memory                                                                                        : </span><span style="color:green;">14.GB</span>
 <span style="color:blue;">max_time                                                                                          : </span><span style="color:green;">6.h</span></p>
-</section>
-<section id="only-displaying-parameters-that-differ-from-the-pipeline-defaults">
-<h2>Only displaying parameters that differ from the pipeline defaults<a class="headerlink" href="#only-displaying-parameters-that-differ-from-the-pipeline-defaults" title="Link to this heading">#</a></h2>
-<p>If you use nf-core/metaboigniter for your analysis please cite:</p>
-<ul class="simple">
-<li><p>The pipeline</p></li>
-<li><p>The nf-core framework
-https://doi.org/10.1038/s41587-020-0439-x</p></li>
-<li><p>Software dependencies
-https://github.com/nf-core/metaboigniter/blob/master/CITATIONS.md</p></li>
-</ul>
-<hr class="docutils" />
-<p><span style="color:olive;">WARN: No Sirius user account information found. Please enter <code class="docutils literal notranslate"><span class="pre">--sirius_email</span></code> and <code class="docutils literal notranslate"><span class="pre">sirius_password</span></code>.</span></p>
-<p>[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_FEATUREFINDERMETABO                      -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPALIGNERPOSECLUSTERING                 -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPRTTRANSFORMER                         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:OPENMS_METABOLITEADDUCTDECHARGER                    -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:PYOPENMS_C13DETECTION                               -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:LINKER:OPENMS_FEATURELINKERUNLABELEDKD                         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_MSMAPPING                              -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:OPENMS_FILEFILTER                               -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_SPLITCONSENSUS                         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_GENERATESEARCHPARAMS                   -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_CONCTSV_UNMAPPED                       -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMSFILE                             -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMGFFILE                            -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:SIRIUS_SEARCH                      -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:PYOPENMS_CONCTSVSIRIUS             -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:PYOPENMS_CONCTSVFINGERID           -
-[<span style="color:blue;">-        </span>] NFC…R:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_MODELDOWNLOADER:MS2QUERY_DOWNLOADMODEL -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_CHECKMODELFILES         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_SEARCH                  -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:PYOPENMS_CONCTSVMS2QUERY         -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:PYOPENMS_EXPORTIDENTIFICATION                                  -
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:MULTIQC                                                        -
-<span style="color:olive;">WARN: The operator <code class="docutils literal notranslate"><span class="pre">first</span></code> is useless when applied to a value channel which returns a single value by definition</span>
-<span style="color:olive;">WARN: Input <code class="docutils literal notranslate"><span class="pre">tuple</span></code> must define at least two elements – Check process <code class="docutils literal notranslate"><span class="pre">NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_SEARCH</span></code></span></p>
-<p>executor &gt;  local (1)
-[<span style="color:blue;">81/f8c70e</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_FEATUREFINDERMETABO<span style="color:olive;"> (MS_D_POS)</span>           [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
+<p>[<span style="color:blue;">81/f8c70e</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_FEATUREFINDERMETABO<span style="color:olive;"> (MS_D_POS)</span>           [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
 [<span style="color:blue;">31/91ac9e</span>] NFC…E_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPALIGNERPOSECLUSTERING<span style="color:olive;"> (Multiple files)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
 [<span style="color:blue;">04/074ef6</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPRTTRANSFORMER<span style="color:olive;"> (MS_B_POS)</span>              [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
 [<span style="color:blue;">2c/12d19b</span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:OPENMS_METABOLITEADDUCTDECHARGER<span style="color:olive;"> (MS_B_POS)</span>         [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
@@ -625,13 +934,16 @@ https://github.com/nf-core/metaboigniter/blob/master/CITATIONS.md</p></li>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-the-general-config">Inspect the general config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-metaboigniter-arguments">Inspect Metaboigniter arguments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-metaboigniter">Run Metaboigniter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensure-mzml-files-are-correctly-indexed">Ensure mzML files are correctly indexed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrupt-files">Corrupt files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ms2query-downloads">MS2Query downloads</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-output-of-a-local-run">Example output of a local run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#only-displaying-parameters-that-differ-from-the-pipeline-defaults">Only displaying parameters that differ from the pipeline defaults</a></li>
 </ul>
   </nav></div>
 
