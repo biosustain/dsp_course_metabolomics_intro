@@ -16,7 +16,10 @@
 # # Metabolomics DSP Course - Data Analysis
 
 # %% [markdown]
-# In this demonstrative exercise, we will perform the downstream analysis of the Metabolights dataset MTBLS8735. This dataset contains three control samples derived from healthy samples, three samples from patients with Cardiovascular disease and four pooled Quality Control (QC) samples. 
+# In this demonstrative exercise, we will perform the downstream analysis of the
+# Metabolights dataset MTBLS8735. This dataset contains three control samples derived from
+# healthy samples, three samples from patients with Cardiovascular disease and four pooled
+# Quality Control (QC) samples. 
 #
 # The rough workflow of this analysis is:
 # - Data filtering
@@ -25,10 +28,16 @@
 # - Normalisation and Visualisation
 # - Statistical analysis (ANCOVA)
 #
-# For most of the analyses, we will be using the python package ACORE, which is a package developed by the Data Science Platform of NNF BRIGHT for analysing multi-omics molecular data - including metabolomics data. The documentation of this package can be found here: [`acore documentation`](https://analytics-core.readthedocs.io/latest/).
-# Go there to read about the functions in more detail, or to find out what else you can analyse with acore.
+# For most of the analyses, we will be using the python package ACORE, which is a package
+# developed by the Data Science Platform of NNF BRIGHT for analysing multi-omics molecular
+# data - including metabolomics data. The documentation of this package can be found here:
+# [`acore documentation`](https://analytics-core.readthedocs.io/latest/). Go there to read
+# about the functions in more detail, or to find out what else you can analyse with acore.
 #
-# Although we are using acore for almost everything, all of these analyses can be carried out with other programs or in your own code, created in R, Python or other places, as well. This notebook serves primarily as a demonstration of the necessary steps of a typical downstream metabolomics data analysis.
+# Although we are using acore for almost everything, all of these analyses can be carried
+# out with other programs or in your own code, created in R, Python or other places, as
+# well. This notebook serves primarily as a demonstration of the necessary steps of a
+# typical downstream metabolomics data analysis.
 
 # %% [markdown]
 # ##### Imports
@@ -37,23 +46,22 @@
 # %pip install acore
 
 # %%
+import matplotlib.pyplot as plt
+import matplotlib.transforms as transforms
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+import vuecore.plots.basic.scatter
 from matplotlib.patches import Ellipse
-import matplotlib.transforms as transforms
-
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-import vuecore.plots.basic.scatter
-
-
 # %% [markdown]
 # ##### Helper functions
-# First, we are defining some helper functions. Feel free to ignore these while we go through the exercise, they are for example plotting functions. Do, however, run the cells.
+# First, we are defining some helper functions. Feel free to ignore these while we go
+# through the exercise, they are for example plotting functions. Do, however, run the
+# cells.
 
-# %%
+# %% tags=["hide-input"]
 def plot_pca(
     df: pd.DataFrame,
     groups: dict[str, list],  # e.g. {"Control": [0,1,2], "Treatment": [3,4,5]}
@@ -461,7 +469,8 @@ def pca_for_cpca_drift(
 # ### Data setup
 
 # %% [markdown]
-# First, let's load and have a look at our data. You can find it in the data folder of this codespace.
+# First, let's load and have a look at our data. You can find it in the data
+# folder of this codespace.
 
 # %%
 metaboigniter_data = pd.read_csv(
@@ -473,9 +482,12 @@ metaboigniter_data
 metaboigniter_data.columns
 
 # %% [markdown]
-# You can see that we have our features in the rows, and that there are 9068 of them. We have some metadata like mass-to-charge ratios and retention times, and then we have our intensities.
+# You can see that we have our features in the rows, and that there are 9068 of them. We
+# have some metadata like mass-to-charge ratios and retention times, and then we have our
+# intensities.
 #
-# In order to properly analyse our data, we have to transpose it first. We also have to remove the metadata columns.
+# In order to properly analyse our data, we have to transpose it first. We also have to
+# remove the metadata columns.
 
 # %%
 data = metaboigniter_data.T
@@ -533,7 +545,11 @@ groups_all = {
 # %% [markdown]
 # ## Data filtering
 #
-# As a first step, we need to filter our data. There are many features in the data which are artifacts, background noise or unreliable. Additionally, there is a lot of missingness. While missing values can be imputed, it's better to remove features with high levels of missingness first and only impute features that have signal in most samples.
+# As a first step, we need to filter our data. There are many features in the data which
+# are artifacts, background noise or unreliable. Additionally, there is a lot of
+# missingness. While missing values can be imputed, it's better to remove features with
+# high levels of missingness first and only impute features that have signal in most
+# samples.
 #
 # We will use three methods of filtering:
 # - 80%-rule
@@ -598,8 +614,8 @@ print(f"Difference: {data.shape[1]-data_filtered_1.shape[1]} features removed.")
 #
 # The CV of the biological samples and the CV of the QC samples are calculated per
 # feature, and if for a given feature the CV of the QC samples is larger than that of the
-# biological samples, it is removed.
-# Also, if there are not enough QC samples to calculate the CV, or the mean is near zero, the features will be removed.
+# biological samples, it is removed. Also, if there are not enough QC samples to calculate
+# the CV, or the mean is near zero, the features will be removed.
 #
 # In acore, this method is implemented in the function filter_cv.
 
@@ -620,11 +636,19 @@ print(
 # #### D-ratio filtering
 # Finally, we will do dispersion ratio filtering.
 #
-# This method scores each feature by the ratio of its analytical noise (QC) to its total variation, meaning the standard deviation across pooled QC injections divided by the standard deviation across biological samples. 
+# This method scores each feature by the ratio of its analytical noise (QC) to its total
+# variation, meaning the standard deviation across pooled QC injections divided by the
+# standard deviation across biological samples. 
 #
-# A low D-ratio means biological variation dominates the technical noise, and a high one means the feature is mostly measurement noise with little biological signal, so features above a threshold (typically 0.5 or lower) get removed.
+# A low D-ratio means biological variation dominates the technical noise, and a high one
+# means the feature is mostly measurement noise with little biological signal, so features
+# above a threshold (typically 0.5 or lower) get removed.
 #
-# Here, we will use the median absolute deviation (MAD, scaled by 1.4826). Because medians ignore extreme values, this version resists outliers and skew, making it the better choice for non-Gaussian data like raw untargeted peak areas — whereas the standard-deviation version is preferable when the data are roughly Gaussian (or have been log-transformed first).
+# Here, we will use the median absolute deviation (MAD, scaled by 1.4826). Because medians
+# ignore extreme values, this version resists outliers and skew, making it the better
+# choice for non-Gaussian data like raw untargeted peak areas — whereas the
+# standard-deviation version is preferable when the data are roughly Gaussian (or have
+# been log-transformed first).
 #
 # This method is not implemented in acore yet, so we will define it ourselves.
 
@@ -686,7 +710,9 @@ print(f"Now we have a total of {data_filtered_3.shape[1]} features left.")
 # %% [markdown]
 # ## Imputation
 #
-# While we have filtered out a lot of missingness, we still have missing values in our data. Those are filled in with imputation. Imputation methods for metabolomics are also implemented in acore. Here we will use the half minimum to impute our values with. 
+# While we have filtered out a lot of missingness, we still have missing values in our
+# data. Those are filled in with imputation. Imputation methods for metabolomics are also
+# implemented in acore. Here we will use the half minimum to impute our values with. 
 
 # %%
 from acore.imputation_analysis import (
@@ -709,9 +735,13 @@ plot_intensity_distribution(data_filtered_3)
 # %% [markdown]
 # #### Impute with half minimum
 #
-# In this imputation method, we are calculating the minimum of each feature, taking the half of that and using that value to fill in missing values for that feature. This method is implemented in the acore function imputation_half_minimum().
+# In this imputation method, we are calculating the minimum of each feature, taking the
+# half of that and using that value to fill in missing values for that feature. This
+# method is implemented in the acore function imputation_half_minimum().
 #
-# Note: Another commonly used method in metabolomics data imputation is imputing with zeros. This method can also be applied through acore, with the function imputation_zeros().
+# Note: Another commonly used method in metabolomics data imputation is imputing with
+# zeros. This method can also be applied through acore, with the function
+# imputation_zeros().
 
 # %%
 data_imputed = imputation_half_minimum(data=data_filtered_3)
@@ -730,9 +760,12 @@ missingness_summary(data, data_imputed)
 plot_intensity_distribution(data_imputed)
 
 # %% [markdown]
-# Now we have filled in all missing values. We can now plot the data in a PCA plot to see whether the samples can be separated well with principal components. We can use the functions we defined earlier at the beginning of the notebook for that.
+# Now we have filled in all missing values. We can now plot the data in a PCA plot to see
+# whether the samples can be separated well with principal components. We can use the
+# functions we defined earlier at the beginning of the notebook for that.
 #
-# We can plot the PCA first with all samples and QCs, and then with just the samples, to see how the groups separate.
+# We can plot the PCA first with all samples and QCs, and then with just the samples, to
+# see how the groups separate.
 
 # %%
 pca_model, scores, var_explained = plot_pca(
@@ -743,19 +776,25 @@ pca_model, scores, var_explained = plot_pca(
 )
 
 # %% [markdown]
-# The first plot shows that the QC samples separate quite well from the biological samples.
+# The first plot shows that the QC samples separate quite well from the biological
+# samples.
 #
-# The second plot shows that the two groups are also separated quite well, although one of the control samples, sample C, clusters slightly away from the rest.
+# The second plot shows that the two groups are also separated quite well, although one of
+# the control samples, sample C, clusters slightly away from the rest.
 
 # %% [markdown]
 # ## Drift correction
 
 # %% [markdown]
-# Now that we have a data frame that has been filtered and is fully filled in, we will look at the within-batch effects. In metabolomics, instrumental drift is common, so the signal degrades over time. 
+# Now that we have a data frame that has been filtered and is fully filled in, we will
+# look at the within-batch effects. In metabolomics, instrumental drift is common, so the
+# signal degrades over time. 
 #
-# This is what we have the QC samples for, which is why they are so important to have included in the study. 
+# This is what we have the QC samples for, which is why they are so important to have
+# included in the study. 
 #
-# We will test two different methods for correcting the instrumental drift in this notebook, inspect the results, and then choose one to continue with.
+# We will test two different methods for correcting the instrumental drift in this
+# notebook, inspect the results, and then choose one to continue with.
 
 # %%
 from acore import drift_correction as dc
@@ -763,14 +802,23 @@ from acore import drift_correction as dc
 # %% [markdown]
 # #### Loess smoothing drift correction
 #
-# Pooled QC samples are injected at regular intervals over time throughout the experiment. The QC intensities for each features should theoretically be consistent in each measurement. Therefore, any variation in these samples reflect artificial variation, so instrumental drift, instead of biological variation.
+# Pooled QC samples are injected at regular intervals over time throughout the experiment.
+# The QC intensities for each features should theoretically be consistent in each
+# measurement. Therefore, any variation in these samples reflect artificial variation, so
+# instrumental drift, instead of biological variation.
 #
-# LOESS (LOcally Estimated Scatterplot Smoothing) is a non-parametric regression that fits a smooth curve through data without assuming a fixed equation. We use it here to fit a curve over the QC points, and then we rescale the biological sample intensities by the drift estimate. This will be explained better by the visualisations in the real example below.
+# LOESS (LOcally Estimated Scatterplot Smoothing) is a non-parametric regression that fits
+# a smooth curve through data without assuming a fixed equation. We use it here to fit a
+# curve over the QC points, and then we rescale the biological sample intensities by the
+# drift estimate. This will be explained better by the visualisations in the real example
+# below.
 #
-# LOESS smoothing based drift correction is implemented in the loess_drift_correction acore module.
+# LOESS smoothing based drift correction is implemented in the loess_drift_correction
+# acore module.
 
 # %% [markdown]
-# In order to use this method, we need to know the order in which the samples, including QCs, were run. We have this information in our metadata.
+# In order to use this method, we need to know the order in which the
+# samples, including QCs, were run. We have this information in our metadata.
 
 # %%
 sample_order = pd.read_csv("../data/MTBLS8735/sample_metadata_metaboigniter.csv")
@@ -785,13 +833,17 @@ data_corrected_loess
 # %% [markdown]
 # Our dataframe has the same structure as before. 
 #
-# We can also look at the object correction_info, if we want to trace the exact correction that was applied to every feature. 
+# We can also look at the object correction_info, if we want to trace the exact correction
+# that was applied to every feature. 
 
 # %%
 correction_info["FT0001"]
 
 # %% [markdown]
-# To understand better what is happening, we can plot a single feature with all its measurements over time, and the loess curve that is calculated over it. We can try out a few different features to see what would happen, and also try different smoothing parameters to see how the curve changes.
+# To understand better what is happening, we can plot a single feature with
+# all its measurements over time, and the loess curve that is calculated over it. We can
+# try out a few different features to see what would happen, and also try different
+# smoothing parameters to see how the curve changes.
 
 # %%
 plot_loess_example_curve(
@@ -805,9 +857,14 @@ plot_loess_example_curve(
 # %% [markdown]
 # #### CPCA
 #
-# Standard PCA finds orthogonal directions (principal components) that capture maximum variance in a single dataset. Common PCA extends this to multiple groups: instead of computing separate components per batch, it tries to find a set of components that are common across groups. 
+# Standard PCA finds orthogonal directions (principal components) that capture maximum
+# variance in a single dataset. Common PCA extends this to multiple groups: instead of
+# computing separate components per batch, it tries to find a set of components that are
+# common across groups. 
 #
-# In this case, it finds the principal components that are common across all samples, because the assumption is that those are the ones that are due to artificial variation, whereas the variance in biological samples will not be shared across all.
+# In this case, it finds the principal components that are common across all samples,
+# because the assumption is that those are the ones that are due to artificial variation,
+# whereas the variance in biological samples will not be shared across all.
 #
 # First, we can plot a PCA for this purpose.
 
@@ -908,7 +965,8 @@ pca_model, scores, var_explained = plot_pca(
 # %% [markdown]
 # ## Normalization
 #
-# We will also normalise the data with Z-score normalisation. In this case, this will be mainly for visualisation purposes, again to see whether the data is separating well.
+# We will also normalise the data with Z-score normalisation. In this case, this will be
+# mainly for visualisation purposes, again to see whether the data is separating well.
 #
 # We will use an acore function for this again.
 
@@ -939,9 +997,15 @@ pca_model, scores, var_explained = plot_pca(
 # %% [markdown]
 # #### ANCOVA
 #
-# We will now do a statistical analysis. We want to find out which ones of our metabolites are significantly more abundant in the cardiovascular disease group vs the control, or the other way around.
+# We will now do a statistical analysis. We want to find out which ones of our metabolites
+# are significantly more abundant in the cardiovascular disease group vs the control, or
+# the other way around.
 #
-# For this, we will do an ANCOVA (analysis of covariance), which compares group means on an outcome while statistically controlling for one or more continuous variables (covariates) that also influence the outcome. In this case, the covariate is age, because we have this in our metadata and know that it could potentially affect the sample outcomes.
+# For this, we will do an ANCOVA (analysis of covariance), which compares group means on
+# an outcome while statistically controlling for one or more continuous variables
+# (covariates) that also influence the outcome. In this case, the covariate is age,
+# because we have this in our metadata and know that it could potentially affect the
+# sample outcomes.
 #
 # We are using another acore function for this.
 
@@ -994,19 +1058,25 @@ ancova = (
 )  # need to be floats?
 ancova
 
-# %% [markdown]
-# We have filtered the table by the adjusted pvalue. We can look at the top values to see how good our best hits are.
+# %% We have filtered the table by the adjusted pvalue. We can look at the top [markdown]
+# values to see how good our best hits are.
 #
 # ?? add more info when we have decided
 
 # %% [markdown]
-# Now we can inspect the results in a few different ways. First of all, we can look at the group averages, which are shown in the first six columns.
+# Now we can inspect the results in a few different ways. First of all, we
+# can look at the group averages, which are shown in the first six columns.
 
 # %%
 ancova.iloc[:, :6]
 
 # %% [markdown]
-# If we filter to the words below, we can inspect the test results (based on a linear model) for each feature (on each row). The posthoc values are not interesting in this case as we are only comparing between two groups (ctr and cvd). We are mainly interested in the adjusted pvalue (pajd), and in whether the null hypothesis was rejected or not. If rejected=True, it means our feature was significant according to the thresholds we have set.
+# If we filter to the words below, we can inspect the test results (based on
+# a linear model) for each feature (on each row). The posthoc values are not interesting
+# in this case as we are only comparing between two groups (ctr and cvd). We are mainly
+# interested in the adjusted pvalue (pajd), and in whether the null hypothesis was
+# rejected or not. If rejected=True, it means our feature was significant according to the
+# thresholds we have set.
 
 # %%
 regex_filter = "pval|padj|reject|post"
@@ -1019,7 +1089,8 @@ ancova.filter(regex=regex_filter)
 ancova.iloc[:, 6:].filter(regex=f"^(?!.*({regex_filter})).*$")
 
 # %% [markdown]
-# Now we can plot a volcano plot, which is a scatter plot that combines statistical significance and effect size (magnitude of change) in a single view.
+# Now we can plot a volcano plot, which is a scatter plot that combines statistical
+# significance and effect size (magnitude of change) in a single view.
 
 # %%
 scatter_plot_adv = vuecore.plots.basic.scatter.create_scatter_plot(
@@ -1102,7 +1173,10 @@ print("padj < 0.1:  ", (ancova["padj"] < 0.1).sum())
 # %% [markdown]
 # ## Identify hits
 #
-# Finally, we can identify our best hits to then be analysed further. Once we have found our top hits, we can match the (for now unknown) features with library spectra and identify which metabolites they are. Then, we can carry out further analyses such as enrichment analysis.
+# Finally, we can identify our best hits to then be analysed further. Once we have found
+# our top hits, we can match the (for now unknown) features with library spectra and
+# identify which metabolites they are. Then, we can carry out further analyses such as
+# enrichment analysis.
 
 # %%
 # Primary hit list for follow-up
