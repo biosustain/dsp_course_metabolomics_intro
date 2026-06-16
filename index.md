@@ -9,6 +9,7 @@
 
 material/intro_metabolomics
 material/nf_core_metaboigniter
+Preprocessing manually using pyOpenMS <1_pyOpenMS_metabonaut_pipeline>
 ```
 
 ```{toctree}

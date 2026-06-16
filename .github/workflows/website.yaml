@@ -20,6 +20,15 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt -r requirements_docs.txt
+      
+      - name: Download data
+        run: |
+          mkdir -p data/MTBLS8735
+          bash  data/MTBLS8735/download.sh
+          
+      - name: Reindex mzML files
+        run: |
+          python bin/reindex_mzml.py -i data/MTBLS8735/
 
       - name: Build the site
         run: |
