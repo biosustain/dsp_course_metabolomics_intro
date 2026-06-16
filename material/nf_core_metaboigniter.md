@@ -1,5 +1,14 @@
 # Metaboigniter
 
+## Open GitHub codespace
+
+Use the following link to open a GitHub codespace with most of the required software installed:
+
+> ⚠️
+> If you do it manually, make sure to select the bigger machine with 4 cores and 16GB RAM
+
+[![Open in Codespace deeplink](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&repo=1177012938&skip_quickstart=true&ref=updt_dockerfile&machine=standardLinux32gb&devcontainer_path=.devcontainer%2Fdevcontainer.json&geo=EuropeWest)
+
 ## Getting the data
 
 ```bash
