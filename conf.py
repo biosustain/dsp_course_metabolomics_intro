@@ -27,12 +27,13 @@ exclude_patterns = [
 #  https://myst-nb.readthedocs.io/en/latest/computation/execute.html
 nb_execution_mode = "auto"
 
+
 myst_enable_extensions = ["dollarmath", "amsmath"]
 
 # Plotly support through require javascript library
 # https://myst-nb.readthedocs.io/en/latest/render/interactive.html#plotly
 html_js_files = [
-    "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"
+    "https://cdn.plot.ly/plotly-3.0.1.min.js",
 ]
 
 # https://myst-nb.readthedocs.io/en/latest/configuration.html
@@ -40,6 +41,8 @@ html_js_files = [
 nb_execution_raise_on_error = True
 # Rendering
 nb_merge_streams = True
+# maximum execution time per cell in seconds
+nb_execution_timeout = 240
 
 # https://myst-nb.readthedocs.io/en/latest/authoring/custom-formats.html#write-custom-formats
 # nb_custom_formats = {".py": ["jupytext.reads", {"fmt": "py:percent"}]}
