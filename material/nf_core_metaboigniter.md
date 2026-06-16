@@ -28,7 +28,6 @@ run the pipeline.
 <details>
 <summary>Help message for nf-core/metaboigniter v2.0.1</summary>
 
-
 ```
 >>> nextflow run nf-core/metaboigniter --help
 
@@ -401,7 +400,6 @@ fails to be processed.
 
 ## Example output of a local run
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8"/>
@@ -410,146 +408,145 @@ fails to be processed.
 <body>
 <pre>
 
-<span style="font-weight:bold;"></span><span style="font-weight:bold;color:#000000;"></span><span style="font-weight:bold;color:#000000;background-color:#00d7af;"> N E X T F L O W </span>  ~  version 25.10.4
+<span style="font-weight:bold;"></span><span style="font-weight:bold;color:#000000;"></span><span style="font-weight:bold;color:#000000;background-color:#00d7af;"> N E X T F L O W </span> ~ version 25.10.4
 
 Launching<span style="color:purple;"> `https://github.com/nf-core/metaboigniter` </span>[<span style="font-weight:bold;color:teal;">fervent_spence</span>] DSL2 - <span style="color:teal;">revision: 55d8254760 [2.0.1]</span>
 
 <span style="color:olive;">WARN: Access to undefined parameter `monochromeLogs` -- Initialise it to a default value eg. `params.monochromeLogs = some_value`</span>
-                                        
-<span style="color:purple;">  nf-core/metaboigniter v2.0.1-g55d8254</span>
+
+<span style="color:purple;"> nf-core/metaboigniter v2.0.1-g55d8254</span>
 
 <span style="font-weight:bold;">Core Nextflow options</span>
-  <span style="color:blue;">revision                                                                                          : </span><span style="color:green;">2.0.1</span>
-  <span style="color:blue;">runName                                                                                           : </span><span style="color:green;">fervent_spence</span>
-  <span style="color:blue;">containerEngine                                                                                   : </span><span style="color:green;">docker</span>
-  <span style="color:blue;">launchDir                                                                                         : </span><span style="color:green;">/Users/heweb/Documents/repos/dsp_course_metabolomics_intro</span>
-  <span style="color:blue;">workDir                                                                                           : </span><span style="color:green;">/Users/heweb/Documents/repos/dsp_course_metabolomics_intro/work</span>
-  <span style="color:blue;">projectDir                                                                                        : </span><span style="color:green;">/Users/heweb/.nextflow/assets/nf-core/metaboigniter</span>
-  <span style="color:blue;">userName                                                                                          : </span><span style="color:green;">heweb</span>
-  <span style="color:blue;">profile                                                                                           : </span><span style="color:green;">docker,arm</span>
-  <span style="color:blue;">configFiles                                                                                       : </span><span style="color:green;"></span>
+<span style="color:blue;">revision : </span><span style="color:green;">2.0.1</span>
+<span style="color:blue;">runName : </span><span style="color:green;">fervent_spence</span>
+<span style="color:blue;">containerEngine : </span><span style="color:green;">docker</span>
+<span style="color:blue;">launchDir : </span><span style="color:green;">/Users/heweb/Documents/repos/dsp_course_metabolomics_intro</span>
+<span style="color:blue;">workDir : </span><span style="color:green;">/Users/heweb/Documents/repos/dsp_course_metabolomics_intro/work</span>
+<span style="color:blue;">projectDir : </span><span style="color:green;">/Users/heweb/.nextflow/assets/nf-core/metaboigniter</span>
+<span style="color:blue;">userName : </span><span style="color:green;">heweb</span>
+<span style="color:blue;">profile : </span><span style="color:green;">docker,arm</span>
+<span style="color:blue;">configFiles : </span><span style="color:green;"></span>
 
 <span style="font-weight:bold;">Generic controls</span>
-  <span style="color:blue;">identification                                                                                    : </span><span style="color:green;">true</span>
+<span style="color:blue;">identification : </span><span style="color:green;">true</span>
 
 <span style="font-weight:bold;">Mapping and Identification</span>
-  <span style="color:blue;">mz_tolerance_pyopenms                                                                             : </span><span style="color:green;">20.0</span>
-  <span style="color:blue;">rt_tolerance_pyopenms                                                                             : </span><span style="color:green;">5.0</span>
-  <span style="color:blue;">sirius_sirius_ppm_max                                                                             : </span><span style="color:green;">10.0</span>
-  <span style="color:blue;">sirius_sirius_ppm_max_ms2                                                                         : </span><span style="color:green;">10.0</span>
-  <span style="color:blue;">run_ms2query                                                                                      : </span><span style="color:green;">true</span>
-  <span style="color:blue;">run_sirius                                                                                        : </span><span style="color:green;">true</span>
+<span style="color:blue;">mz_tolerance_pyopenms : </span><span style="color:green;">20.0</span>
+<span style="color:blue;">rt_tolerance_pyopenms : </span><span style="color:green;">5.0</span>
+<span style="color:blue;">sirius_sirius_ppm_max : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">sirius_sirius_ppm_max_ms2 : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">run_ms2query : </span><span style="color:green;">true</span>
+<span style="color:blue;">run_sirius : </span><span style="color:green;">true</span>
 
 <span style="font-weight:bold;">Annotation</span>
-  <span style="color:blue;">algorithm_metabolitefeaturedeconvolution_retention_max_diff_metaboliteadductdecharger_openms      : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_metabolitefeaturedeconvolution_retention_max_diff_local_metaboliteadductdecharger_openms: </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_metabolitefeaturedeconvolution_retention_max_diff_metaboliteadductdecharger_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_metabolitefeaturedeconvolution_retention_max_diff_local_metaboliteadductdecharger_openms: </span><span style="color:green;">1.0</span>
 
 <span style="font-weight:bold;">Alignment and Linking</span>
-  <span style="color:blue;">algorithm_superimposer_scaling_bucket_size_mapalignerposeclustering_openms                        : </span><span style="color:green;">0.0050</span>
-  <span style="color:blue;">algorithm_superimposer_shift_bucket_size_mapalignerposeclustering_openms                          : </span><span style="color:green;">3.0</span>
-  <span style="color:blue;">algorithm_superimposer_max_shift_mapalignerposeclustering_openms                                  : </span><span style="color:green;">1000.0</span>
-  <span style="color:blue;">algorithm_superimposer_max_scaling_mapalignerposeclustering_openms                                : </span><span style="color:green;">2.0</span>
-  <span style="color:blue;">algorithm_pairfinder_second_nearest_gap_mapalignerposeclustering_openms                           : </span><span style="color:green;">2.0</span>
-  <span style="color:blue;">algorithm_pairfinder_distance_rt_exponent_mapalignerposeclustering_openms                         : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_pairfinder_distance_rt_weight_mapalignerposeclustering_openms                           : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_pairfinder_distance_mz_exponent_mapalignerposeclustering_openms                         : </span><span style="color:green;">2.0</span>
-  <span style="color:blue;">algorithm_pairfinder_distance_mz_weight_mapalignerposeclustering_openms                           : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_pairfinder_distance_intensity_exponent_mapalignerposeclustering_openms                  : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_pairfinder_distance_intensity_weight_mapalignerposeclustering_openms                    : </span><span style="color:green;">0.0</span>
-  <span style="color:blue;">algorithm_link_rt_tol_featurelinkerunlabeledkd_openms                                             : </span><span style="color:green;">30.0</span>
-  <span style="color:blue;">algorithm_link_mz_tol_featurelinkerunlabeledkd_openms                                             : </span><span style="color:green;">10.0</span>
-  <span style="color:blue;">algorithm_distance_rt_exponent_featurelinkerunlabeledkd_openms                                    : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_distance_rt_weight_featurelinkerunlabeledkd_openms                                      : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_distance_mz_exponent_featurelinkerunlabeledkd_openms                                    : </span><span style="color:green;">2.0</span>
-  <span style="color:blue;">algorithm_distance_mz_weight_featurelinkerunlabeledkd_openms                                      : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_distance_intensity_exponent_featurelinkerunlabeledkd_openms                             : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_distance_intensity_weight_featurelinkerunlabeledkd_openms                               : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_lowess_delta_featurelinkerunlabeledkd_openms                                            : </span><span style="color:green;">-1.0</span>
-  <span style="color:blue;">model_linear_x_datum_min_maprttransformer_openms                                                  : </span><span style="color:green;">1.0E-15</span>
-  <span style="color:blue;">model_linear_x_datum_max_maprttransformer_openms                                                  : </span><span style="color:green;">1.0E+15</span>
-  <span style="color:blue;">model_linear_y_datum_min_maprttransformer_openms                                                  : </span><span style="color:green;">1.0E-15</span>
-  <span style="color:blue;">model_linear_y_datum_max_maprttransformer_openms                                                  : </span><span style="color:green;">1.0E+15</span>
-  <span style="color:blue;">model_b_spline_wavelength_maprttransformer_openms                                                 : </span><span style="color:green;">0.0</span>
-  <span style="color:blue;">model_b_spline_num_nodes_maprttransformer_openms                                                  : </span><span style="color:green;">5</span>
-  <span style="color:blue;">model_b_spline_boundary_condition_maprttransformer_openms                                         : </span><span style="color:green;">2</span>
-  <span style="color:blue;">model_lowess_span_maprttransformer_openms                                                         : </span><span style="color:green;">0.666666666666667</span>
-  <span style="color:blue;">model_lowess_num_iterations_maprttransformer_openms                                               : </span><span style="color:green;">3</span>
-  <span style="color:blue;">model_lowess_delta_maprttransformer_openms                                                        : </span><span style="color:green;">-1.0</span>
+<span style="color:blue;">algorithm_superimposer_scaling_bucket_size_mapalignerposeclustering_openms : </span><span style="color:green;">0.0050</span>
+<span style="color:blue;">algorithm_superimposer_shift_bucket_size_mapalignerposeclustering_openms : </span><span style="color:green;">3.0</span>
+<span style="color:blue;">algorithm_superimposer_max_shift_mapalignerposeclustering_openms : </span><span style="color:green;">1000.0</span>
+<span style="color:blue;">algorithm_superimposer_max_scaling_mapalignerposeclustering_openms : </span><span style="color:green;">2.0</span>
+<span style="color:blue;">algorithm_pairfinder_second_nearest_gap_mapalignerposeclustering_openms : </span><span style="color:green;">2.0</span>
+<span style="color:blue;">algorithm_pairfinder_distance_rt_exponent_mapalignerposeclustering_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_pairfinder_distance_rt_weight_mapalignerposeclustering_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_pairfinder_distance_mz_exponent_mapalignerposeclustering_openms : </span><span style="color:green;">2.0</span>
+<span style="color:blue;">algorithm_pairfinder_distance_mz_weight_mapalignerposeclustering_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_pairfinder_distance_intensity_exponent_mapalignerposeclustering_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_pairfinder_distance_intensity_weight_mapalignerposeclustering_openms : </span><span style="color:green;">0.0</span>
+<span style="color:blue;">algorithm_link_rt_tol_featurelinkerunlabeledkd_openms : </span><span style="color:green;">30.0</span>
+<span style="color:blue;">algorithm_link_mz_tol_featurelinkerunlabeledkd_openms : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">algorithm_distance_rt_exponent_featurelinkerunlabeledkd_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_distance_rt_weight_featurelinkerunlabeledkd_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_distance_mz_exponent_featurelinkerunlabeledkd_openms : </span><span style="color:green;">2.0</span>
+<span style="color:blue;">algorithm_distance_mz_weight_featurelinkerunlabeledkd_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_distance_intensity_exponent_featurelinkerunlabeledkd_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_distance_intensity_weight_featurelinkerunlabeledkd_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_lowess_delta_featurelinkerunlabeledkd_openms : </span><span style="color:green;">-1.0</span>
+<span style="color:blue;">model_linear_x_datum_min_maprttransformer_openms : </span><span style="color:green;">1.0E-15</span>
+<span style="color:blue;">model_linear_x_datum_max_maprttransformer_openms : </span><span style="color:green;">1.0E+15</span>
+<span style="color:blue;">model_linear_y_datum_min_maprttransformer_openms : </span><span style="color:green;">1.0E-15</span>
+<span style="color:blue;">model_linear_y_datum_max_maprttransformer_openms : </span><span style="color:green;">1.0E+15</span>
+<span style="color:blue;">model_b_spline_wavelength_maprttransformer_openms : </span><span style="color:green;">0.0</span>
+<span style="color:blue;">model_b_spline_num_nodes_maprttransformer_openms : </span><span style="color:green;">5</span>
+<span style="color:blue;">model_b_spline_boundary_condition_maprttransformer_openms : </span><span style="color:green;">2</span>
+<span style="color:blue;">model_lowess_span_maprttransformer_openms : </span><span style="color:green;">0.666666666666667</span>
+<span style="color:blue;">model_lowess_num_iterations_maprttransformer_openms : </span><span style="color:green;">3</span>
+<span style="color:blue;">model_lowess_delta_maprttransformer_openms : </span><span style="color:green;">-1.0</span>
 
 <span style="font-weight:bold;">Re-Quantification</span>
-  <span style="color:blue;">extract_mz_window_featurefindermetaboident_openms                                                 : </span><span style="color:green;">10.0</span>
-  <span style="color:blue;">extract_rt_window_featurefindermetaboident_openms                                                 : </span><span style="color:green;">0.0</span>
-  <span style="color:blue;">extract_n_isotopes_featurefindermetaboident_openms                                                : </span><span style="color:green;">2</span>
-  <span style="color:blue;">extract_isotope_pmin_featurefindermetaboident_openms                                              : </span><span style="color:green;">0.0</span>
-  <span style="color:blue;">detect_peak_width_featurefindermetaboident_openms                                                 : </span><span style="color:green;">60.0</span>
-  <span style="color:blue;">detect_min_peak_width_featurefindermetaboident_openms                                             : </span><span style="color:green;">0.2</span>
-  <span style="color:blue;">detect_signal_to_noise_featurefindermetaboident_openms                                            : </span><span style="color:green;">0.8</span>
-  <span style="color:blue;">model_add_zeros_featurefindermetaboident_openms                                                   : </span><span style="color:green;">0.2</span>
-  <span style="color:blue;">model_check_min_area_featurefindermetaboident_openms                                              : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">model_check_boundaries_featurefindermetaboident_openms                                            : </span><span style="color:green;">0.5</span>
-  <span style="color:blue;">model_check_width_featurefindermetaboident_openms                                                 : </span><span style="color:green;">10.0</span>
-  <span style="color:blue;">model_check_asymmetry_featurefindermetaboident_openms                                             : </span><span style="color:green;">10.0</span>
-  <span style="color:blue;">emgscoring_max_iteration_featurefindermetaboident_openms                                          : </span><span style="color:green;">100</span>
+<span style="color:blue;">extract_mz_window_featurefindermetaboident_openms : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">extract_rt_window_featurefindermetaboident_openms : </span><span style="color:green;">0.0</span>
+<span style="color:blue;">extract_n_isotopes_featurefindermetaboident_openms : </span><span style="color:green;">2</span>
+<span style="color:blue;">extract_isotope_pmin_featurefindermetaboident_openms : </span><span style="color:green;">0.0</span>
+<span style="color:blue;">detect_peak_width_featurefindermetaboident_openms : </span><span style="color:green;">60.0</span>
+<span style="color:blue;">detect_min_peak_width_featurefindermetaboident_openms : </span><span style="color:green;">0.2</span>
+<span style="color:blue;">detect_signal_to_noise_featurefindermetaboident_openms : </span><span style="color:green;">0.8</span>
+<span style="color:blue;">model_add_zeros_featurefindermetaboident_openms : </span><span style="color:green;">0.2</span>
+<span style="color:blue;">model_check_min_area_featurefindermetaboident_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">model_check_boundaries_featurefindermetaboident_openms : </span><span style="color:green;">0.5</span>
+<span style="color:blue;">model_check_width_featurefindermetaboident_openms : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">model_check_asymmetry_featurefindermetaboident_openms : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">emgscoring_max_iteration_featurefindermetaboident_openms : </span><span style="color:green;">100</span>
 
 <span style="font-weight:bold;">Quantification</span>
-  <span style="color:blue;">algorithm_signal_to_noise_peakpickerhires_openms                                                  : </span><span style="color:green;">0.0</span>
-  <span style="color:blue;">algorithm_spacing_difference_gap_peakpickerhires_openms                                           : </span><span style="color:green;">4.0</span>
-  <span style="color:blue;">algorithm_spacing_difference_peakpickerhires_openms                                               : </span><span style="color:green;">1.5</span>
-  <span style="color:blue;">algorithm_missing_peakpickerhires_openms                                                          : </span><span style="color:green;">1</span>
-  <span style="color:blue;">algorithm_signaltonoise_max_intensity_peakpickerhires_openms                                      : </span><span style="color:green;">-1</span>
-  <span style="color:blue;">algorithm_signaltonoise_auto_max_stdev_factor_peakpickerhires_openms                              : </span><span style="color:green;">3.0</span>
-  <span style="color:blue;">algorithm_signaltonoise_auto_max_percentile_peakpickerhires_openms                                : </span><span style="color:green;">95</span>
-  <span style="color:blue;">algorithm_signaltonoise_auto_mode_peakpickerhires_openms                                          : </span><span style="color:green;">0</span>
-  <span style="color:blue;">algorithm_signaltonoise_win_len_peakpickerhires_openms                                            : </span><span style="color:green;">200.0</span>
-  <span style="color:blue;">algorithm_signaltonoise_bin_count_peakpickerhires_openms                                          : </span><span style="color:green;">30</span>
-  <span style="color:blue;">algorithm_signaltonoise_min_required_elements_peakpickerhires_openms                              : </span><span style="color:green;">10</span>
-  <span style="color:blue;">algorithm_signaltonoise_noise_for_empty_window_peakpickerhires_openms                             : </span><span style="color:green;">1.0E+20</span>
-  <span style="color:blue;">algorithm_common_noise_threshold_int_featurefindermetabo_openms                                   : </span><span style="color:green;">10.0</span>
-  <span style="color:blue;">algorithm_common_chrom_peak_snr_featurefindermetabo_openms                                        : </span><span style="color:green;">3.0</span>
-  <span style="color:blue;">algorithm_common_chrom_fwhm_featurefindermetabo_openms                                            : </span><span style="color:green;">5.0</span>
-  <span style="color:blue;">algorithm_mtd_mass_error_ppm_featurefindermetabo_openms                                           : </span><span style="color:green;">20.0</span>
-  <span style="color:blue;">algorithm_mtd_min_trace_length_featurefindermetabo_openms                                         : </span><span style="color:green;">5.0</span>
-  <span style="color:blue;">algorithm_mtd_max_trace_length_featurefindermetabo_openms                                         : </span><span style="color:green;">-1.0</span>
-  <span style="color:blue;">algorithm_epd_min_fwhm_featurefindermetabo_openms                                                 : </span><span style="color:green;">1.0</span>
-  <span style="color:blue;">algorithm_epd_max_fwhm_featurefindermetabo_openms                                                 : </span><span style="color:green;">60.0</span>
-  <span style="color:blue;">algorithm_ffm_local_rt_range_featurefindermetabo_openms                                           : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">algorithm_signal_to_noise_peakpickerhires_openms : </span><span style="color:green;">0.0</span>
+<span style="color:blue;">algorithm_spacing_difference_gap_peakpickerhires_openms : </span><span style="color:green;">4.0</span>
+<span style="color:blue;">algorithm_spacing_difference_peakpickerhires_openms : </span><span style="color:green;">1.5</span>
+<span style="color:blue;">algorithm_missing_peakpickerhires_openms : </span><span style="color:green;">1</span>
+<span style="color:blue;">algorithm_signaltonoise_max_intensity_peakpickerhires_openms : </span><span style="color:green;">-1</span>
+<span style="color:blue;">algorithm_signaltonoise_auto_max_stdev_factor_peakpickerhires_openms : </span><span style="color:green;">3.0</span>
+<span style="color:blue;">algorithm_signaltonoise_auto_max_percentile_peakpickerhires_openms : </span><span style="color:green;">95</span>
+<span style="color:blue;">algorithm_signaltonoise_auto_mode_peakpickerhires_openms : </span><span style="color:green;">0</span>
+<span style="color:blue;">algorithm_signaltonoise_win_len_peakpickerhires_openms : </span><span style="color:green;">200.0</span>
+<span style="color:blue;">algorithm_signaltonoise_bin_count_peakpickerhires_openms : </span><span style="color:green;">30</span>
+<span style="color:blue;">algorithm_signaltonoise_min_required_elements_peakpickerhires_openms : </span><span style="color:green;">10</span>
+<span style="color:blue;">algorithm_signaltonoise_noise_for_empty_window_peakpickerhires_openms : </span><span style="color:green;">1.0E+20</span>
+<span style="color:blue;">algorithm_common_noise_threshold_int_featurefindermetabo_openms : </span><span style="color:green;">10.0</span>
+<span style="color:blue;">algorithm_common_chrom_peak_snr_featurefindermetabo_openms : </span><span style="color:green;">3.0</span>
+<span style="color:blue;">algorithm_common_chrom_fwhm_featurefindermetabo_openms : </span><span style="color:green;">5.0</span>
+<span style="color:blue;">algorithm_mtd_mass_error_ppm_featurefindermetabo_openms : </span><span style="color:green;">20.0</span>
+<span style="color:blue;">algorithm_mtd_min_trace_length_featurefindermetabo_openms : </span><span style="color:green;">5.0</span>
+<span style="color:blue;">algorithm_mtd_max_trace_length_featurefindermetabo_openms : </span><span style="color:green;">-1.0</span>
+<span style="color:blue;">algorithm_epd_min_fwhm_featurefindermetabo_openms : </span><span style="color:green;">1.0</span>
+<span style="color:blue;">algorithm_epd_max_fwhm_featurefindermetabo_openms : </span><span style="color:green;">60.0</span>
+<span style="color:blue;">algorithm_ffm_local_rt_range_featurefindermetabo_openms : </span><span style="color:green;">10.0</span>
 
 <span style="font-weight:bold;">Input/output options</span>
-  <span style="color:blue;">input                                                                                             : </span><span style="color:green;">data/samplesheet.csv</span>
-  <span style="color:blue;">outdir                                                                                            : </span><span style="color:green;">results</span>
+<span style="color:blue;">input : </span><span style="color:green;">data/samplesheet.csv</span>
+<span style="color:blue;">outdir : </span><span style="color:green;">results</span>
 
 <span style="font-weight:bold;">Institutional config options</span>
-  <span style="color:blue;">config_profile_name                                                                               : </span><span style="color:green;">Metabonaut example dataset</span>
-  <span style="color:blue;">config_profile_description                                                                        : </span><span style="color:green;">Example data from Metabonaut.</span>
+<span style="color:blue;">config_profile_name : </span><span style="color:green;">Metabonaut example dataset</span>
+<span style="color:blue;">config_profile_description : </span><span style="color:green;">Example data from Metabonaut.</span>
 
 <span style="font-weight:bold;">Max job request options</span>
-  <span style="color:blue;">max_cpus                                                                                          : </span><span style="color:green;">8</span>
-  <span style="color:blue;">max_memory                                                                                        : </span><span style="color:green;">14.GB</span>
-  <span style="color:blue;">max_time                                                                                          : </span><span style="color:green;">6.h</span>
+<span style="color:blue;">max_cpus : </span><span style="color:green;">8</span>
+<span style="color:blue;">max_memory : </span><span style="color:green;">14.GB</span>
+<span style="color:blue;">max_time : </span><span style="color:green;">6.h</span>
 
-[<span style="color:blue;">81/f8c70e</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_FEATUREFINDERMETABO<span style="color:olive;"> (MS_D_POS)</span>           [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
+[<span style="color:blue;">81/f8c70e</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_FEATUREFINDERMETABO<span style="color:olive;"> (MS_D_POS)</span> [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
 [<span style="color:blue;">31/91ac9e</span>] NFC…E_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPALIGNERPOSECLUSTERING<span style="color:olive;"> (Multiple files)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">04/074ef6</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPRTTRANSFORMER<span style="color:olive;"> (MS_B_POS)</span>              [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
-[<span style="color:blue;">2c/12d19b</span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:OPENMS_METABOLITEADDUCTDECHARGER<span style="color:olive;"> (MS_B_POS)</span>         [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
-[<span style="color:blue;">c0/4e586a</span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:PYOPENMS_C13DETECTION<span style="color:olive;"> (MS_QC_POOL_4_POS)</span>            [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
-[<span style="color:blue;">e2/abd21a</span>] NFCORE_METABOIGNITER:METABOIGNITER:LINKER:OPENMS_FEATURELINKERUNLABELEDKD<span style="color:olive;"> (Linked_data)</span>           [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">82/8de1f5</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_MSMAPPING<span style="color:olive;"> (Linked_data)</span>                [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">e5/29283a</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:OPENMS_FILEFILTER<span style="color:olive;"> (Linked_data)</span>                 [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">e9/d8a5d7</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_SPLITCONSENSUS<span style="color:olive;"> (Linked_data)</span>           [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">b8/913b64</span>] NFC…_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_GENERATESEARCHPARAMS<span style="color:olive;"> (Linked_data_part9)</span> [<span style="color:green;">100%</span>] 20 of 20<span style="color:green;"> ✔</span>
-[<span style="color:blue;">9d/bf7756</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_CONCTSV_UNMAPPED<span style="color:olive;"> (MSMS_2_A_CE20_POS)</span>   [<span style="color:green;">100%</span>] 9 of 9<span style="color:green;"> ✔</span>
-[<span style="color:blue;">58/a6b59f</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMSFILE<span style="color:olive;"> (Linked_data)</span>               [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">61/30fee6</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMGFFILE<span style="color:olive;"> (Linked_data)</span>              [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">54/2f5ab5</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:SIRIUS_SEARCH<span style="color:olive;"> (Linked_data)</span>        [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">04/074ef6</span>] NFCORE_METABOIGNITER:METABOIGNITER:QUANTIFICATION:OPENMS_MAPRTTRANSFORMER<span style="color:olive;"> (MS_B_POS)</span> [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
+[<span style="color:blue;">2c/12d19b</span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:OPENMS_METABOLITEADDUCTDECHARGER<span style="color:olive;"> (MS_B_POS)</span> [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
+[<span style="color:blue;">c0/4e586a</span>] NFCORE_METABOIGNITER:METABOIGNITER:ANNOTATION:PYOPENMS_C13DETECTION<span style="color:olive;"> (MS_QC_POOL_4_POS)</span> [<span style="color:green;">100%</span>] 10 of 10<span style="color:green;"> ✔</span>
+[<span style="color:blue;">e2/abd21a</span>] NFCORE_METABOIGNITER:METABOIGNITER:LINKER:OPENMS_FEATURELINKERUNLABELEDKD<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">82/8de1f5</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_MSMAPPING<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">e5/29283a</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:OPENMS_FILEFILTER<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">e9/d8a5d7</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_SPLITCONSENSUS<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">b8/913b64</span>] NFC…\_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_GENERATESEARCHPARAMS<span style="color:olive;"> (Linked_data_part9)</span> [<span style="color:green;">100%</span>] 20 of 20<span style="color:green;"> ✔</span>
+[<span style="color:blue;">9d/bf7756</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:PYOPENMS_CONCTSV_UNMAPPED<span style="color:olive;"> (MSMS_2_A_CE20_POS)</span> [<span style="color:green;">100%</span>] 9 of 9<span style="color:green;"> ✔</span>
+[<span style="color:blue;">58/a6b59f</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMSFILE<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">61/30fee6</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:GENERAL_MERGEMGFFILE<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">54/2f5ab5</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:SIRIUS_SEARCH<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
 [<span style="color:blue;">8e/5be8f1</span>] NFC…IGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:PYOPENMS_CONCTSVSIRIUS<span style="color:olive;"> (sirius_Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">-        </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:PYOPENMS_CONCTSVFINGERID           -
+[<span style="color:blue;">- </span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:SIRIUSMAPPED:PYOPENMS_CONCTSVFINGERID -
 [<span style="color:blue;">85/7f0e9f</span>] NFC…TION:MS2QUERYMAPPED:MS2QUERY_MODELDOWNLOADER:MS2QUERY_DOWNLOADMODEL<span style="color:olive;"> (Downloading model files)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
 [<span style="color:blue;">ea/59bd7e</span>] NFC…IGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_CHECKMODELFILES<span style="color:olive;"> (checking files)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">97/2b1f52</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_SEARCH<span style="color:olive;"> (Linked_data)</span>    [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">97/2b1f52</span>] NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_SEARCH<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
 [<span style="color:blue;">a1/66c3c6</span>] NFC…R:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:PYOPENMS_CONCTSVMS2QUERY<span style="color:olive;"> (ms2query_Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">fe/fec7ef</span>] NFCORE_METABOIGNITER:METABOIGNITER:PYOPENMS_EXPORTIDENTIFICATION<span style="color:olive;"> (Linked_data)</span>                    [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
-[<span style="color:blue;">64/c2f478</span>] NFCORE_METABOIGNITER:METABOIGNITER:MULTIQC                                                        [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
--<span style="color:purple;">[nf-core/metaboigniter]</span><span style="color:green;"> Pipeline completed successfully</span>-
+[<span style="color:blue;">fe/fec7ef</span>] NFCORE_METABOIGNITER:METABOIGNITER:PYOPENMS_EXPORTIDENTIFICATION<span style="color:olive;"> (Linked_data)</span> [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span>
+[<span style="color:blue;">64/c2f478</span>] NFCORE_METABOIGNITER:METABOIGNITER:MULTIQC [<span style="color:green;">100%</span>] 1 of 1<span style="color:green;"> ✔</span> -<span style="color:purple;">[nf-core/metaboigniter]</span><span style="color:green;"> Pipeline completed successfully</span>-
 <span style="color:olive;">WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition</span>
 <span style="color:olive;">WARN: Input `tuple` must define at least two elements -- Check process `NFCORE_METABOIGNITER:METABOIGNITER:IDENTIFICATION:MS2QUERYMAPPED:MS2QUERY_SEARCH`</span>
 
