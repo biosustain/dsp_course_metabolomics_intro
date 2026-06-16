@@ -1,0 +1,2019 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pre-processing of LC-MS/MS metabolomics data using pyOpenMS &#8212; Mass spectrometry-based Metabolomics introduction  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_pyOpenMS_metabonaut_pipeline';</script>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Downstream Data Analysis" href="material/intro_data_analysis.html" />
+    <link rel="prev" title="Metaboigniter" href="material/nf_core_metaboigniter.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mass spectrometry-based Metabolomics introduction  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/biosustain/dsp_course_metabolomics_intro" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Metaboigniter</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="material/intro_metabolomics.html">MS-based metabolomics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="material/nf_core_metaboigniter.html">Metaboigniter</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocessing manually using pyOpenMS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="material/intro_data_analysis.html">Downstream Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_data_analysis.html">Hands-On</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3_enrichment_analysis.html">Hands-On</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data/README.html">Datasets overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/MTBLS8735/README.html">Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Codespace</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href=".devcontainer/README.html">Container info</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/biosustain/dsp_course_metabolomics_intro/blob/master/1_pyOpenMS_metabonaut_pipeline.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/biosustain/dsp_course_metabolomics_intro" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1_pyOpenMS_metabonaut_pipeline.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pre-processing of LC-MS/MS metabolomics data using pyOpenMS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-detection">Pre-processing - peak detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-alignment-and-matching">Pre-processing - peak alignment and matching</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pre-processing-of-lc-ms-ms-metabolomics-data-using-pyopenms">
+<h1>Pre-processing of LC-MS/MS metabolomics data using pyOpenMS<a class="headerlink" href="#pre-processing-of-lc-ms-ms-metabolomics-data-using-pyopenms" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyopenms</span> <span class="k">as</span> <span class="nn">oms</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The relevant files are selected:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/MTBLS8735/metadata.csv&quot;</span><span class="p">)</span>
+
+<span class="n">input_labels</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;phenotype&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">input_files</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="p">)):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;FILES/&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;derived_spectra_data_file&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">input_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;data/MTBLS8735/&quot;</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="n">fname_intern_standard</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;MTBLS8735&quot;</span><span class="p">,</span> <span class="s2">&quot;intern_standard_list.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="data-visualization">
+<h2>Data visualization<a class="headerlink" href="#data-visualization" title="Link to this heading">#</a></h2>
+<p>Before starting the pre-processing workflow, we visualize the <strong>Base Peak
+Chromatogram (BPC)</strong> for each sample. The BPC represents the intensity of the most
+intense ion detected in every MS1 spectrum over the course of the chromatographic run.
+Plotting the BPC provides a quick overview of the data quality and allows us to compare
+the overall signal profiles between samples. Similar chromatographic patterns across
+runs suggest consistent instrument performance, while large differences may indicate
+potential issues that should be investigated before proceeding with further analysis.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_bpc</span><span class="p">(</span><span class="n">exp</span><span class="p">):</span>
+
+    <span class="n">bpc_rt</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bpc_int</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">exp</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">spec</span><span class="o">.</span><span class="n">getMSLevel</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">peaks</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">get_peaks</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># intensities</span>
+        <span class="n">bpc_rt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">getRT</span><span class="p">())</span>
+        <span class="n">bpc_int</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bpc_rt</span><span class="p">,</span> <span class="n">bpc_int</span>
+
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;coral&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;steelblue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;orchid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coral&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;orchid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;steelblue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coral&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;orchid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;steelblue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coral&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">file</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">input_files</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">input_labels</span><span class="p">):</span>
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">MSExperiment</span><span class="p">()</span>
+    <span class="n">oms</span><span class="o">.</span><span class="n">MzMLFile</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">exp</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">,</span> <span class="n">inten</span> <span class="o">=</span> <span class="n">extract_bpc</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span> <span class="n">inten</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;BPC&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Retention Time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Intensity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/8439b0424e07aaef055c1656570b4a87181477bd05564448e76fc97588e7a4c8.png" src="_images/8439b0424e07aaef055c1656570b4a87181477bd05564448e76fc97588e7a4c8.png" />
+</div>
+</div>
+<p>The BPC profiles show that the final portion of the chromatographic run
+contains little to no signal, indicating that no relevant compounds are being detected
+in this region. To reduce unnecessary data and focus the analysis on the informative
+part of the chromatogram, we filter the experiment by retention time and retain only
+spectra acquired between 10 and 240 seconds. The filtered BPCs allow us to verify that
+the useful chromatographic region has been preserved while removing empty sections that
+would otherwise increase processing time and data size.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">filter_chr</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">MSExperiment</span><span class="p">()</span>
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">MSExperiment</span><span class="p">()</span>
+    <span class="n">oms</span><span class="o">.</span><span class="n">MzMLFile</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">exp</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">exp</span><span class="p">:</span>
+        <span class="n">rt</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">getRT</span><span class="p">()</span>
+        <span class="k">if</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">rt</span> <span class="o">&lt;=</span> <span class="mi">240</span><span class="p">:</span>
+            <span class="n">filtered</span><span class="o">.</span><span class="n">addSpectrum</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">filtered</span>
+
+
+<span class="n">filtered_exps</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">input_files</span><span class="p">:</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="n">filter_chr</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">filtered_exps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filtered</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">exp</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">filtered_exps</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">input_labels</span><span class="p">):</span>
+    <span class="n">rt</span><span class="p">,</span> <span class="n">inten</span> <span class="o">=</span> <span class="n">extract_bpc</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span> <span class="n">inten</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;BPC&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Retention Time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Intensity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/08a43ef8a7cf417727e1ad2ef34054ed35c35b6a8b9e125c1d32775511ae651a.png" src="_images/08a43ef8a7cf417727e1ad2ef34054ed35c35b6a8b9e125c1d32775511ae651a.png" />
+</div>
+</div>
+<p>Next, we load a table containing a list of <strong>internal standards (IS)</strong>.
+Internal standards are compounds with known properties that are often included in
+metabolomics experiments as reference signals. In this workflow, we are not using them
+for quantitative correction, but simply visualizing their behavior across samples. This
+helps us inspect their chromatographic profiles and use them as a practical reference
+when selecting or adjusting preprocessing parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intern_standard</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">fname_intern_standard</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">intern_standard</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>abbreviation</th>
+      <th>formula</th>
+      <th>POS</th>
+      <th>NEG</th>
+      <th>RT</th>
+      <th>data_set</th>
+      <th>sample</th>
+      <th>operator</th>
+      <th>version</th>
+      <th>quality_NEG</th>
+      <th>quality_POS</th>
+      <th>mz</th>
+      <th>mzmin</th>
+      <th>mzmax</th>
+      <th>rtmin</th>
+      <th>rtmax</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>carnitine_d3</th>
+      <td>Carnitine (D3)</td>
+      <td>carnitine_d3</td>
+      <td>164.1240</td>
+      <td>[M+H]+</td>
+      <td>NaN</td>
+      <td>61</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>3_bad</td>
+      <td>2_medium</td>
+      <td>165.131276</td>
+      <td>165.126276</td>
+      <td>165.136276</td>
+      <td>51</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>creatinine_methyl_d3</th>
+      <td>Creatinine (N-Methyl_D3)</td>
+      <td>creatinine_methyl_d3</td>
+      <td>116.0777</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>126</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>2_medium</td>
+      <td>2_medium</td>
+      <td>117.084976</td>
+      <td>117.079976</td>
+      <td>117.089976</td>
+      <td>116</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>glucose_d2</th>
+      <td>Glucose (6,6-D2)</td>
+      <td>glucose_d2</td>
+      <td>182.0759</td>
+      <td>[M+Na]+</td>
+      <td>[M+CHO2]-</td>
+      <td>166</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>2_medium</td>
+      <td>205.065120</td>
+      <td>205.060120</td>
+      <td>205.070120</td>
+      <td>156</td>
+      <td>176</td>
+    </tr>
+    <tr>
+      <th>alanine_13C_15N</th>
+      <td>L-Alanine (13C3, 99%; 15N, 99%)</td>
+      <td>alanine_13C_15N</td>
+      <td>93.0548</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>167</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>2_medium</td>
+      <td>1_good</td>
+      <td>94.062076</td>
+      <td>94.057076</td>
+      <td>94.067076</td>
+      <td>157</td>
+      <td>177</td>
+    </tr>
+    <tr>
+      <th>arginine_13C_15N</th>
+      <td>L-Arginine HCl (13C6, 99%; 15N4, 99%)</td>
+      <td>arginine_13C_15N</td>
+      <td>184.1199</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>183</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>0_perfect</td>
+      <td>0_perfect</td>
+      <td>185.127176</td>
+      <td>185.122176</td>
+      <td>185.132176</td>
+      <td>173</td>
+      <td>193</td>
+    </tr>
+    <tr>
+      <th>aspartic_13C_15N</th>
+      <td>L-Aspartic acid (13C4, 99%; 15N, 99%)</td>
+      <td>aspartic_13C_15N</td>
+      <td>138.0480</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>179</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>1_good</td>
+      <td>139.055276</td>
+      <td>139.050276</td>
+      <td>139.060276</td>
+      <td>169</td>
+      <td>189</td>
+    </tr>
+    <tr>
+      <th>cystine_13C_15N</th>
+      <td>L-Cystine (13C6, 99%; 15N2, 99%)</td>
+      <td>cystine_13C_15N</td>
+      <td>248.0380</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>209</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>0_perfect</td>
+      <td>0_perfect</td>
+      <td>249.045276</td>
+      <td>249.040276</td>
+      <td>249.050276</td>
+      <td>199</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>glutamic_13C_15N</th>
+      <td>L-Glutamic acid (13C5, 99%; 15N, 99%)</td>
+      <td>glutamic_13C_15N</td>
+      <td>153.0670</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>171</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>0_perfect</td>
+      <td>0_perfect</td>
+      <td>154.074276</td>
+      <td>154.069276</td>
+      <td>154.079276</td>
+      <td>161</td>
+      <td>181</td>
+    </tr>
+    <tr>
+      <th>glycine_13C_15N</th>
+      <td>Glycine (13C2, 99%; 15N, 99%)</td>
+      <td>glycine_13C_15N</td>
+      <td>78.0358</td>
+      <td>[M+H]+</td>
+      <td>NaN</td>
+      <td>168</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>3_bad</td>
+      <td>1_good</td>
+      <td>79.043076</td>
+      <td>79.038076</td>
+      <td>79.048076</td>
+      <td>158</td>
+      <td>178</td>
+    </tr>
+    <tr>
+      <th>histidine_13C_15N</th>
+      <td>L-Histidine HCl H2O (13C6; 15N3, 99%)</td>
+      <td>histidine_13C_15N</td>
+      <td>164.0807</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>185</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>0_perfect</td>
+      <td>0_perfect</td>
+      <td>165.087976</td>
+      <td>165.082976</td>
+      <td>165.092976</td>
+      <td>175</td>
+      <td>195</td>
+    </tr>
+    <tr>
+      <th>isoleucine_13C_15N</th>
+      <td>L-Isoleucine (13C6, 99%; 15N, 99%)</td>
+      <td>isoleucine_13C_15N</td>
+      <td>138.1118</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>154</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>2_medium</td>
+      <td>2_medium</td>
+      <td>139.119076</td>
+      <td>139.114076</td>
+      <td>139.124076</td>
+      <td>144</td>
+      <td>164</td>
+    </tr>
+    <tr>
+      <th>leucine_13C_15N</th>
+      <td>L-Leucine (13C6, 99%; 15N, 99%)</td>
+      <td>leucine_13C_15N</td>
+      <td>138.1118</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>151</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>2_medium</td>
+      <td>2_medium</td>
+      <td>139.119076</td>
+      <td>139.114076</td>
+      <td>139.124076</td>
+      <td>141</td>
+      <td>161</td>
+    </tr>
+    <tr>
+      <th>lysine_13C_15N</th>
+      <td>L-Lysine 2HCl (13C6, 99%; 15N2, 99%)</td>
+      <td>lysine_13C_15N</td>
+      <td>154.1197</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>184</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>0_perfect</td>
+      <td>155.126976</td>
+      <td>155.121976</td>
+      <td>155.131976</td>
+      <td>174</td>
+      <td>194</td>
+    </tr>
+    <tr>
+      <th>methionine_13C_15N</th>
+      <td>L-Methionine (13C5, 99%; 15N, 99%)</td>
+      <td>methionine_13C_15N</td>
+      <td>155.0649</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>161</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>1_good</td>
+      <td>156.072176</td>
+      <td>156.067176</td>
+      <td>156.077176</td>
+      <td>151</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>phenylalanine_13C_15N</th>
+      <td>L-Phenylalanine (13C9, 99%; 15N, 99%)</td>
+      <td>phenylalanine_13C_15N</td>
+      <td>175.1062</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>153</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>1_good</td>
+      <td>176.113476</td>
+      <td>176.108476</td>
+      <td>176.118476</td>
+      <td>143</td>
+      <td>163</td>
+    </tr>
+    <tr>
+      <th>proline_13C_15N</th>
+      <td>L-Proline (13C5, 99%; 15N, 99%)</td>
+      <td>proline_13C_15N</td>
+      <td>121.0771</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>167</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>1_good</td>
+      <td>122.084376</td>
+      <td>122.079376</td>
+      <td>122.089376</td>
+      <td>157</td>
+      <td>177</td>
+    </tr>
+    <tr>
+      <th>serine_13C_15N</th>
+      <td>L-Serine (13C3, 99%; 15N, 99%)</td>
+      <td>serine_13C_15N</td>
+      <td>109.0497</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>178</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>0_perfect</td>
+      <td>110.056976</td>
+      <td>110.051976</td>
+      <td>110.061976</td>
+      <td>168</td>
+      <td>188</td>
+    </tr>
+    <tr>
+      <th>threonine_13C_15N</th>
+      <td>L-Threonine (13C4, 99%; 15N, 99%)</td>
+      <td>threonine_13C_15N</td>
+      <td>124.0687</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>171</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>0_perfect</td>
+      <td>0_perfect</td>
+      <td>125.075976</td>
+      <td>125.070976</td>
+      <td>125.080976</td>
+      <td>161</td>
+      <td>181</td>
+    </tr>
+    <tr>
+      <th>tyrosine_13C_15N</th>
+      <td>L-Tyrosine (13C9, 99%; 15N, 99%)</td>
+      <td>tyrosine_13C_15N</td>
+      <td>191.1011</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>166</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>1_good</td>
+      <td>192.108376</td>
+      <td>192.103376</td>
+      <td>192.113376</td>
+      <td>156</td>
+      <td>176</td>
+    </tr>
+    <tr>
+      <th>valine_13C_15N</th>
+      <td>L-Valine (13C5, 99%; 15N, 99%)</td>
+      <td>valine_13C_15N</td>
+      <td>123.0928</td>
+      <td>[M+H]+</td>
+      <td>[M-H]-</td>
+      <td>164</td>
+      <td>2019_11_matrix_effect</td>
+      <td>serum</td>
+      <td>Mar Garcia-Aloy</td>
+      <td>2</td>
+      <td>1_good</td>
+      <td>1_good</td>
+      <td>124.100076</td>
+      <td>124.095076</td>
+      <td>124.105076</td>
+      <td>154</td>
+      <td>174</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To inspect the internal standards in more detail, we extract and visualize
+their <strong>Extracted Ion Chromatograms (EICs)</strong>. An EIC represents the intensity of ions
+within a specific m/z range over time, restricted here to a defined retention time
+window.</p>
+<p>For each internal standard, we select its expected m/z and retention time boundaries
+from the metadata table, and then compute a signal per MS1 spectrum by summing the
+intensities of all peaks that fall within the selected m/z window. This produces a
+chromatographic trace that reflects the elution profile of that compound in each sample.</p>
+<p>Plotting these EICs across runs allows us to visually check peak shape, retention time
+consistency, and signal presence, which helps guide the selection of appropriate
+preprocessing parameters such as chromatographic width or signal-to-noise ratio.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_eic</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">mzmin</span><span class="p">,</span> <span class="n">mzmax</span><span class="p">,</span> <span class="n">rtmin</span><span class="p">,</span> <span class="n">rtmax</span><span class="p">):</span>
+    <span class="n">rt_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">intensity_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">exp</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">spec</span><span class="o">.</span><span class="n">getMSLevel</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">rt</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">getRT</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">rtmin</span> <span class="o">&lt;=</span> <span class="n">rt</span> <span class="o">&lt;=</span> <span class="n">rtmax</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="n">mz</span><span class="p">,</span> <span class="n">intensity</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">get_peaks</span><span class="p">()</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">mz</span> <span class="o">&gt;=</span> <span class="n">mzmin</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mz</span> <span class="o">&lt;=</span> <span class="n">mzmax</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+            <span class="n">rt_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
+            <span class="n">intensity_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intensity</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rt_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
+            <span class="n">intensity_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rt_list</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">intensity_list</span><span class="p">)</span>
+
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">mzmin</span> <span class="o">=</span> <span class="n">intern_standard</span><span class="p">[</span><span class="s2">&quot;mzmin&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">mzmax</span> <span class="o">=</span> <span class="n">intern_standard</span><span class="p">[</span><span class="s2">&quot;mzmax&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">rtmin</span> <span class="o">=</span> <span class="n">intern_standard</span><span class="p">[</span><span class="s2">&quot;rtmin&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">rtmax</span> <span class="o">=</span> <span class="n">intern_standard</span><span class="p">[</span><span class="s2">&quot;rtmax&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">exp</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">filtered_exps</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">input_labels</span><span class="p">):</span>
+    <span class="n">rt</span><span class="p">,</span> <span class="n">inten</span> <span class="o">=</span> <span class="n">extract_eic</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">mzmin</span><span class="p">,</span> <span class="n">mzmax</span><span class="p">,</span> <span class="n">rtmin</span><span class="p">,</span> <span class="n">rtmax</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span> <span class="n">inten</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;EIC for </span><span class="si">{</span><span class="n">intern_standard</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Retention Time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Intensity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/7295e4ca6d8b90393449df39f7637bfb67ec6364aec87c906d6d214efec8a28b.png" src="_images/7295e4ca6d8b90393449df39f7637bfb67ec6364aec87c906d6d214efec8a28b.png" />
+</div>
+</div>
+<p>The different internal standards can be inspected by modifying the
+variable <code class="docutils literal notranslate"><span class="pre">i</span></code>. From the resulting EICs, we observe that internal standards 0, 1, 3, 10,
+11, and 18 exhibit poor peak shapes or weak signal quality. We can also see that
+well-shaped peaks have a peak width of around 3-5 seconds.</p>
+</section>
+<section id="pre-processing-peak-detection">
+<h2>Pre-processing - peak detection<a class="headerlink" href="#pre-processing-peak-detection" title="Link to this heading">#</a></h2>
+<p>We now perform <strong>peak detection</strong>, which is a three-step workflow that transforms raw
+MS1 data into a structured feature table.</p>
+<p>First, <strong>Mass Trace Detection</strong> groups signals that share a similar m/z across
+consecutive scans, reconstructing continuous ion traces over retention time. Here, the
+parameter <code class="docutils literal notranslate"><span class="pre">mass_error_ppm</span> <span class="pre">=</span> <span class="pre">10.0</span></code> defines the allowed mass tolerance when grouping
+signals into the same trace. A relatively tight tolerance helps ensure that only signals
+with highly consistent m/z values are merged, improving trace specificity.</p>
+<p>Second, <strong>Elution Peak Detection</strong> identifies true chromatographic peaks within each
+mass trace by evaluating their shape in the time domain. Several parameters control this
+step: <code class="docutils literal notranslate"><span class="pre">chrom_peak_snr</span> <span class="pre">=</span> <span class="pre">3.0</span></code> sets a minimum signal-to-noise threshold to reduce weak or
+noisy peaks, while <code class="docutils literal notranslate"><span class="pre">chrom_fwhm</span> <span class="pre">=</span> <span class="pre">3.0</span></code> defines the expected peak width (full width at
+half maximum) used to guide peak detection. This value is chosen based on the observed
+peak widths of well-behaved internal standards, which typically show widths of
+approximately 3–5 seconds. The bounds <code class="docutils literal notranslate"><span class="pre">min_fwhm</span> <span class="pre">=</span> <span class="pre">0.5</span></code> and <code class="docutils literal notranslate"><span class="pre">max_fwhm</span> <span class="pre">=</span> <span class="pre">5.0</span></code> further
+restrict acceptable peak widths based on this prior chromatographic behavior.
+Additionally, <code class="docutils literal notranslate"><span class="pre">masstrace_snr_filtering</span> <span class="pre">=</span> <span class="pre">true</span></code> enables filtering of low-quality mass
+traces before peak picking, improving robustness.</p>
+<p>Finally, <strong>Feature Finding (Metabo)</strong> combines co-eluting mass traces into features that
+likely correspond to the same metabolite. The parameter <code class="docutils literal notranslate"><span class="pre">charge_upper_bound</span> <span class="pre">=</span> <span class="pre">1</span></code>
+restricts detection to singly charged ions, which is typical for many metabolomics
+datasets. <code class="docutils literal notranslate"><span class="pre">chrom_fwhm</span> <span class="pre">=</span> <span class="pre">3.0</span></code> again defines the expected chromatographic peak width used
+during grouping, while <code class="docutils literal notranslate"><span class="pre">local_rt_range</span> <span class="pre">=</span> <span class="pre">chrom_fwhm</span> <span class="pre">*</span> <span class="pre">2</span></code> sets the retention time window
+for associating signals across traces. <code class="docutils literal notranslate"><span class="pre">isotope_filtering_model</span> <span class="pre">=</span> <span class="pre">none</span></code> disables isotope
+pattern-based grouping, keeping the workflow simpler. Setting <code class="docutils literal notranslate"><span class="pre">remove_single_traces</span> <span class="pre">=</span> <span class="pre">false</span></code> ensures that features composed of only one mass trace are retained, and
+<code class="docutils literal notranslate"><span class="pre">mz_scoring_by_elements</span> <span class="pre">=</span> <span class="pre">false</span></code> disables element-based scoring of isotopic consistency.
+Finally, <code class="docutils literal notranslate"><span class="pre">report_convex_hulls</span> <span class="pre">=</span> <span class="pre">true</span></code> enables the storage of chromatographic boundaries,
+which can be useful for downstream visualization and inspection.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mass_traces_final_per_sample</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">features_per_sample</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">feature_maps</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">s_idx</span><span class="p">,</span> <span class="n">exp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">filtered_exps</span><span class="p">):</span>
+
+    <span class="n">mtd</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">MassTraceDetection</span><span class="p">()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">getDefaults</span><span class="p">()</span>
+
+    <span class="n">params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;mass_error_ppm&quot;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+    <span class="n">mtd</span><span class="o">.</span><span class="n">setParameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">mass_traces</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mtd</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">mass_traces</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">mass_traces_split</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mass_traces_final</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">epd</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">ElutionPeakDetection</span><span class="p">()</span>
+    <span class="n">epd_params</span> <span class="o">=</span> <span class="n">epd</span><span class="o">.</span><span class="n">getDefaults</span><span class="p">()</span>
+    <span class="n">epd_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;width_filtering&quot;</span><span class="p">,</span> <span class="s2">&quot;fixed&quot;</span><span class="p">)</span>
+    <span class="n">epd_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;chrom_peak_snr&quot;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+    <span class="n">epd_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;chrom_fwhm&quot;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+    <span class="n">epd_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;min_fwhm&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">epd_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;max_fwhm&quot;</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">)</span>
+    <span class="n">epd_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;masstrace_snr_filtering&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+    <span class="n">epd</span><span class="o">.</span><span class="n">setParameters</span><span class="p">(</span><span class="n">epd_params</span><span class="p">)</span>
+    <span class="n">epd</span><span class="o">.</span><span class="n">detectPeaks</span><span class="p">(</span><span class="n">mass_traces</span><span class="p">,</span> <span class="n">mass_traces_split</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">epd</span><span class="o">.</span><span class="n">getParameters</span><span class="p">()</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="s2">&quot;width_filtering&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span><span class="p">:</span>
+        <span class="n">epd</span><span class="o">.</span><span class="n">filterByPeakWidth</span><span class="p">(</span><span class="n">mass_traces_split</span><span class="p">,</span> <span class="n">mass_traces_final</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mass_traces_final</span> <span class="o">=</span> <span class="n">mass_traces_split</span>
+
+    <span class="n">mass_traces_final_per_sample</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mass_traces_final</span><span class="p">))</span>
+
+    <span class="n">fm</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">FeatureMap</span><span class="p">()</span>
+    <span class="n">feat_chrom</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ffm</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">FeatureFindingMetabo</span><span class="p">()</span>
+    <span class="n">ffm_params</span> <span class="o">=</span> <span class="n">ffm</span><span class="o">.</span><span class="n">getDefaults</span><span class="p">()</span>
+    <span class="n">ffm_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;charge_upper_bound&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ffm_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;chrom_fwhm&quot;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+    <span class="n">ffm_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;local_rt_range&quot;</span><span class="p">,</span> <span class="n">ffm_params</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="s2">&quot;chrom_fwhm&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ffm_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;isotope_filtering_model&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    <span class="n">ffm_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span>
+        <span class="s2">&quot;remove_single_traces&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span>
+    <span class="p">)</span>  <span class="c1"># set false to keep features with only one mass trace</span>
+    <span class="n">ffm_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;mz_scoring_by_elements&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">)</span>
+    <span class="n">ffm_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;report_convex_hulls&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+    <span class="c1"># ffm_params.setValue(&quot;local_mz_range&quot;, 0.5)</span>
+    <span class="n">ffm</span><span class="o">.</span><span class="n">setParameters</span><span class="p">(</span><span class="n">ffm_params</span><span class="p">)</span>
+    <span class="n">ffm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">mass_traces_final</span><span class="p">,</span> <span class="n">fm</span><span class="p">,</span> <span class="n">feat_chrom</span><span class="p">)</span>
+
+    <span class="n">fm</span><span class="o">.</span><span class="n">setUniqueIds</span><span class="p">()</span>
+    <span class="n">sample_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">input_files</span><span class="p">[</span><span class="n">s_idx</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sample_name</span><span class="p">)</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">setIdentifier</span><span class="p">(</span><span class="n">sample_name</span><span class="p">)</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">setPrimaryMSRunPath</span><span class="p">([</span><span class="n">sample_name</span><span class="o">.</span><span class="n">encode</span><span class="p">()])</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">setLoadedFilePath</span><span class="p">(</span><span class="n">input_files</span><span class="p">[</span><span class="n">s_idx</span><span class="p">])</span>
+
+    <span class="n">feature_maps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
+
+    <span class="n">peaklist</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">get_df</span><span class="p">()</span>
+
+    <span class="n">features_per_sample</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peaklist</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress of &#39;mass trace detection&#39;:
+-- done [took 2.83 s (CPU), 2.79 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.69 s (CPU), 0.44 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.34 s (CPU), 0.38 s (Wall)] -- 
+MS_QC_POOL_1_POS.mzML
+Progress of &#39;mass trace detection&#39;:
+-- done [took 3.29 s (CPU), 3.26 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.47 s (CPU), 0.39 s (Wall)] -- 
+MS_A_POS.mzML
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.13 s (CPU), 0.32 s (Wall)] -- 
+Progress of &#39;mass trace detection&#39;:
+-- done [took 3.14 s (CPU), 3.11 s (Wall)] --
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.46 s (CPU), 0.38 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.15 s (CPU), 0.32 s (Wall)] -- 
+MS_B_POS.mzML
+Progress of &#39;mass trace detection&#39;:
+-- done [took 2.63 s (CPU), 2.60 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.66 s (CPU), 0.44 s (Wall)] --
+Progress of &#39;assembling mass traces to features&#39;:
+MS_QC_POOL_2_POS.mzML
+-- done [took 1.32 s (CPU), 0.41 s (Wall)] -- 
+Progress of &#39;mass trace detection&#39;:
+-- done [took 2.83 s (CPU), 2.79 s (Wall)] --
+Progress of &#39;elution peak detection&#39;:
+MS_C_POS.mzML
+-- done [took 1.50 s (CPU), 0.40 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.14 s (CPU), 0.31 s (Wall)] -- 
+Progress of &#39;mass trace detection&#39;:
+-- done [took 3.62 s (CPU), 3.58 s (Wall)] --
+Progress of &#39;elution peak detection&#39;:
+MS_D_POS.mzML
+-- done [took 1.54 s (CPU), 0.42 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.23 s (CPU), 0.35 s (Wall)] --
+Progress of &#39;mass trace detection&#39;:
+MS_QC_POOL_3_POS.mzML
+-- done [took 2.85 s (CPU), 2.82 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.73 s (CPU), 0.47 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.31 s (CPU), 0.40 s (Wall)] -- 
+Progress of &#39;mass trace detection&#39;:
+-- done [took 2.95 s (CPU), 2.92 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.59 s (CPU), 0.43 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.31 s (CPU), 0.39 s (Wall)] -- 
+MS_E_POS.mzML
+Progress of &#39;mass trace detection&#39;:
+-- done [took 3.22 s (CPU), 3.19 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.48 s (CPU), 0.41 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+MS_F_POS.mzML
+-- done [took 1.10 s (CPU), 0.30 s (Wall)] -- 
+Progress of &#39;mass trace detection&#39;:
+-- done [took 2.56 s (CPU), 2.53 s (Wall)] --
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.72 s (CPU), 0.46 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.33 s (CPU), 0.37 s (Wall)] -- 
+MS_QC_POOL_4_POS.mzML
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fm</span> <span class="ow">in</span> <span class="n">feature_maps</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15854
+12719
+13142
+15752
+13013
+13124
+15865
+14736
+12066
+16289
+</pre></div>
+</div>
+</div>
+</div>
+<p>And the peaklist:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peaklist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>peptide_sequence</th>
+      <th>peptide_score</th>
+      <th>ID_filename</th>
+      <th>ID_native_id</th>
+      <th>charge</th>
+      <th>rt</th>
+      <th>mz</th>
+      <th>rt_start</th>
+      <th>rt_end</th>
+      <th>mz_start</th>
+      <th>mz_end</th>
+      <th>quality</th>
+      <th>intensity</th>
+    </tr>
+    <tr>
+      <th>feature_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3694802838369000102</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>190.000</td>
+      <td>50.015471</td>
+      <td>179.119</td>
+      <td>204.509</td>
+      <td>50.013222</td>
+      <td>50.018452</td>
+      <td>0.000003</td>
+      <td>143.119598</td>
+    </tr>
+    <tr>
+      <th>6021061277130545484</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>191.395</td>
+      <td>51.058931</td>
+      <td>190.558</td>
+      <td>196.696</td>
+      <td>51.058031</td>
+      <td>51.059849</td>
+      <td>0.000014</td>
+      <td>597.242554</td>
+    </tr>
+    <tr>
+      <th>763886211791491905</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>205.904</td>
+      <td>51.941229</td>
+      <td>203.393</td>
+      <td>207.299</td>
+      <td>51.939158</td>
+      <td>51.943257</td>
+      <td>0.000002</td>
+      <td>104.045067</td>
+    </tr>
+    <tr>
+      <th>1774201744118561532</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>202.835</td>
+      <td>51.986538</td>
+      <td>200.603</td>
+      <td>205.904</td>
+      <td>51.985807</td>
+      <td>51.987559</td>
+      <td>0.000009</td>
+      <td>403.690704</td>
+    </tr>
+    <tr>
+      <th>2727256833364172297</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>142.569</td>
+      <td>53.014043</td>
+      <td>141.453</td>
+      <td>146.196</td>
+      <td>53.012243</td>
+      <td>53.016863</td>
+      <td>0.000002</td>
+      <td>98.585320</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>13823315364512645155</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>60.820</td>
+      <td>999.889846</td>
+      <td>60.541</td>
+      <td>62.215</td>
+      <td>999.797537</td>
+      <td>999.963191</td>
+      <td>0.000001</td>
+      <td>58.130596</td>
+    </tr>
+    <tr>
+      <th>14451685611281438352</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>63.331</td>
+      <td>999.928486</td>
+      <td>62.773</td>
+      <td>69.190</td>
+      <td>999.809274</td>
+      <td>999.997863</td>
+      <td>0.000005</td>
+      <td>217.114456</td>
+    </tr>
+    <tr>
+      <th>3697878562329579263</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>56.635</td>
+      <td>999.928825</td>
+      <td>36.267</td>
+      <td>57.751</td>
+      <td>999.828429</td>
+      <td>1000.010724</td>
+      <td>0.000002</td>
+      <td>101.281685</td>
+    </tr>
+    <tr>
+      <th>6537176500188281139</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>70.585</td>
+      <td>999.941249</td>
+      <td>69.469</td>
+      <td>73.096</td>
+      <td>999.899695</td>
+      <td>1000.020110</td>
+      <td>0.000002</td>
+      <td>76.413040</td>
+    </tr>
+    <tr>
+      <th>18373646128178623507</th>
+      <td>None</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0</td>
+      <td>59.425</td>
+      <td>999.944787</td>
+      <td>58.030</td>
+      <td>60.262</td>
+      <td>999.842352</td>
+      <td>999.990283</td>
+      <td>0.000002</td>
+      <td>106.489151</td>
+    </tr>
+  </tbody>
+</table>
+<p>16289 rows × 13 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="pre-processing-peak-alignment-and-matching">
+<h2>Pre-processing - peak alignment and matching<a class="headerlink" href="#pre-processing-peak-alignment-and-matching" title="Link to this heading">#</a></h2>
+<p>After feature detection, we perform <strong>retention time alignment and feature grouping</strong> to
+make features comparable across samples.</p>
+<p>First, we select a <strong>reference feature map</strong> based on the sample with the highest number
+of detected features (<code class="docutils literal notranslate"><span class="pre">fm.size()</span></code>), under the assumption that it provides the most
+complete representation of the chromatographic signal. All other runs will be aligned to
+this reference.</p>
+<p>We then apply the <strong>Pose Clustering Map Alignment algorithm</strong>, which corrects retention
+time shifts between samples by identifying corresponding feature patterns and estimating
+RT transformations. Each non-reference feature map is aligned individually, producing a
+transformation (<code class="docutils literal notranslate"><span class="pre">TransformationDescription</span></code>) that is then applied to adjust retention
+times using the <code class="docutils literal notranslate"><span class="pre">MapAlignmentTransformer</span></code>. This step ensures that the same compounds
+elute at comparable retention times across all runs.</p>
+<p>Once alignment is completed, we construct a <strong>Consensus Map</strong>, which merges features
+across samples into a unified representation. This is achieved using the
+<code class="docutils literal notranslate"><span class="pre">FeatureGroupingAlgorithmKD</span></code>, which links features based on similarity in m/z and
+aligned retention time. The parameter <code class="docutils literal notranslate"><span class="pre">warp:mz_tol</span> <span class="pre">=</span> <span class="pre">15.0</span></code> defines the tolerated m/z
+deviation during grouping, while <code class="docutils literal notranslate"><span class="pre">link:mz_tol</span> <span class="pre">=</span> <span class="pre">15.0</span></code> controls the maximum m/z
+difference allowed when connecting features across runs. <code class="docutils literal notranslate"><span class="pre">distance_MZ:exponent</span> <span class="pre">=</span> <span class="pre">1.0</span></code>
+defines a linear weighting of m/z differences in the similarity scoring, and
+<code class="docutils literal notranslate"><span class="pre">warp:max_nr_conflicts</span> <span class="pre">=</span> <span class="pre">5</span></code> limits ambiguous assignments to improve grouping robustness.</p>
+<p>The resulting consensus map contains a consolidated feature table, where each entry
+represents a putative metabolite observed across multiple samples, enabling downstream
+statistical analysis and annotation.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_index</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">([</span><span class="n">fm</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="k">for</span> <span class="n">fm</span> <span class="ow">in</span> <span class="n">feature_maps</span><span class="p">]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">aligner</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">MapAlignmentAlgorithmPoseClustering</span><span class="p">()</span>
+<span class="n">aligner</span><span class="o">.</span><span class="n">setReference</span><span class="p">(</span><span class="n">feature_maps</span><span class="p">[</span><span class="n">ref_index</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_maps</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">ref_index</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="n">trafo</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">TransformationDescription</span><span class="p">()</span>
+
+    <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">fm</span><span class="p">,</span> <span class="n">trafo</span><span class="p">)</span>
+
+    <span class="n">transformer</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">MapAlignmentTransformer</span><span class="p">()</span>
+    <span class="n">transformer</span><span class="o">.</span><span class="n">transformRetentionTimes</span><span class="p">(</span><span class="n">fm</span><span class="p">,</span> <span class="n">trafo</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">pyopenms</span> <span class="kn">import</span> <span class="n">ColumnHeader</span>
+
+<span class="n">consensus_map</span> <span class="o">=</span> <span class="n">oms</span><span class="o">.</span><span class="n">ConsensusMap</span><span class="p">()</span>
+<span class="n">file_descriptions</span> <span class="o">=</span> <span class="n">consensus_map</span><span class="o">.</span><span class="n">getColumnHeaders</span><span class="p">()</span>
+
+<span class="n">feature_grouper</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">oms</span><span class="o">.</span><span class="n">FeatureGroupingAlgorithmKD</span><span class="p">()</span>
+<span class="p">)</span>  <span class="c1"># FeatureGroupingAlgorithmKD in metaboigniter</span>
+<span class="n">grouper_params</span> <span class="o">=</span> <span class="n">feature_grouper</span><span class="o">.</span><span class="n">getDefaults</span><span class="p">()</span>
+<span class="n">grouper_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;warp:mz_tol&quot;</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">)</span>
+<span class="n">grouper_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;link:mz_tol&quot;</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">)</span>
+<span class="n">grouper_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;distance_MZ:exponent&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">grouper_params</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;warp:max_nr_conflicts&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">feature_grouper</span><span class="o">.</span><span class="n">setParameters</span><span class="p">(</span><span class="n">grouper_params</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feature_map</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_maps</span><span class="p">):</span>
+    <span class="n">file_description</span> <span class="o">=</span> <span class="n">file_descriptions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ColumnHeader</span><span class="p">())</span>
+    <span class="n">file_description</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">feature_map</span><span class="o">.</span><span class="n">getMetaValue</span><span class="p">(</span><span class="s2">&quot;spectra_data&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="n">file_description</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">feature_map</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">file_descriptions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_description</span>
+
+<span class="c1"># execute feature linking:</span>
+<span class="n">feature_grouper</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">feature_maps</span><span class="p">,</span> <span class="n">consensus_map</span><span class="p">)</span>
+<span class="n">consensus_map</span><span class="o">.</span><span class="n">setUniqueIds</span><span class="p">()</span>
+<span class="n">consensus_map</span><span class="o">.</span><span class="n">setColumnHeaders</span><span class="p">(</span><span class="n">file_descriptions</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total number of consensus features: </span><span class="si">{</span><span class="n">consensus_map</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress of &#39;computing RT transformations&#39;:
+-- done [took 1.10 s (CPU), 1.09 s (Wall)] -- 
+Progress of &#39;linking features&#39;:
+-- done [took 1.75 s (CPU), 1.73 s (Wall)] -- 
+Total number of consensus features: 54872
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peaklist</span> <span class="o">=</span> <span class="n">consensus_map</span><span class="o">.</span><span class="n">get_df</span><span class="p">()</span>
+<span class="n">sample_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">input_files</span><span class="p">]</span>
+<span class="n">peaklist2</span> <span class="o">=</span> <span class="n">peaklist</span><span class="p">[</span><span class="n">sample_names</span><span class="p">]</span>
+
+<span class="n">zero_counts</span> <span class="o">=</span> <span class="p">(</span><span class="n">peaklist2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df_zeros</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;feature_id&quot;</span><span class="p">:</span> <span class="n">peaklist2</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;n_zeros&quot;</span><span class="p">:</span> <span class="n">zero_counts</span><span class="p">})</span>
+
+<span class="n">freq_table</span> <span class="o">=</span> <span class="n">zero_counts</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+
+<span class="n">df_freq</span> <span class="o">=</span> <span class="n">freq_table</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_freq</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Number_of_samples_with_0s&quot;</span><span class="p">,</span> <span class="s2">&quot;n_features&quot;</span><span class="p">]</span>
+
+<span class="n">df_freq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Number_of_samples_with_0s</th>
+      <th>n_features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1772</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1072</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>1136</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>1337</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>1743</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>2350</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>3460</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>4983</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>8729</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>28290</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">peaklist2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">dict_0s</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+    <span class="n">n_0s</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">n_0s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dict_0s</span><span class="p">:</span>
+        <span class="n">dict_0s</span><span class="p">[</span><span class="n">n_0s</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">dict_0s</span><span class="p">[</span><span class="n">n_0s</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groups</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_0s</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">samples</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+    <span class="n">sample_is</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+        <span class="n">sample_feats</span> <span class="o">=</span> <span class="n">sample_is</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">dict_0s</span><span class="p">[</span><span class="n">g</span><span class="p">]]</span>
+        <span class="n">n_0s</span> <span class="o">=</span> <span class="p">(</span><span class="n">sample_feats</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_0s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MS_QC_POOL_1_POS.mzML</th>
+      <th>MS_A_POS.mzML</th>
+      <th>MS_B_POS.mzML</th>
+      <th>MS_QC_POOL_2_POS.mzML</th>
+      <th>MS_C_POS.mzML</th>
+      <th>MS_D_POS.mzML</th>
+      <th>MS_QC_POOL_3_POS.mzML</th>
+      <th>MS_E_POS.mzML</th>
+      <th>MS_F_POS.mzML</th>
+      <th>MS_QC_POOL_4_POS.mzML</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+      <td>1772</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>971</td>
+      <td>952</td>
+      <td>975</td>
+      <td>975</td>
+      <td>933</td>
+      <td>973</td>
+      <td>985</td>
+      <td>990</td>
+      <td>912</td>
+      <td>982</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>919</td>
+      <td>890</td>
+      <td>944</td>
+      <td>939</td>
+      <td>840</td>
+      <td>915</td>
+      <td>935</td>
+      <td>924</td>
+      <td>853</td>
+      <td>929</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>924</td>
+      <td>903</td>
+      <td>947</td>
+      <td>938</td>
+      <td>873</td>
+      <td>974</td>
+      <td>959</td>
+      <td>991</td>
+      <td>865</td>
+      <td>985</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1068</td>
+      <td>997</td>
+      <td>1070</td>
+      <td>1099</td>
+      <td>975</td>
+      <td>1061</td>
+      <td>1085</td>
+      <td>1075</td>
+      <td>951</td>
+      <td>1077</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1274</td>
+      <td>1079</td>
+      <td>1081</td>
+      <td>1291</td>
+      <td>1047</td>
+      <td>1118</td>
+      <td>1271</td>
+      <td>1259</td>
+      <td>1040</td>
+      <td>1290</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1675</td>
+      <td>1117</td>
+      <td>1202</td>
+      <td>1711</td>
+      <td>1189</td>
+      <td>1210</td>
+      <td>1704</td>
+      <td>1309</td>
+      <td>1052</td>
+      <td>1671</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1807</td>
+      <td>1205</td>
+      <td>1310</td>
+      <td>1814</td>
+      <td>1235</td>
+      <td>1318</td>
+      <td>1819</td>
+      <td>1398</td>
+      <td>1135</td>
+      <td>1908</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2058</td>
+      <td>1489</td>
+      <td>1470</td>
+      <td>2066</td>
+      <td>1487</td>
+      <td>1513</td>
+      <td>2091</td>
+      <td>1770</td>
+      <td>1337</td>
+      <td>2177</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>3386</td>
+      <td>2315</td>
+      <td>2371</td>
+      <td>3147</td>
+      <td>2662</td>
+      <td>2270</td>
+      <td>3244</td>
+      <td>3248</td>
+      <td>2149</td>
+      <td>3498</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peaklist</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;openms_peaklist.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="material/nf_core_metaboigniter.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Metaboigniter</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="material/intro_data_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Downstream Data Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-detection">Pre-processing - peak detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-alignment-and-matching">Pre-processing - peak alignment and matching</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Henry Webel, Alberto Santos, Marco Reverenna
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, DTU Biosustain, Informatics Platform, DSP.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -51,7 +51,7 @@
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Downstream Data Analysis" href="intro_data_analysis.html" />
+    <link rel="next" title="Pre-processing of LC-MS/MS metabolomics data using pyOpenMS" href="../1_pyOpenMS_metabonaut_pipeline.html" />
     <link rel="prev" title="MS-based metabolomics" href="intro_metabolomics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -161,6 +161,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_metabolomics.html">MS-based metabolomics</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Metaboigniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_pyOpenMS_metabonaut_pipeline.html">Preprocessing manually using pyOpenMS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
 <ul class="nav bd-sidenav">
@@ -716,8 +717,7 @@ run the pipeline.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nextflow<span class="w"> </span>run<span class="w"> </span>nf-core/metaboigniter<span class="w"> </span>-profile<span class="w"> </span>docker,arm<span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>.0.1<span class="w"> </span>-resume<span class="w"> </span><span class="se">\</span>
 --input<span class="w"> </span>data/cutA/samplesheet.csv<span class="w"> </span><span class="se">\</span>
 --outdir<span class="w"> </span>results_cutA<span class="w"> </span><span class="se">\</span>
---identification<span class="w"> </span>--run_ms2query<span class="w"> </span><span class="se">\</span>
---max_cpus<span class="w"> </span><span class="m">4</span><span class="w"> </span>--max_memory<span class="w"> </span><span class="s1">&#39;15.GB&#39;</span><span class="w"> </span>--max_time<span class="w"> </span><span class="s1">&#39;6.h&#39;</span>
+<span class="c1"># --identification --run_ms2query </span>
 </pre></div>
 </div>
 </section>
@@ -921,11 +921,11 @@ fails to be processed.</p>
       </div>
     </a>
     <a class="right-next"
-       href="intro_data_analysis.html"
+       href="../1_pyOpenMS_metabonaut_pipeline.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Downstream Data Analysis</p>
+        <p class="prev-next-title">Pre-processing of LC-MS/MS metabolomics data using pyOpenMS</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
