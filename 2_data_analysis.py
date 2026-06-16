@@ -7,7 +7,7 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.19.3
 #   kernelspec:
-#     display_name: acore-dev
+#     display_name: Python
 #     language: python
 #     name: python3
 # ---
@@ -474,13 +474,11 @@ def pca_for_cpca_drift(
 
 # %%
 metaboigniter_data = pd.read_csv(
-    "results_prepared/Metabonaut_peaks_xcms.csv", index_col=0
-).join(
-    pd.read_csv(
-        "results_prepared/Metabonaut_intensities_xcms.csv",
-        index_col=0,
-    )
-).rename_axis(columns='Sample ID')
+    "results_prepared/output_quantification_Linked_data.tsv",
+    sep="\t",
+    index_col=0,
+    dtype={"id": str},
+)
 metaboigniter_data
 
 # %%
@@ -498,20 +496,27 @@ metaboigniter_data.columns
 data = metaboigniter_data.T
 data = data.drop(
     [
-        "mzmed",
-        "mzmin",
-        "mzmax",
-        "rtmed",
-        "rtmin",
-        "rtmax",
-        "npeaks",
-        "CTR",
-        "CVD",
-        "QC",
-        "ms_level",
+        'charge', 
+        'RT', 
+        'mz', 
+        'quality',
+        'adduct', 
+        'feature_ids'
     ]
 )
+data = data.where(data>1, np.nan)
 data
+
+# %%
+data.isna().sum().sum()
+missing_per_feature = data.isna().sum(axis=0)
+missing_per_feature
+freq_table = missing_per_feature.value_counts().sort_index()
+
+df_freq = freq_table.reset_index()
+df_freq.columns = ["n_missing", "n_features"]
+
+df_freq
 
 # %% [markdown]
 # Now our data consists of only features in the columns, and samples in the rows.
@@ -600,7 +605,7 @@ data_filtered_1 = fm.filter_by_missingness(
     data=data,
     method="classic",
     percent=80,  # 80% present, 20% missing is allowed at most
-    samples=samples,
+    samples=list(data.index),
 )
 
 # %%
@@ -609,6 +614,17 @@ print(
     f"Num. of features after filtering: {data_filtered_1.shape[1]}"
 )
 print(f"Difference: {data.shape[1]-data_filtered_1.shape[1]} features removed.")
+
+# %%
+data.isna().sum().sum()
+missing_per_feature = data_filtered_1.isna().sum(axis=0)
+missing_per_feature
+freq_table = missing_per_feature.value_counts().sort_index()
+
+df_freq = freq_table.reset_index()
+df_freq.columns = ["n_missing", "n_features"]
+
+df_freq
 
 # %% [markdown]
 # Now we have removed 836 features.
@@ -698,7 +714,7 @@ def filter_dratio(
 
 
 # %%
-data_filtered_3 = filter_dratio(data=data, samples=samples, qcs=qcs, threshold=0.4)
+data_filtered_3 = filter_dratio(data=data_filtered_2, samples=samples, qcs=qcs, threshold=0.4)
 
 # %%
 print(
@@ -711,6 +727,17 @@ print(
 
 # %%
 print(f"Now we have a total of {data_filtered_3.shape[1]} features left.")
+
+# %%
+data_filtered_3.isna().sum().sum()
+missing_per_feature = data_filtered_3.isna().sum(axis=0)
+missing_per_feature
+freq_table = missing_per_feature.value_counts().sort_index()
+
+df_freq = freq_table.reset_index()
+df_freq.columns = ["n_missing", "n_features"]
+
+df_freq
 
 # %% [markdown]
 # ## Imputation
@@ -844,7 +871,7 @@ data_corrected_loess
 # that was applied to every feature.
 
 # %%
-correction_info["FT0001"]
+correction_info[data_corrected_loess.columns[0]]
 
 # %% [markdown]
 # To understand better what is happening, we can plot a single feature with
@@ -1196,6 +1223,6 @@ print(f"Downregulated in CVD: {(hits['log2FC'] < 0).sum()}")
 # We can save and export our hits to a csv file.
 
 # %%
-hits.to_csv("MTBLS8735_tophits.csv")
-
-# %%
+ancova.to_csv("results_prepared/ancova_results.csv")
+# %% [markdown]
+# Done!
