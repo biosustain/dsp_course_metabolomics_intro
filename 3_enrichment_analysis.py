@@ -124,18 +124,18 @@ filter = ["path:map00010", "path:map00030", "path:map00052"]
 #
 
 # %%
-diff_reg = pd.read_csv(fname_ancova, index_col=0)
-diff_reg.index = diff_reg.index.astype(str)
-diff_reg
+ancova = pd.read_csv(fname_ancova, index_col=0)
+ancova.index = ancova.index.astype(str)
+ancova
 
 # %%
 regex_filter = "pval|padj|reject|FC"
 ids_found_inMS2 = inchikey_to_kegg['id'].unique().tolist()
-diff_reg.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values('pvalue')
+ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values('pvalue')
 
 # %%
-diff_reg.loc[ids_found_inMS2, "pvalue"] = 0.01
-diff_reg.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values("pvalue")
+ancova.loc[ids_found_inMS2, "pvalue"] = 0.01
+ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values("pvalue")
 
 # %%
 inchikey_to_kegg #.loc[ids_found_inMS2]
@@ -146,10 +146,10 @@ rename_index = {
     "11438838801741346891": "C03194",  # C02962
     "15780731469960021248": "C00193",
 }
-diff_reg = diff_reg.rename(index=rename_index)
+ancova = ancova.rename(index=rename_index)
 
 # %%
-diff_reg.loc[rename_index.values()].filter(regex=regex_filter).sort_values("pvalue")
+ancova.loc[rename_index.values()].filter(regex=regex_filter).sort_values("pvalue")
 
 # %%
 annotations = annotations.rename_axis("identifier").reset_index()
@@ -160,7 +160,7 @@ annotations
 
 # %%
 ret = acore.enrichment_analysis.run_up_down_regulation_enrichment(
-    regulation_data=diff_reg.rename_axis("identifier").reset_index(),
+    regulation_data=ancova.rename_axis("identifier").reset_index(),
     annotation=annotations,
     identifier="identifier",
     annotation_col='pathway_id',
@@ -171,7 +171,7 @@ ret = acore.enrichment_analysis.run_up_down_regulation_enrichment(
 ret
 
 # %%
-diff_reg.loc[rename_index.values()].filter(regex=regex_filter).sort_values("pvalue")
+ancova.loc[rename_index.values()].filter(regex=regex_filter).sort_values("pvalue")
 
 # %% [markdown]
 # Why do we only see one compound?
