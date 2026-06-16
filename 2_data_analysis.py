@@ -61,6 +61,7 @@ from sklearn.preprocessing import StandardScaler
 # through the exercise, they are for example plotting functions. Do, however, run the
 # cells.
 
+
 # %% tags=["hide-input"]
 def plot_pca(
     df: pd.DataFrame,
@@ -596,7 +597,7 @@ data_filtered_1 = fm.filter_by_missingness(
     data=data,
     method="classic",
     percent=80,  # 80% present, 20% missing is allowed at most
-    samples=list(data.index),
+    samples=samples,
 )
 
 # %%
@@ -663,6 +664,7 @@ print(
 # been log-transformed first).
 #
 # This method is not implemented in acore yet, so we will define it ourselves.
+
 
 # %%
 def filter_dratio(
