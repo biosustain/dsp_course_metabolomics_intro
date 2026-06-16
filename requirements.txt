@@ -2,6 +2,7 @@ jupyter
 pandas
 dsp-pandas
 pyopenms
-# acore
-# vuecore
-# vuegen
+pubchempy
+acore
+vuecore
+vuegen

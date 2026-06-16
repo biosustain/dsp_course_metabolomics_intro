@@ -17,6 +17,7 @@ material/nf_core_metaboigniter
 :hidden:
 
 material/intro_data_analysis
+2_data_analysis
 ```
 
 ```{toctree}
