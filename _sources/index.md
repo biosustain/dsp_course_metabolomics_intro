@@ -17,7 +17,15 @@ material/nf_core_metaboigniter
 :hidden:
 
 material/intro_data_analysis
-2_data_analysis
+Hands-On <2_data_analysis>
+```
+
+```{toctree}
+:maxdepth: 2
+:caption: Interpretation
+:hidden:
+
+Hands-On <3_enrichment_analysis>
 ```
 
 ```{toctree}

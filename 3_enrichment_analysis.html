@@ -1,0 +1,2431 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Enrichment analysis &#8212; Mass spectrometry-based Metabolomics introduction  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3_enrichment_analysis';</script>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Datasets overview" href="data/README.html" />
+    <link rel="prev" title="Metabolomics DSP Course - Data Analysis" href="2_data_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mass spectrometry-based Metabolomics introduction  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/biosustain/dsp_course_metabolomics_intro" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Metaboigniter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="material/intro_metabolomics.html">MS-based metabolomics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="material/nf_core_metaboigniter.html">Metaboigniter</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="material/intro_data_analysis.html">Downstream Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_data_analysis.html">Hands-On</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hands-On</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data/README.html">Datasets overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data/MTBLS8735/README.html">Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Codespace</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href=".devcontainer/README.html">Container info</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/biosustain/dsp_course_metabolomics_intro/blob/master/3_enrichment_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/biosustain/dsp_course_metabolomics_intro" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3_enrichment_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Enrichment analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-relevant-files">List relevant files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kegg-annotations">Kegg annotations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pathway-mapping-fetch-names">Pathway mapping: fetch names</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-pathways">Filtering pathways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-analysis-of-covariance-ancova-results">Reload analysis of covariance (ANCOVA) results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Enrichment analysis</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="enrichment-analysis">
+<h1>Enrichment analysis<a class="headerlink" href="#enrichment-analysis" title="Link to this heading">#</a></h1>
+<p>Reference:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://analytics-core.readthedocs.io/stable/reference/acore.enrichment_analysis.html" rel="noreferrer" target="_blank">module documentation</a></p></li>
+<li><p><a class="reference external" href="https://analytics-core.readthedocs.io/stable/api_examples/enrichment_analysis.html" rel="noreferrer" target="_blank">api-example for enrichment analysis</a></p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">import</span> <span class="nn">acore</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">parse_compound_pathway_mapping</span><span class="p">(</span><span class="n">raw_mapping</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse tab-delimited KEGG-style compound/pathway mappings into a dictionary.&quot;&quot;&quot;</span>
+    <span class="n">compound_to_pathways</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">raw_mapping</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="n">compound_id</span><span class="p">,</span> <span class="n">pathway_id</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">compound_to_pathways</span><span class="p">[</span><span class="n">compound_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pathway_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">compound_to_pathways</span><span class="p">)</span>
+
+
+<span class="n">compounds</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="list-relevant-files">
+<h2>List relevant files<a class="headerlink" href="#list-relevant-files" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>ms2query based annotations (contains smiles and inchikeys)</p></li>
+<li><p>ancova results (contains feature IDs and p-values)</p></li>
+</ul>
+<div class="cell tag_parameters docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname_ms2query</span> <span class="o">=</span> <span class="s2">&quot;results_prepared/output_ms2query_Linked_data.tsv&quot;</span>
+<span class="n">fname_ancova</span> <span class="o">=</span> <span class="s2">&quot;results_prepared/ancova_results.csv&quot;</span>
+<span class="n">fname_pathways_map</span> <span class="o">=</span> <span class="s2">&quot;results_prepared/pathways_map.tsv&quot;</span>
+<span class="n">fname_inchikey_to_kegg</span> <span class="o">=</span> <span class="s2">&quot;results_prepared/inchikey_to_kegg.csv&quot;</span>
+<span class="n">fname_annotations</span> <span class="o">=</span> <span class="s2">&quot;results_prepared/link_compound_pathway.tsv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kegg-annotations">
+<h2>Kegg annotations<a class="headerlink" href="#kegg-annotations" title="Link to this heading">#</a></h2>
+<p>Can be downloaded from KEGG:</p>
+<ul class="simple">
+<li><p>https://rest.kegg.jp/link/compound/pathway</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">fname_annotations</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;pathway_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;compound_id&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Source&quot;</span><span class="p">,</span> <span class="s2">&quot;KEGG&quot;</span><span class="p">)</span>
+<span class="n">annotations</span><span class="p">[</span><span class="s2">&quot;pathway_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">annotations</span><span class="p">[</span><span class="s2">&quot;pathway_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;path:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">annotations</span><span class="p">[</span><span class="s2">&quot;compound_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">annotations</span><span class="p">[</span><span class="s2">&quot;compound_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;cpd:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">annotations</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;compound_id&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">annotations</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pathway_id</th>
+      <th>Source</th>
+    </tr>
+    <tr>
+      <th>compound_id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>C00022</th>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C00024</th>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C00031</th>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C00033</th>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C00036</th>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>C13776</th>
+      <td>map07232</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C13777</th>
+      <td>map07232</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C13820</th>
+      <td>map07232</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C07575</th>
+      <td>map07235</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>C13737</th>
+      <td>map07235</td>
+      <td>KEGG</td>
+    </tr>
+  </tbody>
+</table>
+<p>19580 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="pathway-mapping-fetch-names">
+<h2>Pathway mapping: fetch names<a class="headerlink" href="#pathway-mapping-fetch-names" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pathways_map</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">fname_pathways_map</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pathway_id&quot;</span><span class="p">,</span> <span class="s2">&quot;pathway_name&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">pathways_map</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pathway_id</th>
+      <th>pathway_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>map01100</td>
+      <td>Metabolic pathways</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>map01110</td>
+      <td>Biosynthesis of secondary metabolites</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>map01120</td>
+      <td>Microbial metabolism in diverse environments</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>map01200</td>
+      <td>Carbon metabolism</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>map01210</td>
+      <td>2-Oxocarboxylic acid metabolism</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>exclude some generic pathways?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">pathways_map</span><span class="p">[</span><span class="s2">&quot;pathway_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;pathways&quot;</span><span class="p">,</span> <span class="n">case</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pathways_map</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pathway_id</th>
+      <th>pathway_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>map01100</td>
+      <td>Metabolic pathways</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>map00720</td>
+      <td>Other carbon fixation pathways</td>
+    </tr>
+    <tr>
+      <th>185</th>
+      <td>map01010</td>
+      <td>Overview of biosynthetic pathways</td>
+    </tr>
+    <tr>
+      <th>308</th>
+      <td>map04550</td>
+      <td>Signaling pathways regulating pluripotency of ...</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>map05200</td>
+      <td>Pathways in cancer</td>
+    </tr>
+    <tr>
+      <th>483</th>
+      <td>map05022</td>
+      <td>Pathways of neurodegeneration - multiple diseases</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Can be downloaded from KEGG:</p>
+<ul class="simple">
+<li><p>https://rest.kegg.jp/link/compound/pathway</p></li>
+</ul>
+</section>
+<section id="filtering-pathways">
+<h2>Filtering pathways<a class="headerlink" href="#filtering-pathways" title="Link to this heading">#</a></h2>
+<p>filter some generic pathways if you want.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;pathway_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">view</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">view</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pathway_id
+map01100   3,253
+map01110   2,406
+map01120   1,155
+map01240     330
+map01220     263
+            ... 
+map03260       1
+map03272       1
+map07013       1
+map07014       1
+map07032       1
+Length: 463, dtype: int64
+</pre></div>
+</div>
+<img alt="_images/c0b484c098cf16e647f8cad5518e3705bd75eb57106a813f8ebc4ccd8bd06bab.png" src="_images/c0b484c098cf16e647f8cad5518e3705bd75eb57106a813f8ebc4ccd8bd06bab.png" />
+</div>
+</div>
+<p>Some pathway maps:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://rest.kegg.jp/get/path:map01100/image" rel="noreferrer" target="_blank">map01100</a></p></li>
+<li><p><a class="reference external" href="https://rest.kegg.jp/get/path:map01110/image" rel="noreferrer" target="_blank">map01110</a></p></li>
+<li><p><a class="reference external" href="https://rest.kegg.jp/get/path:map01120/image" rel="noreferrer" target="_blank">map01120</a></p></li>
+<li><p><a class="reference external" href="https://rest.kegg.jp/get/path:map01130/image" rel="noreferrer" target="_blank">map01130</a></p></li>
+</ul>
+<p>For example map00010:</p>
+<ul class="simple">
+<li><p>see conf map <a class="reference external" href="https://rest.kegg.jp/get/path:map00010/conf" rel="noreferrer" target="_blank">conf map of map00010</a>
+<img alt="path:map00010/image" src="https://rest.kegg.jp/get/path:map00010/image" /></p></li>
+</ul>
+<p>Additional information for map00010 and map00030:</p>
+<ul class="simple">
+<li><p>https://rest.kegg.jp/get/path:map00030+path:map00010</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms2query_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname_ms2query</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span>
+    <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;inchikey&quot;</span><span class="p">,</span> <span class="s2">&quot;smiles&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">ms2query_results</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>query_spectrum_nr</th>
+      <th>ms2query_model_prediction</th>
+      <th>precursor_mz_difference</th>
+      <th>precursor_mz_query_spectrum</th>
+      <th>precursor_mz_analog</th>
+      <th>inchikey</th>
+      <th>analog_compound_name</th>
+      <th>smiles</th>
+      <th>cf_kingdom</th>
+      <th>cf_superclass</th>
+      <th>cf_class</th>
+      <th>cf_subclass</th>
+      <th>cf_direct_parent</th>
+      <th>npc_class_results</th>
+      <th>npc_superclass_results</th>
+      <th>npc_pathway_results</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9,988,206,023,938,663,754</th>
+      <td>1</td>
+      <td>0.489</td>
+      <td>78.866</td>
+      <td>414.301</td>
+      <td>493.167</td>
+      <td>UKTUQKGXNWDYAI</td>
+      <td>8-Hydroxycarapinic Acid</td>
+      <td>CC1(C)C(=O)[C@@H]2C[C@@]3(O)C4=CC(=O)O[C@@H](c...</td>
+      <td>Organic compounds</td>
+      <td>Lipids and lipid-like molecules</td>
+      <td>Prenol lipids</td>
+      <td>Triterpenoids</td>
+      <td>Limonoids</td>
+      <td>Limonoids</td>
+      <td>Triterpenoids</td>
+      <td>Terpenoids</td>
+    </tr>
+    <tr>
+      <th>9,988,206,023,938,663,754</th>
+      <td>2</td>
+      <td>0.489</td>
+      <td>137.119</td>
+      <td>414.301</td>
+      <td>551.420</td>
+      <td>UTMFIKFVXBHDRL</td>
+      <td>(R)-1-(4-benzylpiperazin-1-yl)-4-((3R,5R,8R,9S...</td>
+      <td>O=C(N1CCN(CC=2C=CC=CC2)CC1)CCC(C)C3CCC4C5CCC6C...</td>
+      <td>Organic compounds</td>
+      <td>Lipids and lipid-like molecules</td>
+      <td>Steroids and steroid derivatives</td>
+      <td>Bile acids, alcohols and derivatives</td>
+      <td>Dihydroxy bile acids, alcohols and derivatives</td>
+      <td>NaN</td>
+      <td>Steroids</td>
+      <td>Terpenoids</td>
+    </tr>
+    <tr>
+      <th>9,988,206,023,938,663,754</th>
+      <td>3</td>
+      <td>0.483</td>
+      <td>39.909</td>
+      <td>414.301</td>
+      <td>454.210</td>
+      <td>NFUZCPRJHPTWRC</td>
+      <td>2-[2-oxo-4-(piperidylcarbonyl)hydroquinolyl]-N...</td>
+      <td>Cc1cc(C)c(N=C(O)Cn2c(=O)cc(C(=O)N3CCCCC3)c3ccc...</td>
+      <td>Organic compounds</td>
+      <td>Organoheterocyclic compounds</td>
+      <td>Quinolines and derivatives</td>
+      <td>Quinoline carboxamides</td>
+      <td>Quinoline carboxamides</td>
+      <td>NaN</td>
+      <td>Tryptophan alkaloids</td>
+      <td>Alkaloids</td>
+    </tr>
+    <tr>
+      <th>9,988,206,023,938,663,754</th>
+      <td>4</td>
+      <td>0.409</td>
+      <td>96.699</td>
+      <td>414.301</td>
+      <td>511.000</td>
+      <td>KZVHAGNFWJIOMX</td>
+      <td>Jamaicamide B</td>
+      <td>CO\C(CCNC(=O)CC\C=C\C(C)CC\C(CCCC#C)=C\Cl)=C\C...</td>
+      <td>Organic compounds</td>
+      <td>Lipids and lipid-like molecules</td>
+      <td>Fatty Acyls</td>
+      <td>Fatty amides</td>
+      <td>N-acyl amines</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9,988,206,023,938,663,754</th>
+      <td>5</td>
+      <td>0.409</td>
+      <td>81.044</td>
+      <td>414.301</td>
+      <td>495.345</td>
+      <td>HFGSQOYIOKBQOW</td>
+      <td>Corosolic acid</td>
+      <td>O=C(O)C12CCC(C)C(C)C2C3=CCC4C5(C)CC(O)C(O)C(C)...</td>
+      <td>Organic compounds</td>
+      <td>Lipids and lipid-like molecules</td>
+      <td>Prenol lipids</td>
+      <td>Triterpenoids</td>
+      <td>Triterpenoids</td>
+      <td>Ursane and Taraxastane triterpenoids</td>
+      <td>Triterpenoids</td>
+      <td>Terpenoids</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inchikey_to_kegg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname_inchikey_to_kegg</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
+<span class="n">inchikey_to_kegg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>kegg_id</th>
+      <th>id</th>
+      <th>ms2query_model_prediction</th>
+      <th>precursor_mz_difference</th>
+      <th>precursor_mz_query_spectrum</th>
+      <th>precursor_mz_analog</th>
+      <th>analog_compound_name</th>
+      <th>smiles</th>
+    </tr>
+    <tr>
+      <th>inchikey</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>KBKUJJFDSHBPPA</th>
+      <td>C12048</td>
+      <td>9988206023938663754</td>
+      <td>0.409</td>
+      <td>44.929</td>
+      <td>414.301</td>
+      <td>459.230</td>
+      <td>Cinobufotalin</td>
+      <td>O=C1OC=C(C=C1)C2C(OC(=O)C)C3OC34C5CCC6(O)CC(O)...</td>
+    </tr>
+    <tr>
+      <th>IOYZYMQFUSNATM</th>
+      <td>C02429</td>
+      <td>9988206023938663754</td>
+      <td>0.409</td>
+      <td>97.137</td>
+      <td>414.301</td>
+      <td>511.438</td>
+      <td>Thonizide</td>
+      <td>CCCCCCCCCCCCCCCC[N+](C)(C)CCN(Cc1ccc(OC)cc1)c1...</td>
+    </tr>
+    <tr>
+      <th>WVVSZNPYNCNODU</th>
+      <td>C03194</td>
+      <td>11438838801741346891</td>
+      <td>0.528</td>
+      <td>39.930</td>
+      <td>366.116</td>
+      <td>326.186</td>
+      <td>(6aR,9S)-N-[(2S)-1-hydroxypropan-2-yl]-7-methy...</td>
+      <td>C[C@@H](CO)NC(=O)[C@@H]1CN([C@@H]2CC3=CNC4=CC=...</td>
+    </tr>
+    <tr>
+      <th>QSLJIVKCVHQPLV</th>
+      <td>C02962</td>
+      <td>11438838801741346891</td>
+      <td>0.409</td>
+      <td>269.312</td>
+      <td>366.116</td>
+      <td>635.428</td>
+      <td>h_61_17_epioxandrolone</td>
+      <td>O=C1OC[C@@]2(C)C(CCC3C2CC[C@@]4(C)C3CC[C@@]4(C...</td>
+    </tr>
+    <tr>
+      <th>HSCJRCZFDFQWRP</th>
+      <td>C06393</td>
+      <td>11438838801741346891</td>
+      <td>0.409</td>
+      <td>199.294</td>
+      <td>366.116</td>
+      <td>565.410</td>
+      <td>UDP-glucopyranoside</td>
+      <td>C1=CN(C(=O)NC1=O)C2C(C(C(O2)COP(=O)(O)OP(=O)(O...</td>
+    </tr>
+    <tr>
+      <th>WVULKSPCQVQLCU</th>
+      <td>C00193</td>
+      <td>15780731469960021248</td>
+      <td>0.569</td>
+      <td>0.001</td>
+      <td>472.304</td>
+      <td>472.303</td>
+      <td>glycodeoxycholic acid</td>
+      <td>C[C@H](CCC(=O)NCC(=O)O)[C@H]1CCC2[C@@]1([C@H](...</td>
+    </tr>
+    <tr>
+      <th>GHCZAUBVMUEKKP</th>
+      <td>C10358</td>
+      <td>15780731469960021248</td>
+      <td>0.567</td>
+      <td>0.001</td>
+      <td>472.304</td>
+      <td>472.303</td>
+      <td>GLYCOCHENODEOXYCHOLATE</td>
+      <td>CC(CCC(=O)NCC(=O)O)C1CCC2C1(CCC3C2C(CC4C3(CCC(...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="reload-analysis-of-covariance-ancova-results">
+<h2>Reload analysis of covariance (ANCOVA) results<a class="headerlink" href="#reload-analysis-of-covariance-ancova-results" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ancova</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname_ancova</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ancova</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">ancova</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">ancova</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>group1</th>
+      <th>group2</th>
+      <th>mean(group1)</th>
+      <th>std(group1)</th>
+      <th>mean(group2)</th>
+      <th>std(group2)</th>
+      <th>posthoc T-Statistics</th>
+      <th>posthoc pvalue</th>
+      <th>coef</th>
+      <th>std err</th>
+      <th>...</th>
+      <th>log2FC</th>
+      <th>FC</th>
+      <th>F-statistics</th>
+      <th>pvalue</th>
+      <th>padj</th>
+      <th>correction</th>
+      <th>rejected</th>
+      <th>-log10 pvalue</th>
+      <th>Method</th>
+      <th>posthoc padj</th>
+    </tr>
+    <tr>
+      <th>identifier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13355670607852216099</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>12.403</td>
+      <td>0.040</td>
+      <td>12.623</td>
+      <td>0.017</td>
+      <td>14.190</td>
+      <td>0.001</td>
+      <td>0.236</td>
+      <td>0.017</td>
+      <td>...</td>
+      <td>-0.220</td>
+      <td>0.858</td>
+      <td>201.361</td>
+      <td>0.001</td>
+      <td>0.312</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>3.120</td>
+      <td>One-way ancova</td>
+      <td>0.312</td>
+    </tr>
+    <tr>
+      <th>1112105867821620295</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>10.492</td>
+      <td>0.519</td>
+      <td>11.170</td>
+      <td>0.215</td>
+      <td>11.367</td>
+      <td>0.001</td>
+      <td>0.915</td>
+      <td>0.080</td>
+      <td>...</td>
+      <td>-0.678</td>
+      <td>0.625</td>
+      <td>129.210</td>
+      <td>0.001</td>
+      <td>0.312</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>2.835</td>
+      <td>One-way ancova</td>
+      <td>0.312</td>
+    </tr>
+    <tr>
+      <th>10071800264895666972</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>13.361</td>
+      <td>0.817</td>
+      <td>14.093</td>
+      <td>0.308</td>
+      <td>16.132</td>
+      <td>0.001</td>
+      <td>1.106</td>
+      <td>0.069</td>
+      <td>...</td>
+      <td>-0.732</td>
+      <td>0.602</td>
+      <td>260.233</td>
+      <td>0.001</td>
+      <td>0.312</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>3.286</td>
+      <td>One-way ancova</td>
+      <td>0.312</td>
+    </tr>
+    <tr>
+      <th>3746828480965334286</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>14.185</td>
+      <td>0.471</td>
+      <td>14.402</td>
+      <td>0.162</td>
+      <td>10.613</td>
+      <td>0.002</td>
+      <td>0.430</td>
+      <td>0.041</td>
+      <td>...</td>
+      <td>-0.218</td>
+      <td>0.860</td>
+      <td>112.644</td>
+      <td>0.002</td>
+      <td>0.312</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>2.748</td>
+      <td>One-way ancova</td>
+      <td>0.312</td>
+    </tr>
+    <tr>
+      <th>12876383393801034065</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>16.808</td>
+      <td>0.543</td>
+      <td>10.533</td>
+      <td>0.534</td>
+      <td>-12.068</td>
+      <td>0.001</td>
+      <td>-6.167</td>
+      <td>0.511</td>
+      <td>...</td>
+      <td>6.276</td>
+      <td>77.478</td>
+      <td>145.641</td>
+      <td>0.001</td>
+      <td>0.312</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>2.912</td>
+      <td>One-way ancova</td>
+      <td>0.312</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17135774470838275225</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>10.891</td>
+      <td>1.609</td>
+      <td>11.328</td>
+      <td>1.097</td>
+      <td>-0.010</td>
+      <td>0.993</td>
+      <td>-0.012</td>
+      <td>1.170</td>
+      <td>...</td>
+      <td>-0.437</td>
+      <td>0.739</td>
+      <td>0.000</td>
+      <td>0.993</td>
+      <td>0.999</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>0.003</td>
+      <td>One-way ancova</td>
+      <td>0.999</td>
+    </tr>
+    <tr>
+      <th>14138485004156634592</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>9.128</td>
+      <td>1.435</td>
+      <td>9.460</td>
+      <td>0.312</td>
+      <td>0.004</td>
+      <td>0.997</td>
+      <td>0.004</td>
+      <td>0.893</td>
+      <td>...</td>
+      <td>-0.332</td>
+      <td>0.794</td>
+      <td>0.000</td>
+      <td>0.997</td>
+      <td>0.999</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>0.001</td>
+      <td>One-way ancova</td>
+      <td>0.999</td>
+    </tr>
+    <tr>
+      <th>14119326314702324995</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>9.600</td>
+      <td>1.696</td>
+      <td>9.894</td>
+      <td>1.179</td>
+      <td>0.007</td>
+      <td>0.995</td>
+      <td>0.010</td>
+      <td>1.393</td>
+      <td>...</td>
+      <td>-0.294</td>
+      <td>0.816</td>
+      <td>0.000</td>
+      <td>0.995</td>
+      <td>0.999</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>0.002</td>
+      <td>One-way ancova</td>
+      <td>0.999</td>
+    </tr>
+    <tr>
+      <th>4889835201691593275</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>10.503</td>
+      <td>0.260</td>
+      <td>10.523</td>
+      <td>0.175</td>
+      <td>-0.003</td>
+      <td>0.998</td>
+      <td>-0.001</td>
+      <td>0.221</td>
+      <td>...</td>
+      <td>-0.020</td>
+      <td>0.986</td>
+      <td>0.000</td>
+      <td>0.998</td>
+      <td>0.999</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>0.001</td>
+      <td>One-way ancova</td>
+      <td>0.999</td>
+    </tr>
+    <tr>
+      <th>4004978455990527558</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>12.416</td>
+      <td>0.178</td>
+      <td>12.463</td>
+      <td>0.433</td>
+      <td>0.001</td>
+      <td>0.999</td>
+      <td>0.000</td>
+      <td>0.324</td>
+      <td>...</td>
+      <td>-0.047</td>
+      <td>0.968</td>
+      <td>0.000</td>
+      <td>0.999</td>
+      <td>0.999</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>0.000</td>
+      <td>One-way ancova</td>
+      <td>0.999</td>
+    </tr>
+  </tbody>
+</table>
+<p>1286 rows × 22 columns</p>
+</div></div></div>
+</div>
+<p>Let’s see if we could identify features from the differential regulations
+analysis using the available MS2 annotations. We will use the <code class="docutils literal notranslate"><span class="pre">inchikey_to_kegg</span></code>
+mapping from <code class="docutils literal notranslate"><span class="pre">3_enrichment_analysis_fetch_kegg.ipynb</span></code>, which was pre-executed and the
+results stored. Rerun with new data!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inchikey_to_kegg</span>  <span class="c1"># .loc[ids_found_inMS2]</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>kegg_id</th>
+      <th>id</th>
+      <th>ms2query_model_prediction</th>
+      <th>precursor_mz_difference</th>
+      <th>precursor_mz_query_spectrum</th>
+      <th>precursor_mz_analog</th>
+      <th>analog_compound_name</th>
+      <th>smiles</th>
+    </tr>
+    <tr>
+      <th>inchikey</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>KBKUJJFDSHBPPA</th>
+      <td>C12048</td>
+      <td>9988206023938663754</td>
+      <td>0.409</td>
+      <td>44.929</td>
+      <td>414.301</td>
+      <td>459.230</td>
+      <td>Cinobufotalin</td>
+      <td>O=C1OC=C(C=C1)C2C(OC(=O)C)C3OC34C5CCC6(O)CC(O)...</td>
+    </tr>
+    <tr>
+      <th>IOYZYMQFUSNATM</th>
+      <td>C02429</td>
+      <td>9988206023938663754</td>
+      <td>0.409</td>
+      <td>97.137</td>
+      <td>414.301</td>
+      <td>511.438</td>
+      <td>Thonizide</td>
+      <td>CCCCCCCCCCCCCCCC[N+](C)(C)CCN(Cc1ccc(OC)cc1)c1...</td>
+    </tr>
+    <tr>
+      <th>WVVSZNPYNCNODU</th>
+      <td>C03194</td>
+      <td>11438838801741346891</td>
+      <td>0.528</td>
+      <td>39.930</td>
+      <td>366.116</td>
+      <td>326.186</td>
+      <td>(6aR,9S)-N-[(2S)-1-hydroxypropan-2-yl]-7-methy...</td>
+      <td>C[C@@H](CO)NC(=O)[C@@H]1CN([C@@H]2CC3=CNC4=CC=...</td>
+    </tr>
+    <tr>
+      <th>QSLJIVKCVHQPLV</th>
+      <td>C02962</td>
+      <td>11438838801741346891</td>
+      <td>0.409</td>
+      <td>269.312</td>
+      <td>366.116</td>
+      <td>635.428</td>
+      <td>h_61_17_epioxandrolone</td>
+      <td>O=C1OC[C@@]2(C)C(CCC3C2CC[C@@]4(C)C3CC[C@@]4(C...</td>
+    </tr>
+    <tr>
+      <th>HSCJRCZFDFQWRP</th>
+      <td>C06393</td>
+      <td>11438838801741346891</td>
+      <td>0.409</td>
+      <td>199.294</td>
+      <td>366.116</td>
+      <td>565.410</td>
+      <td>UDP-glucopyranoside</td>
+      <td>C1=CN(C(=O)NC1=O)C2C(C(C(O2)COP(=O)(O)OP(=O)(O...</td>
+    </tr>
+    <tr>
+      <th>WVULKSPCQVQLCU</th>
+      <td>C00193</td>
+      <td>15780731469960021248</td>
+      <td>0.569</td>
+      <td>0.001</td>
+      <td>472.304</td>
+      <td>472.303</td>
+      <td>glycodeoxycholic acid</td>
+      <td>C[C@H](CCC(=O)NCC(=O)O)[C@H]1CCC2[C@@]1([C@H](...</td>
+    </tr>
+    <tr>
+      <th>GHCZAUBVMUEKKP</th>
+      <td>C10358</td>
+      <td>15780731469960021248</td>
+      <td>0.567</td>
+      <td>0.001</td>
+      <td>472.304</td>
+      <td>472.303</td>
+      <td>GLYCOCHENODEOXYCHOLATE</td>
+      <td>CC(CCC(=O)NCC(=O)O)C1CCC2C1(CCC3C2C(CC4C3(CCC(...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regex_filter</span> <span class="o">=</span> <span class="s2">&quot;pval|padj|reject|FC&quot;</span>
+<span class="n">ids_found_inMS2</span> <span class="o">=</span> <span class="n">inchikey_to_kegg</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS2</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;pvalue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>posthoc pvalue</th>
+      <th>log2FC</th>
+      <th>FC</th>
+      <th>pvalue</th>
+      <th>padj</th>
+      <th>rejected</th>
+      <th>-log10 pvalue</th>
+      <th>posthoc padj</th>
+    </tr>
+    <tr>
+      <th>identifier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9988206023938663754</th>
+      <td>0.019</td>
+      <td>1.558</td>
+      <td>2.945</td>
+      <td>0.019</td>
+      <td>0.472</td>
+      <td>False</td>
+      <td>1.720</td>
+      <td>0.472</td>
+    </tr>
+    <tr>
+      <th>15780731469960021248</th>
+      <td>0.073</td>
+      <td>1.049</td>
+      <td>2.070</td>
+      <td>0.073</td>
+      <td>0.777</td>
+      <td>False</td>
+      <td>1.135</td>
+      <td>0.777</td>
+    </tr>
+    <tr>
+      <th>11438838801741346891</th>
+      <td>0.261</td>
+      <td>-0.099</td>
+      <td>0.933</td>
+      <td>0.261</td>
+      <td>0.848</td>
+      <td>False</td>
+      <td>0.583</td>
+      <td>0.848</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Make the few identified features significant for illustration purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS2</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS2</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;pvalue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>posthoc pvalue</th>
+      <th>log2FC</th>
+      <th>FC</th>
+      <th>pvalue</th>
+      <th>padj</th>
+      <th>rejected</th>
+      <th>-log10 pvalue</th>
+      <th>posthoc padj</th>
+    </tr>
+    <tr>
+      <th>identifier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9988206023938663754</th>
+      <td>0.019</td>
+      <td>1.558</td>
+      <td>2.945</td>
+      <td>0.010</td>
+      <td>0.472</td>
+      <td>False</td>
+      <td>1.720</td>
+      <td>0.472</td>
+    </tr>
+    <tr>
+      <th>11438838801741346891</th>
+      <td>0.261</td>
+      <td>-0.099</td>
+      <td>0.933</td>
+      <td>0.010</td>
+      <td>0.848</td>
+      <td>False</td>
+      <td>0.583</td>
+      <td>0.848</td>
+    </tr>
+    <tr>
+      <th>15780731469960021248</th>
+      <td>0.073</td>
+      <td>1.049</td>
+      <td>2.070</td>
+      <td>0.010</td>
+      <td>0.777</td>
+      <td>False</td>
+      <td>1.135</td>
+      <td>0.777</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s manually update some compound IDs for the few features we identified.</p>
+<ul class="simple">
+<li><p>choose one compound per feature</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inchikey_to_kegg</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>kegg_id</th>
+      <th>id</th>
+      <th>ms2query_model_prediction</th>
+      <th>precursor_mz_difference</th>
+      <th>precursor_mz_query_spectrum</th>
+      <th>precursor_mz_analog</th>
+      <th>analog_compound_name</th>
+      <th>smiles</th>
+    </tr>
+    <tr>
+      <th>inchikey</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>KBKUJJFDSHBPPA</th>
+      <td>C12048</td>
+      <td>9988206023938663754</td>
+      <td>0.409</td>
+      <td>44.929</td>
+      <td>414.301</td>
+      <td>459.230</td>
+      <td>Cinobufotalin</td>
+      <td>O=C1OC=C(C=C1)C2C(OC(=O)C)C3OC34C5CCC6(O)CC(O)...</td>
+    </tr>
+    <tr>
+      <th>IOYZYMQFUSNATM</th>
+      <td>C02429</td>
+      <td>9988206023938663754</td>
+      <td>0.409</td>
+      <td>97.137</td>
+      <td>414.301</td>
+      <td>511.438</td>
+      <td>Thonizide</td>
+      <td>CCCCCCCCCCCCCCCC[N+](C)(C)CCN(Cc1ccc(OC)cc1)c1...</td>
+    </tr>
+    <tr>
+      <th>WVVSZNPYNCNODU</th>
+      <td>C03194</td>
+      <td>11438838801741346891</td>
+      <td>0.528</td>
+      <td>39.930</td>
+      <td>366.116</td>
+      <td>326.186</td>
+      <td>(6aR,9S)-N-[(2S)-1-hydroxypropan-2-yl]-7-methy...</td>
+      <td>C[C@@H](CO)NC(=O)[C@@H]1CN([C@@H]2CC3=CNC4=CC=...</td>
+    </tr>
+    <tr>
+      <th>QSLJIVKCVHQPLV</th>
+      <td>C02962</td>
+      <td>11438838801741346891</td>
+      <td>0.409</td>
+      <td>269.312</td>
+      <td>366.116</td>
+      <td>635.428</td>
+      <td>h_61_17_epioxandrolone</td>
+      <td>O=C1OC[C@@]2(C)C(CCC3C2CC[C@@]4(C)C3CC[C@@]4(C...</td>
+    </tr>
+    <tr>
+      <th>HSCJRCZFDFQWRP</th>
+      <td>C06393</td>
+      <td>11438838801741346891</td>
+      <td>0.409</td>
+      <td>199.294</td>
+      <td>366.116</td>
+      <td>565.410</td>
+      <td>UDP-glucopyranoside</td>
+      <td>C1=CN(C(=O)NC1=O)C2C(C(C(O2)COP(=O)(O)OP(=O)(O...</td>
+    </tr>
+    <tr>
+      <th>WVULKSPCQVQLCU</th>
+      <td>C00193</td>
+      <td>15780731469960021248</td>
+      <td>0.569</td>
+      <td>0.001</td>
+      <td>472.304</td>
+      <td>472.303</td>
+      <td>glycodeoxycholic acid</td>
+      <td>C[C@H](CCC(=O)NCC(=O)O)[C@H]1CCC2[C@@]1([C@H](...</td>
+    </tr>
+    <tr>
+      <th>GHCZAUBVMUEKKP</th>
+      <td>C10358</td>
+      <td>15780731469960021248</td>
+      <td>0.567</td>
+      <td>0.001</td>
+      <td>472.304</td>
+      <td>472.303</td>
+      <td>GLYCOCHENODEOXYCHOLATE</td>
+      <td>CC(CCC(=O)NCC(=O)O)C1CCC2C1(CCC3C2C(CC4C3(CCC(...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rename_index</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;9988206023938663754&quot;</span><span class="p">:</span> <span class="s2">&quot;C12048&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;11438838801741346891&quot;</span><span class="p">:</span> <span class="s2">&quot;C03194&quot;</span><span class="p">,</span>  <span class="c1"># C02962</span>
+    <span class="s2">&quot;15780731469960021248&quot;</span><span class="p">:</span> <span class="s2">&quot;C00193&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">ancova</span> <span class="o">=</span> <span class="n">ancova</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">rename_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rename_index</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;pvalue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>posthoc pvalue</th>
+      <th>log2FC</th>
+      <th>FC</th>
+      <th>pvalue</th>
+      <th>padj</th>
+      <th>rejected</th>
+      <th>-log10 pvalue</th>
+      <th>posthoc padj</th>
+    </tr>
+    <tr>
+      <th>identifier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>C12048</th>
+      <td>0.019</td>
+      <td>1.558</td>
+      <td>2.945</td>
+      <td>0.010</td>
+      <td>0.472</td>
+      <td>False</td>
+      <td>1.720</td>
+      <td>0.472</td>
+    </tr>
+    <tr>
+      <th>C03194</th>
+      <td>0.261</td>
+      <td>-0.099</td>
+      <td>0.933</td>
+      <td>0.010</td>
+      <td>0.848</td>
+      <td>False</td>
+      <td>0.583</td>
+      <td>0.848</td>
+    </tr>
+    <tr>
+      <th>C00193</th>
+      <td>0.073</td>
+      <td>1.049</td>
+      <td>2.070</td>
+      <td>0.010</td>
+      <td>0.777</td>
+      <td>False</td>
+      <td>1.135</td>
+      <td>0.777</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id1">
+<h2>Enrichment analysis<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>We will use the annotations fetched from KEGG to perform the enrichment analysis.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotations</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="s2">&quot;identifier&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">annotations</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>identifier</th>
+      <th>pathway_id</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>C00022</td>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C00024</td>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C00031</td>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C00033</td>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>C00036</td>
+      <td>map00010</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>19,575</th>
+      <td>C13776</td>
+      <td>map07232</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>19,576</th>
+      <td>C13777</td>
+      <td>map07232</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>19,577</th>
+      <td>C13820</td>
+      <td>map07232</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>19,578</th>
+      <td>C07575</td>
+      <td>map07235</td>
+      <td>KEGG</td>
+    </tr>
+    <tr>
+      <th>19,579</th>
+      <td>C13737</td>
+      <td>map07235</td>
+      <td>KEGG</td>
+    </tr>
+  </tbody>
+</table>
+<p>19580 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ret</span> <span class="o">=</span> <span class="n">acore</span><span class="o">.</span><span class="n">enrichment_analysis</span><span class="o">.</span><span class="n">run_up_down_regulation_enrichment</span><span class="p">(</span>
+    <span class="n">regulation_data</span><span class="o">=</span><span class="n">ancova</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="s2">&quot;identifier&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+    <span class="n">annotation</span><span class="o">=</span><span class="n">annotations</span><span class="p">,</span>
+    <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span>
+    <span class="n">annotation_col</span><span class="o">=</span><span class="s2">&quot;pathway_id&quot;</span><span class="p">,</span>
+    <span class="n">pval_col</span><span class="o">=</span><span class="s2">&quot;pvalue&quot;</span><span class="p">,</span>
+    <span class="n">min_detected_in_set</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">lfc_cutoff</span><span class="o">=</span><span class="mf">0.012</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No significant enrichment found with the given parameters. Returning an empty DataFrame.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>direction</th>
+      <th>comparison</th>
+      <th>terms</th>
+      <th>identifiers</th>
+      <th>foreground</th>
+      <th>background</th>
+      <th>foreground_pop</th>
+      <th>background_pop</th>
+      <th>pvalue</th>
+      <th>padj</th>
+      <th>rejected</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>downregulated</td>
+      <td>CTR~CVD</td>
+      <td>map00260</td>
+      <td>C03194</td>
+      <td>1</td>
+      <td>0</td>
+      <td>67</td>
+      <td>1286</td>
+      <td>0.052</td>
+      <td>0.052</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>downregulated</td>
+      <td>CTR~CVD</td>
+      <td>map00860</td>
+      <td>C03194</td>
+      <td>1</td>
+      <td>0</td>
+      <td>67</td>
+      <td>1286</td>
+      <td>0.052</td>
+      <td>0.052</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>downregulated</td>
+      <td>CTR~CVD</td>
+      <td>map01100</td>
+      <td>C03194</td>
+      <td>1</td>
+      <td>0</td>
+      <td>67</td>
+      <td>1286</td>
+      <td>0.052</td>
+      <td>0.052</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rename_index</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;pvalue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>posthoc pvalue</th>
+      <th>log2FC</th>
+      <th>FC</th>
+      <th>pvalue</th>
+      <th>padj</th>
+      <th>rejected</th>
+      <th>-log10 pvalue</th>
+      <th>posthoc padj</th>
+    </tr>
+    <tr>
+      <th>identifier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>C12048</th>
+      <td>0.019</td>
+      <td>1.558</td>
+      <td>2.945</td>
+      <td>0.010</td>
+      <td>0.472</td>
+      <td>False</td>
+      <td>1.720</td>
+      <td>0.472</td>
+    </tr>
+    <tr>
+      <th>C03194</th>
+      <td>0.261</td>
+      <td>-0.099</td>
+      <td>0.933</td>
+      <td>0.010</td>
+      <td>0.848</td>
+      <td>False</td>
+      <td>0.583</td>
+      <td>0.848</td>
+    </tr>
+    <tr>
+      <th>C00193</th>
+      <td>0.073</td>
+      <td>1.049</td>
+      <td>2.070</td>
+      <td>0.010</td>
+      <td>0.777</td>
+      <td>False</td>
+      <td>1.135</td>
+      <td>0.777</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Why do we only see one compound?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotations</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">annotations</span><span class="o">.</span><span class="n">identifier</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">inchikey_to_kegg</span><span class="o">.</span><span class="n">kegg_id</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>identifier</th>
+      <th>pathway_id</th>
+      <th>Source</th>
+      <th>group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>187</th>
+      <td>C02962</td>
+      <td>map00051</td>
+      <td>KEGG</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1,182</th>
+      <td>C03194</td>
+      <td>map00260</td>
+      <td>KEGG</td>
+      <td>foreground</td>
+    </tr>
+    <tr>
+      <th>4,929</th>
+      <td>C03194</td>
+      <td>map00860</td>
+      <td>KEGG</td>
+      <td>foreground</td>
+    </tr>
+    <tr>
+      <th>9,483</th>
+      <td>C02962</td>
+      <td>map01100</td>
+      <td>KEGG</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9,521</th>
+      <td>C03194</td>
+      <td>map01100</td>
+      <td>KEGG</td>
+      <td>foreground</td>
+    </tr>
+    <tr>
+      <th>14,499</th>
+      <td>C02962</td>
+      <td>map01120</td>
+      <td>KEGG</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_data_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Metabolomics DSP Course - Data Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Datasets overview</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-relevant-files">List relevant files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kegg-annotations">Kegg annotations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pathway-mapping-fetch-names">Pathway mapping: fetch names</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-pathways">Filtering pathways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-analysis-of-covariance-ancova-results">Reload analysis of covariance (ANCOVA) results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Enrichment analysis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Henry Webel, Alberto Santos, Marco Reverenna
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, DTU Biosustain, Informatics Platform, DSP.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
