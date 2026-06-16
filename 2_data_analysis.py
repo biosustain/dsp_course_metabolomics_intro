@@ -1217,6 +1217,8 @@ print(f"Downregulated in CVD: {(hits['log2FC'] < 0).sum()}")
 # We can save and export our hits to a csv file.
 
 # %%
-ancova.to_csv("results_prepared/ancova_results.csv")
+# uncomment to overwrite the file
+# ancova.to_csv("results_prepared/ancova_results.csv")
+
 # %% [markdown]
 # Done!

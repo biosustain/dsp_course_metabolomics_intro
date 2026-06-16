@@ -21,7 +21,7 @@ exclude_patterns = [
     "conf.py",
     "*.py",
     ".pytest_cache",
-    "data/PXD041301/*",  # leave it out for now
+    "3_enrichment_analysis_fetch_kegg.ipynb",  # leave it out for now
 ]
 
 #  https://myst-nb.readthedocs.io/en/latest/computation/execute.html
