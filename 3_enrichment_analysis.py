@@ -2,8 +2,8 @@
 # # Enrichment analysis
 #
 # Reference:
-# - module documetentation
-# - api-example for enrichment analysis
+# - [module documentation](https://analytics-core.readthedocs.io/stable/reference/acore.enrichment_analysis.html)
+# - [api-example for enrichment analysis](https://analytics-core.readthedocs.io/stable/api_examples/enrichment_analysis.html)
 
 # %% tags=["hide-input"]
 from collections import defaultdict
@@ -91,9 +91,7 @@ pathways_map.loc[mask]
 
 # %% tags=["hide-input"]
 view = annotations.groupby("pathway_id").size().sort_values(ascending=False)
-view.plot(
-    kind="line", figsize=(10, 5), marker="."
-)
+view.plot(kind="line", figsize=(10, 5), marker=".")
 view
 
 # %% [markdown]
@@ -132,7 +130,7 @@ ancova
 # %% [markdown]
 # Let's see if we could identify features from the differential regulations
 # analysis using the available MS2 annotations. We will use the `inchikey_to_kegg`
-# mapping from `3_enrichment_analysis_fetch_kegg.ipnnb`, which was pre-executed and the
+# mapping from `3_enrichment_analysis_fetch_kegg.ipynb`, which was pre-executed and the
 # results stored. Rerun with new data!
 
 # %% tags=["hide-input"]
@@ -140,8 +138,8 @@ inchikey_to_kegg  # .loc[ids_found_inMS2]
 
 # %%
 regex_filter = "pval|padj|reject|FC"
-ids_found_inMS2 = inchikey_to_kegg['id'].unique().tolist()
-ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values('pvalue')
+ids_found_inMS2 = inchikey_to_kegg["id"].unique().tolist()
+ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values("pvalue")
 
 # %% [markdown]
 # Make the few identified features significant for illustration purposes.
@@ -152,7 +150,7 @@ ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values("pvalue")
 
 # %% [markdown]
 # Let's manually update some compound IDs for the few features we identified.
-# - chose one compound per feature
+# - choose one compound per feature
 
 # %% tags=["hide-input"]
 inchikey_to_kegg
@@ -171,7 +169,7 @@ ancova.loc[rename_index.values()].filter(regex=regex_filter).sort_values("pvalue
 
 # %% [markdown]
 # ## Enrichment analysis
-# We will use the annoations fetched from KEGG to perform the enrichment analysis.
+# We will use the annotations fetched from KEGG to perform the enrichment analysis.
 
 # %% tags=["hide-input"]
 annotations = annotations.rename_axis("identifier").reset_index()
@@ -182,7 +180,7 @@ ret = acore.enrichment_analysis.run_up_down_regulation_enrichment(
     regulation_data=ancova.rename_axis("identifier").reset_index(),
     annotation=annotations,
     identifier="identifier",
-    annotation_col='pathway_id',
+    annotation_col="pathway_id",
     pval_col="pvalue",
     min_detected_in_set=1,
     lfc_cutoff=0.012,

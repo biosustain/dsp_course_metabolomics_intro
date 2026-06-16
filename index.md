@@ -17,7 +17,7 @@ material/nf_core_metaboigniter
 :hidden:
 
 material/intro_data_analysis
-Hands-On<2_data_analysis>
+Hands-On <2_data_analysis>
 ```
 
 ```{toctree}
@@ -25,7 +25,7 @@ Hands-On<2_data_analysis>
 :caption: Interpretation
 :hidden:
 
-Hands-On<3_enrichment_analysis>
+Hands-On <3_enrichment_analysis>
 ```
 
 ```{toctree}
