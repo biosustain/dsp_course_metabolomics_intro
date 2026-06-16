@@ -1,9 +1,12 @@
 # %% [markdown]
 # # Enrichment analysis
+#
+# Reference:
+# - module documetentation
+# - api-example for enrichment analysis
 
-# %%
+# %% tags=["hide-input"]
 from collections import defaultdict
-from pathlib import Path
 
 import acore
 import pandas as pd
@@ -23,6 +26,12 @@ def parse_compound_pathway_mapping(raw_mapping: str) -> dict[str, list[str]]:
 compounds = {}
 
 
+# %% [markdown]
+# ## List relevant files
+# - ms2query based annotations (contains smiles and inchikeys)
+# - ancova results (contains feature IDs and p-values)
+
+
 # %% tags=["parameters"]
 fname_ms2query = "results_prepared/output_ms2query_Linked_data.tsv"
 fname_ancova = "results_prepared/ancova_results.csv"
@@ -30,26 +39,12 @@ fname_pathways_map = "results_prepared/pathways_map.tsv"
 fname_inchikey_to_kegg = "results_prepared/inchikey_to_kegg.csv"
 fname_annotations = "results_prepared/link_compound_pathway.tsv"
 
-
-# %%
-pathways_map = pd.read_csv(
-    fname_pathways_map, sep="\t", header=None, names=["pathway_id", "pathway_name"]
-)
-pathways_map.head()
-
 # %% [markdown]
-# exclude some generic pathways?
-
-# %%
-mask = pathways_map["pathway_name"].str.contains("pathways", case=False)
-pathways_map.loc[mask]
-
-# %% [markdown]
+# ## Kegg annotations
 # Can be downloaded from KEGG:
 # - https://rest.kegg.jp/link/compound/pathway
 
-
-# %%
+# %% tags=["hide-input"]
 annotations = pd.read_csv(
     fname_annotations,
     sep="\t",
@@ -70,12 +65,36 @@ annotations.set_index("compound_id", inplace=True)
 annotations
 
 # %% [markdown]
-# ## Filtering pathways
-# filter some generic pathways?
+# ## Pathway mapping: fetch names
 
 # %%
-annotations.groupby("pathway_id").size().sort_values(ascending=False)
+pathways_map = pd.read_csv(
+    fname_pathways_map, sep="\t", header=None, names=["pathway_id", "pathway_name"]
+)
+pathways_map.head()
 
+# %% [markdown]
+# exclude some generic pathways?
+
+# %%
+mask = pathways_map["pathway_name"].str.contains("pathways", case=False)
+pathways_map.loc[mask]
+
+# %% [markdown]
+# Can be downloaded from KEGG:
+# - https://rest.kegg.jp/link/compound/pathway
+
+
+# %% [markdown]
+# ## Filtering pathways
+# filter some generic pathways if you want.
+
+# %% tags=["hide-input"]
+view = annotations.groupby("pathway_id").size().sort_values(ascending=False)
+view.plot(
+    kind="line", figsize=(10, 5), marker="."
+)
+view
 
 # %% [markdown]
 # Some pathway maps:
@@ -91,11 +110,6 @@ annotations.groupby("pathway_id").size().sort_values(ascending=False)
 # Additional information for map00010 and map00030:
 # - https://rest.kegg.jp/get/path:map00030+path:map00010
 
-# %% markdown
-annotations.groupby("pathway_id").size().sort_values(ascending=False).plot(
-    kind="line", figsize=(10, 5), marker="."
-)
-
 # %%
 ms2query_results = pd.read_csv(fname_ms2query, index_col=0, sep="\t").drop_duplicates(
     subset=["inchikey", "smiles"]
@@ -107,29 +121,41 @@ inchikey_to_kegg = pd.read_csv(fname_inchikey_to_kegg, index_col=0).astype({"id"
 inchikey_to_kegg
 
 # %% [markdown]
-# ## Map features to MS2Query results
-#
-# - only needed as features identifies are based on xcms and ms2query results are based on
-#   metaboigniter, so the feature IDs don't match. If we use features from metaboigniter
-#   for the differential analysis, we could have avoided this step.
+# ## Reload analysis of covariance (ANCOVA) results
 #
 
-# %%
+# %% tags=["hide-input"]
 ancova = pd.read_csv(fname_ancova, index_col=0)
 ancova.index = ancova.index.astype(str)
 ancova
+
+# %% [markdown]
+# Let's see if we could identify features from the differential regulations
+# analysis using the available MS2 annotations. We will use the `inchikey_to_kegg`
+# mapping from `3_enrichment_analysis_fetch_kegg.ipnnb`, which was pre-executed and the
+# results stored. Rerun with new data!
+
+# %% tags=["hide-input"]
+inchikey_to_kegg  # .loc[ids_found_inMS2]
 
 # %%
 regex_filter = "pval|padj|reject|FC"
 ids_found_inMS2 = inchikey_to_kegg['id'].unique().tolist()
 ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values('pvalue')
 
+# %% [markdown]
+# Make the few identified features significant for illustration purposes.
+
 # %%
 ancova.loc[ids_found_inMS2, "pvalue"] = 0.01
 ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values("pvalue")
 
-# %%
-inchikey_to_kegg #.loc[ids_found_inMS2]
+# %% [markdown]
+# Let's manually update some compound IDs for the few features we identified.
+# - chose one compound per feature
+
+# %% tags=["hide-input"]
+inchikey_to_kegg
 
 # %%
 rename_index = {
@@ -142,12 +168,14 @@ ancova = ancova.rename(index=rename_index)
 # %%
 ancova.loc[rename_index.values()].filter(regex=regex_filter).sort_values("pvalue")
 
-# %%
-annotations = annotations.rename_axis("identifier").reset_index()
-annotations
 
 # %% [markdown]
 # ## Enrichment analysis
+# We will use the annoations fetched from KEGG to perform the enrichment analysis.
+
+# %% tags=["hide-input"]
+annotations = annotations.rename_axis("identifier").reset_index()
+annotations
 
 # %%
 ret = acore.enrichment_analysis.run_up_down_regulation_enrichment(
