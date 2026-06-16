@@ -357,8 +357,7 @@ more verbosely this run without setting a config file:
 nextflow run nf-core/metaboigniter -profile docker,arm -r 2.0.1 -resume \
 --input data/cutA/samplesheet.csv \
 --outdir results_cutA \
---identification --run_ms2query \
---max_cpus 4 --max_memory '15.GB' --max_time '6.h'
+# --identification --run_ms2query 
 ```
 
 ## Troubleshooting

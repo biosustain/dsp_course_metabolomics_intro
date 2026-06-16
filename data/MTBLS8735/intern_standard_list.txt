@@ -1,6 +1,6 @@
 "name"	"abbreviation"	"formula"	"POS"	"NEG"	"RT"	"data_set"	"sample"	"operator"	"version"	"quality_NEG"	"quality_POS"	"mz"	"mzmin"	"mzmax"	"rtmin"	"rtmax"
 "carnitine_d3"	"Carnitine (D3)"	"carnitine_d3"	164.124	"[M+H]+"	NA	61	"2019_11_matrix_effect"	"serum"	"Mar Garcia-Aloy"	2	"3_bad"	"2_medium"	165.131276	165.126276	165.136276	51	71
-"creatinine_methyl_d3"	"Creatinine (N-Methhyl_D3)"	"creatinine_methyl_d3"	116.0777	"[M+H]+"	"[M-H]-"	126	"2019_11_matrix_effect"	"serum"	"Mar Garcia-Aloy"	2	"2_medium"	"2_medium"	117.084976	117.079976	117.089976	116	136
+"creatinine_methyl_d3"	"Creatinine (N-Methyl_D3)"	"creatinine_methyl_d3"	116.0777	"[M+H]+"	"[M-H]-"	126	"2019_11_matrix_effect"	"serum"	"Mar Garcia-Aloy"	2	"2_medium"	"2_medium"	117.084976	117.079976	117.089976	116	136
 "glucose_d2"	"Glucose (6,6-D2)"	"glucose_d2"	182.0759	"[M+Na]+"	"[M+CHO2]-"	166	"2019_11_matrix_effect"	"serum"	"Mar Garcia-Aloy"	2	"1_good"	"2_medium"	205.06512	205.06012	205.07012	156	176
 "alanine_13C_15N"	"L-Alanine (13C3, 99%; 15N, 99%)"	"alanine_13C_15N"	93.0548	"[M+H]+"	"[M-H]-"	167	"2019_11_matrix_effect"	"serum"	"Mar Garcia-Aloy"	2	"2_medium"	"1_good"	94.062076	94.057076	94.067076	157	177
 "arginine_13C_15N"	"L-Arginine HCl (13C6, 99%; 15N4, 99%)"	"arginine_13C_15N"	184.1199	"[M+H]+"	"[M-H]-"	183	"2019_11_matrix_effect"	"serum"	"Mar Garcia-Aloy"	2	"0_perfect"	"0_perfect"	185.127176	185.122176	185.132176	173	193

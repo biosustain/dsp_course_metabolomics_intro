@@ -14,11 +14,6 @@
 
 # %% [markdown]
 # # Pre-processing of LC-MS/MS metabolomics data using pyOpenMS
-#
-# ## Data visualization
-
-# %% The relevant files are selected: [markdown]
-#
 
 # %%
 import os
@@ -29,6 +24,10 @@ import numpy as np
 import pandas as pd
 import pyopenms as oms
 
+# %% [markdown]
+# The relevant files are selected:
+
+# %%
 metadata = pd.read_csv("data/MTBLS8735/metadata.csv")
 
 input_labels = metadata["phenotype"].tolist()
@@ -40,7 +39,9 @@ for i in range(len(metadata)):
 
 fname_intern_standard = os.path.join("data", "MTBLS8735", "intern_standard_list.txt")
 
+
 # %% [markdown]
+# ## Data visualization
 # Before starting the pre-processing workflow, we visualize the **Base Peak
 # Chromatogram (BPC)** for each sample. The BPC represents the intensity of the most
 # intense ion detected in every MS1 spectrum over the course of the chromatographic run.
@@ -50,7 +51,7 @@ fname_intern_standard = os.path.join("data", "MTBLS8735", "intern_standard_list.
 # potential issues that should be investigated before proceeding with further analysis.
 
 
-# %%
+# %% tags=["hide-input"]
 def extract_bpc(exp):
 
     bpc_rt = []
@@ -102,7 +103,7 @@ plt.show()
 # would otherwise increase processing time and data size.
 
 
-# %%
+# %% tags=["hide-input"]
 def filter_chr(file):
     filtered = oms.MSExperiment()
     exp = oms.MSExperiment()
@@ -140,6 +141,7 @@ plt.show()
 # helps us inspect their chromatographic profiles and use them as a practical reference
 # when selecting or adjusting preprocessing parameters.
 
+# %% tags=["hide-input"]
 # %% internal standards
 intern_standard = pd.read_csv(
     fname_intern_standard,
@@ -164,7 +166,7 @@ intern_standard
 # preprocessing parameters such as chromatographic width or signal-to-noise ratio.
 
 
-# %%
+# %% tags=["hide-input"]
 def extract_eic(exp, mzmin, mzmax, rtmin, rtmax):
     rt_list = []
     intensity_list = []
@@ -250,7 +252,7 @@ plt.show()
 # which can be useful for downstream visualization and inspection.
 #
 
-# %%
+# %% tags=["hide-input"]
 rows = []
 mass_traces_final_per_sample = []
 features_per_sample = []
@@ -319,9 +321,15 @@ for s_idx, exp in enumerate(filtered_exps):
 # %% We can check the number of peaks in our feature map objects. [markdown]
 #
 
-# %%
+# %% tags=["hide-input"]
 for fm in feature_maps:
     print(fm.size())
+
+# %% [markdown]
+# And the peaklist:
+
+# %%
+peaklist
 
 # %% [markdown]
 # ## Pre-processing - peak alignment and matching
@@ -356,7 +364,7 @@ for fm in feature_maps:
 #
 #
 
-# %%
+# %% tags=["hide-input"]
 ref_index = [
     i[0]
     for i in sorted(enumerate([fm.size() for fm in feature_maps]), key=lambda x: x[1])
