@@ -40,7 +40,7 @@
 # typical downstream metabolomics data analysis.
 
 # %% [markdown]
-# ##### Imports
+# ## Imports
 
 # %%
 # %pip install acore
@@ -56,7 +56,7 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 # %% [markdown]
-# ##### Helper functions
+# ## Helper functions
 # First, we are defining some helper functions. Feel free to ignore these while we go
 # through the exercise, they are for example plotting functions. Do, however, run the
 # cells.
@@ -466,7 +466,7 @@ def pca_for_cpca_drift(
 
 
 # %% [markdown]
-# ### Data setup
+# ## Data setup
 
 # %% [markdown]
 # First, let's load and have a look at our data. You can find it in the data
@@ -578,7 +578,7 @@ plot_intensity_distribution(data)
 # There are quite a lot of missing values, so it is important that we filter first.
 
 # %% [markdown]
-# #### 80%-rule for filtering
+# ## 80%-rule for filtering
 
 # %% [markdown]
 # The 80%-rule filters out features with too much missingness from our data. More
@@ -614,7 +614,7 @@ print(f"Difference: {data.shape[1]-data_filtered_1.shape[1]} features removed.")
 # Now we have removed 836 features.
 
 # %% [markdown]
-# #### CV-based filtering
+# ## CV-based filtering
 # In this method, we are taking into account the quality control (QC) samples.
 #
 # The CV of the biological samples and the CV of the QC samples are calculated per
@@ -638,7 +638,7 @@ print(
 
 
 # %% [markdown]
-# #### D-ratio filtering
+# ## D-ratio filtering
 # Finally, we will do dispersion ratio filtering.
 #
 # This method scores each feature by the ratio of its analytical noise (QC) to its total
@@ -738,7 +738,7 @@ plot_feature_missingness(data_filtered_3)
 plot_intensity_distribution(data_filtered_3)
 
 # %% [markdown]
-# #### Impute with half minimum
+# ## Impute with half minimum
 #
 # In this imputation method, we are calculating the minimum of each feature, taking the
 # half of that and using that value to fill in missing values for that feature. This
@@ -805,7 +805,7 @@ pca_model, scores, var_explained = plot_pca(
 from acore import drift_correction as dc
 
 # %% [markdown]
-# #### Loess smoothing drift correction
+# ## Loess smoothing drift correction
 #
 # Pooled QC samples are injected at regular intervals over time throughout the experiment.
 # The QC intensities for each features should theoretically be consistent in each
@@ -862,7 +862,7 @@ plot_loess_example_curve(
 )
 
 # %% [markdown]
-# #### CPCA
+# ## CPCA
 #
 # Standard PCA finds orthogonal directions (principal components) that capture maximum
 # variance in a single dataset. Common PCA extends this to multiple groups: instead of
@@ -1002,7 +1002,7 @@ pca_model, scores, var_explained = plot_pca(
 # ## Statistical analysis
 
 # %% [markdown]
-# #### ANCOVA
+# ## ANCOVA
 #
 # We will now do a statistical analysis. We want to find out which ones of our metabolites
 # are significantly more abundant in the cardiovascular disease group vs the control, or
