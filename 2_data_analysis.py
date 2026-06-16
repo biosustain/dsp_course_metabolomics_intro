@@ -19,7 +19,7 @@
 # In this demonstrative exercise, we will perform the downstream analysis of the
 # Metabolights dataset MTBLS8735. This dataset contains three control samples derived from
 # healthy samples, three samples from patients with Cardiovascular disease and four pooled
-# Quality Control (QC) samples. 
+# Quality Control (QC) samples.
 #
 # The rough workflow of this analysis is:
 # - Data filtering
@@ -474,8 +474,13 @@ def pca_for_cpca_drift(
 
 # %%
 metaboigniter_data = pd.read_csv(
-    "../data/MTBLS8735/MTBLS8735_preprocessed.csv", index_col=0
-)
+    "results_prepared/Metabonaut_peaks_xcms.csv", index_col=0
+).join(
+    pd.read_csv(
+        "results_prepared/Metabonaut_intensities_xcms.csv",
+        index_col=0,
+    )
+).rename_axis(columns='Sample ID')
 metaboigniter_data
 
 # %%
@@ -638,7 +643,7 @@ print(
 #
 # This method scores each feature by the ratio of its analytical noise (QC) to its total
 # variation, meaning the standard deviation across pooled QC injections divided by the
-# standard deviation across biological samples. 
+# standard deviation across biological samples.
 #
 # A low D-ratio means biological variation dominates the technical noise, and a high one
 # means the feature is mostly measurement noise with little biological signal, so features
@@ -712,7 +717,7 @@ print(f"Now we have a total of {data_filtered_3.shape[1]} features left.")
 #
 # While we have filtered out a lot of missingness, we still have missing values in our
 # data. Those are filled in with imputation. Imputation methods for metabolomics are also
-# implemented in acore. Here we will use the half minimum to impute our values with. 
+# implemented in acore. Here we will use the half minimum to impute our values with.
 
 # %%
 from acore.imputation_analysis import (
@@ -788,10 +793,10 @@ pca_model, scores, var_explained = plot_pca(
 # %% [markdown]
 # Now that we have a data frame that has been filtered and is fully filled in, we will
 # look at the within-batch effects. In metabolomics, instrumental drift is common, so the
-# signal degrades over time. 
+# signal degrades over time.
 #
 # This is what we have the QC samples for, which is why they are so important to have
-# included in the study. 
+# included in the study.
 #
 # We will test two different methods for correcting the instrumental drift in this
 # notebook, inspect the results, and then choose one to continue with.
@@ -821,7 +826,9 @@ from acore import drift_correction as dc
 # samples, including QCs, were run. We have this information in our metadata.
 
 # %%
-sample_order = pd.read_csv("../data/MTBLS8735/sample_metadata_metaboigniter.csv")
+sample_order = pd.read_csv("data/MTBLS8735/metadata.csv").rename(
+    columns={"injection_index": "Sample ID", "derived_spectra_data_file": "File Name"}
+)
 sample_order
 
 # %%
@@ -831,10 +838,10 @@ data_corrected_loess, correction_info = dc.run_loess_drift_correction(
 data_corrected_loess
 
 # %% [markdown]
-# Our dataframe has the same structure as before. 
+# Our dataframe has the same structure as before.
 #
 # We can also look at the object correction_info, if we want to trace the exact correction
-# that was applied to every feature. 
+# that was applied to every feature.
 
 # %%
 correction_info["FT0001"]
@@ -860,7 +867,7 @@ plot_loess_example_curve(
 # Standard PCA finds orthogonal directions (principal components) that capture maximum
 # variance in a single dataset. Common PCA extends this to multiple groups: instead of
 # computing separate components per batch, it tries to find a set of components that are
-# common across groups. 
+# common across groups.
 #
 # In this case, it finds the principal components that are common across all samples,
 # because the assumption is that those are the ones that are due to artificial variation,
@@ -1016,6 +1023,7 @@ import acore.differential_regulation as ad
 # We need to do some preparation before we can run the function.
 
 # %%
+
 # Create the variable with the data
 # data_ancova = data_corrected_cpca.copy()
 data_ancova = np.log2(data_imputed)
@@ -1034,9 +1042,8 @@ data_ancova.insert(0, "group", data_ancova.index.map(group_map))
 data_ancova = data_ancova[data_ancova["group"] != "QC"]
 
 # Add the column of age information
-metadata = sample_order.copy()
-metadata.index = metadata["File Name"]
-data_ancova.insert(1, "age", metadata["age"])
+metadata = sample_order.copy().set_index("File Name")
+data_ancova.insert(1, "age", metadata.loc[data_ancova.index, "age"])
 
 # %%
 data_ancova
@@ -1160,7 +1167,7 @@ plt.tight_layout()
 plt.show()
 
 # %% [markdown]
-# In the above plot, we are looking at our pvalues and adjusted pvalues in more detail. 
+# In the above plot, we are looking at our pvalues and adjusted pvalues in more detail.
 #
 # We can also see how many features survived each threshold in the calculations below.
 
@@ -1190,3 +1197,5 @@ print(f"Downregulated in CVD: {(hits['log2FC'] < 0).sum()}")
 
 # %%
 hits.to_csv("MTBLS8735_tophits.csv")
+
+# %%
