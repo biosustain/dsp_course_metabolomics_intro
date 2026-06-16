@@ -494,17 +494,8 @@ metaboigniter_data.columns
 
 # %%
 data = metaboigniter_data.T
-data = data.drop(
-    [
-        'charge', 
-        'RT', 
-        'mz', 
-        'quality',
-        'adduct', 
-        'feature_ids'
-    ]
-)
-data = data.where(data>1, np.nan)
+data = data.drop(["charge", "RT", "mz", "quality", "adduct", "feature_ids"])
+data = data.where(data > 1, np.nan)
 data
 
 # %%
@@ -714,7 +705,9 @@ def filter_dratio(
 
 
 # %%
-data_filtered_3 = filter_dratio(data=data_filtered_2, samples=samples, qcs=qcs, threshold=0.4)
+data_filtered_3 = filter_dratio(
+    data=data_filtered_2, samples=samples, qcs=qcs, threshold=0.4
+)
 
 # %%
 print(
@@ -1050,7 +1043,6 @@ import acore.differential_regulation as ad
 # We need to do some preparation before we can run the function.
 
 # %%
-
 # Create the variable with the data
 # data_ancova = data_corrected_cpca.copy()
 data_ancova = np.log2(data_imputed)
