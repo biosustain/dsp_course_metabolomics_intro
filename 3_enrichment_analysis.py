@@ -6,10 +6,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import acore
-import acore.differential_regulation as ad
-import numpy as np
 import pandas as pd
-from acore.io.kegg import link_kegg_batch
 
 
 def parse_compound_pathway_mapping(raw_mapping: str) -> dict[str, list[str]]:
@@ -81,18 +78,23 @@ annotations.groupby("pathway_id").size().sort_values(ascending=False)
 
 
 # %% [markdown]
-#  - [map01100](https://rest.kegg.jp/get/path:map01100/image)
-#  - [map01110](https://rest.kegg.jp/get/path:map01110/image)
-# -  [map01120](https://rest.kegg.jp/get/path:map01120/image)
-# -  [map01130](https://rest.kegg.jp/get/path:map01130/image)
-
-# %% [markdown]
-# annotations.groupby("pathway_id").size().sort_values(ascending=False).plot(
-#     kind="line", figsize=(10, 5), marker="."
-# )
+# Some pathway maps:
+# - [map01100](https://rest.kegg.jp/get/path:map01100/image)
+# - [map01110](https://rest.kegg.jp/get/path:map01110/image)
+# - [map01120](https://rest.kegg.jp/get/path:map01120/image)
+# - [map01130](https://rest.kegg.jp/get/path:map01130/image)
+#
+# For example map00010:
+# - see conf map [conf map of map00010](https://rest.kegg.jp/get/path:map00010/conf)
+# ![path:map00010/image](https://rest.kegg.jp/get/path:map00010/image)
+#
+# Additional information for map00010 and map00030:
+# - https://rest.kegg.jp/get/path:map00030+path:map00010
 
 # %% markdown
-# - https://rest.kegg.jp/get/path:map00030+path:map00010
+annotations.groupby("pathway_id").size().sort_values(ascending=False).plot(
+    kind="line", figsize=(10, 5), marker="."
+)
 
 # %%
 ms2query_results = pd.read_csv(fname_ms2query, index_col=0, sep="\t").drop_duplicates(
@@ -103,17 +105,6 @@ ms2query_results.head()
 # %%
 inchikey_to_kegg = pd.read_csv(fname_inchikey_to_kegg, index_col=0).astype({"id": str})
 inchikey_to_kegg
-
-# %%
-
-# %% [markdown]
-# - conf map [conf map of map00010](https://rest.kegg.jp/get/path:map00010/conf)
-#
-# ![path:map00010/image](https://rest.kegg.jp/get/path:map00010/image)
-
-
-# %%
-filter = ["path:map00010", "path:map00030", "path:map00052"]
 
 # %% [markdown]
 # ## Map features to MS2Query results
