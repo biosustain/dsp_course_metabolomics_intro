@@ -28,6 +28,7 @@ fname_ms2query = "results_prepared/output_ms2query_Linked_data.tsv"
 fname_ancova = "results_prepared/ancova_results.csv"
 fname_pathways_map = "results_prepared/pathways_map.tsv"
 fname_inchikey_to_kegg = "results_prepared/inchikey_to_kegg.csv"
+fname_annotations = "results_prepared/link_compound_pathway.tsv"
 
 
 # %%
@@ -49,7 +50,6 @@ pathways_map.loc[mask]
 
 
 # %%
-fname_annotations = Path(".") / "link_compound_pathway.tsv"
 annotations = pd.read_csv(
     fname_annotations,
     sep="\t",
