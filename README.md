@@ -43,16 +43,12 @@ for the downstream analysis.
 
 #### 09.10-10.30 - Introduction with overview of metabolomics and preprocessing
 
-See the slides for introduction: will be here
+See the slides for introduction: [link](material/slides/metabolomics_course_slides.pdf)
 
 #### 10.45-12.15 - Steps in data processing and running metaboigniter
 
 Find the instruction [here](material/nf_core_metaboigniter.md) and
-the slides
-
-Steps in data processing
-
-- ...
+the [slides](material/slides/metabolomics_course_slides.pdf).
 
 ### 13.00 - 14.40 - Data cleaning, normalization and statistical analysis
 
@@ -61,8 +57,5 @@ See the slides for the statistical analysis: will be here
 #### 14.50 - 16.30 - Data cleaning, normalization and statistical analysis
 
 Find the instruction [here](material/intro_data_analysis.md) and
-the slides: will be here
+the [slides](material/slides/metabolomics_course_slides.pdf).
 
-Basic statistical analysis of a two-group experiment with one timepoint
-
-- ...
