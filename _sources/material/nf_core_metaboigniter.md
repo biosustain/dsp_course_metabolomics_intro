@@ -351,13 +351,13 @@ We will run the latest version `2.0.1` using an example dataset.
 nextflow run nf-core/metaboigniter -profile docker,arm -r 2.0.1
 ```
 
-more verbosely this run without setting a config file:
+more verbosely running also the MS2 identification step:
 
 ```bash
 nextflow run nf-core/metaboigniter -profile docker,arm -r 2.0.1 -resume \
---input data/cutA/samplesheet.csv \
---outdir results_cutA \
-# --identification --run_ms2query 
+--input data/MTBLS8735/samplesheet.csv \
+--outdir results \
+--identification --run_ms2query 
 ```
 
 ## Troubleshooting
