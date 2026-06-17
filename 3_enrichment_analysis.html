@@ -403,24 +403,8 @@
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-
-<span class="kn">import</span> <span class="nn">acore</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">acore</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-
-<span class="k">def</span> <span class="nf">parse_compound_pathway_mapping</span><span class="p">(</span><span class="n">raw_mapping</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse tab-delimited KEGG-style compound/pathway mappings into a dictionary.&quot;&quot;&quot;</span>
-    <span class="n">compound_to_pathways</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">raw_mapping</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
-        <span class="n">compound_id</span><span class="p">,</span> <span class="n">pathway_id</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">compound_to_pathways</span><span class="p">[</span><span class="n">compound_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pathway_id</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">compound_to_pathways</span><span class="p">)</span>
-
-
-<span class="n">compounds</span> <span class="o">=</span> <span class="p">{}</span>
 </pre></div>
 </div>
 </div>
@@ -823,7 +807,7 @@ Length: 463, dtype: int64
   </thead>
   <tbody>
     <tr>
-      <th>9,988,206,023,938,663,754</th>
+      <th>4,051,789,042,754,256,385</th>
       <td>1</td>
       <td>0.489</td>
       <td>78.866</td>
@@ -842,7 +826,7 @@ Length: 463, dtype: int64
       <td>Terpenoids</td>
     </tr>
     <tr>
-      <th>9,988,206,023,938,663,754</th>
+      <th>4,051,789,042,754,256,385</th>
       <td>2</td>
       <td>0.489</td>
       <td>137.119</td>
@@ -861,7 +845,7 @@ Length: 463, dtype: int64
       <td>Terpenoids</td>
     </tr>
     <tr>
-      <th>9,988,206,023,938,663,754</th>
+      <th>4,051,789,042,754,256,385</th>
       <td>3</td>
       <td>0.483</td>
       <td>39.909</td>
@@ -880,7 +864,7 @@ Length: 463, dtype: int64
       <td>Alkaloids</td>
     </tr>
     <tr>
-      <th>9,988,206,023,938,663,754</th>
+      <th>4,051,789,042,754,256,385</th>
       <td>4</td>
       <td>0.409</td>
       <td>96.699</td>
@@ -899,23 +883,23 @@ Length: 463, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>9,988,206,023,938,663,754</th>
-      <td>5</td>
+      <th>4,051,789,042,754,256,385</th>
+      <td>6</td>
       <td>0.409</td>
-      <td>81.044</td>
+      <td>280.057</td>
       <td>414.301</td>
-      <td>495.345</td>
-      <td>HFGSQOYIOKBQOW</td>
-      <td>Corosolic acid</td>
-      <td>O=C(O)C12CCC(C)C(C)C2C3=CCC4C5(C)CC(O)C(O)C(C)...</td>
+      <td>694.358</td>
+      <td>RPJBXUNEXVNBIF</td>
+      <td>7-benzyl-11,14-dimethyl-16-(2-methylpropyl)-10...</td>
+      <td>CC(C)CC1OC(=O)C2CCCN2C(=O)CCN=C(O)C(Cc2ccccc2)...</td>
       <td>Organic compounds</td>
-      <td>Lipids and lipid-like molecules</td>
-      <td>Prenol lipids</td>
-      <td>Triterpenoids</td>
-      <td>Triterpenoids</td>
-      <td>Ursane and Taraxastane triterpenoids</td>
-      <td>Triterpenoids</td>
-      <td>Terpenoids</td>
+      <td>Organic acids and derivatives</td>
+      <td>Peptidomimetics</td>
+      <td>Depsipeptides</td>
+      <td>Cyclic depsipeptides</td>
+      <td>Cyclic peptides; Depsipeptides</td>
+      <td>Oligopeptides</td>
+      <td>Amino acids and Peptides; Polyketides</td>
     </tr>
   </tbody>
 </table>
@@ -970,9 +954,20 @@ Length: 463, dtype: int64
   </thead>
   <tbody>
     <tr>
+      <th>YZUUTMGDONTGTN</th>
+      <td>C01731</td>
+      <td>4051789042754256385</td>
+      <td>0.409</td>
+      <td>22.935</td>
+      <td>414.301</td>
+      <td>437.236</td>
+      <td>Nonaethylene glycol|2-[2-[2-[2-[2-[2-[2-[2-(2-...</td>
+      <td>OCCOCCOCCOCCOCCOCCOCCOCCOCCO</td>
+    </tr>
+    <tr>
       <th>KBKUJJFDSHBPPA</th>
       <td>C12048</td>
-      <td>9988206023938663754</td>
+      <td>4051789042754256385</td>
       <td>0.409</td>
       <td>44.929</td>
       <td>414.301</td>
@@ -983,7 +978,7 @@ Length: 463, dtype: int64
     <tr>
       <th>IOYZYMQFUSNATM</th>
       <td>C02429</td>
-      <td>9988206023938663754</td>
+      <td>4051789042754256385</td>
       <td>0.409</td>
       <td>97.137</td>
       <td>414.301</td>
@@ -992,62 +987,96 @@ Length: 463, dtype: int64
       <td>CCCCCCCCCCCCCCCC[N+](C)(C)CCN(Cc1ccc(OC)cc1)c1...</td>
     </tr>
     <tr>
-      <th>WVVSZNPYNCNODU</th>
-      <td>C03194</td>
-      <td>11438838801741346891</td>
-      <td>0.528</td>
-      <td>39.930</td>
-      <td>366.116</td>
-      <td>326.186</td>
-      <td>(6aR,9S)-N-[(2S)-1-hydroxypropan-2-yl]-7-methy...</td>
-      <td>C[C@@H](CO)NC(=O)[C@@H]1CN([C@@H]2CC3=CNC4=CC=...</td>
-    </tr>
-    <tr>
-      <th>QSLJIVKCVHQPLV</th>
-      <td>C02962</td>
-      <td>11438838801741346891</td>
-      <td>0.409</td>
-      <td>269.312</td>
-      <td>366.116</td>
-      <td>635.428</td>
-      <td>h_61_17_epioxandrolone</td>
-      <td>O=C1OC[C@@]2(C)C(CCC3C2CC[C@@]4(C)C3CC[C@@]4(C...</td>
-    </tr>
-    <tr>
-      <th>HSCJRCZFDFQWRP</th>
-      <td>C06393</td>
-      <td>11438838801741346891</td>
-      <td>0.409</td>
-      <td>199.294</td>
-      <td>366.116</td>
-      <td>565.410</td>
-      <td>UDP-glucopyranoside</td>
-      <td>C1=CN(C(=O)NC1=O)C2C(C(C(O2)COP(=O)(O)OP(=O)(O...</td>
-    </tr>
-    <tr>
       <th>WVULKSPCQVQLCU</th>
       <td>C00193</td>
-      <td>15780731469960021248</td>
-      <td>0.569</td>
-      <td>0.001</td>
-      <td>472.304</td>
-      <td>472.303</td>
+      <td>4051789042754256385</td>
+      <td>0.594</td>
+      <td>0.000</td>
+      <td>414.301</td>
+      <td>414.301</td>
       <td>glycodeoxycholic acid</td>
       <td>C[C@H](CCC(=O)NCC(=O)O)[C@H]1CCC2[C@@]1([C@H](...</td>
     </tr>
     <tr>
-      <th>GHCZAUBVMUEKKP</th>
-      <td>C10358</td>
-      <td>15780731469960021248</td>
-      <td>0.567</td>
-      <td>0.001</td>
-      <td>472.304</td>
-      <td>472.303</td>
-      <td>GLYCOCHENODEOXYCHOLATE</td>
-      <td>CC(CCC(=O)NCC(=O)O)C1CCC2C1(CCC3C2C(CC4C3(CCC(...</td>
+      <th>WVULKSPCQVQLCU</th>
+      <td>C00193</td>
+      <td>17351696255561211830</td>
+      <td>0.409</td>
+      <td>35.801</td>
+      <td>414.299</td>
+      <td>450.100</td>
+      <td>glycodeoxycholate</td>
+      <td>C(C2([H])3)CC([H])(C1)C(C)(C(CC([H])(O)C(C(C([...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>IVENSCMCQBJAKW</th>
+      <td>C11713</td>
+      <td>9750239525216332245</td>
+      <td>0.378</td>
+      <td>36.001</td>
+      <td>138.053</td>
+      <td>174.054</td>
+      <td>Desisopropylatrazine</td>
+      <td>CCNc1nc(N)nc(Cl)n1</td>
+    </tr>
+    <tr>
+      <th>PKOFBDHYTMYVGJ</th>
+      <td>C06241</td>
+      <td>9750239525216332245</td>
+      <td>0.378</td>
+      <td>76.995</td>
+      <td>138.053</td>
+      <td>215.048</td>
+      <td>N-(4-sulfamoylphenyl)acetamide</td>
+      <td>CC(=O)NC1=CC=C(C=C1)S(N)(=O)=O</td>
+    </tr>
+    <tr>
+      <th>COESHZUDRKCEPA</th>
+      <td>C08640</td>
+      <td>9750239525216332245</td>
+      <td>0.346</td>
+      <td>199.850</td>
+      <td>138.053</td>
+      <td>337.903</td>
+      <td>beta-(3,5-dibromo-4-hydroxyphenyl)alanine</td>
+      <td>C1=C(C=C(C(=C1Br)O)Br)CC(C(=O)O)N</td>
+    </tr>
+    <tr>
+      <th>YNBADRVTZLEFNH</th>
+      <td>C04545</td>
+      <td>9750239525216332245</td>
+      <td>0.764</td>
+      <td>0.002</td>
+      <td>138.053</td>
+      <td>138.055</td>
+      <td>METHYL NICOTINIC ACID</td>
+      <td>COC(=O)C1=CC=CN=C1</td>
+    </tr>
+    <tr>
+      <th>BHTRKEVKTKCXOH</th>
+      <td>C08395</td>
+      <td>3043165930917491123</td>
+      <td>0.809</td>
+      <td>0.004</td>
+      <td>538.255</td>
+      <td>538.251</td>
+      <td>tauroursodeoxycholic acid</td>
+      <td>C[C@H](CCC(=O)NCCS(=O)(=O)O)[C@H]1CC[C@@H]2[C@...</td>
     </tr>
   </tbody>
 </table>
+<p>100 rows × 8 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1135,124 +1164,124 @@ Length: 463, dtype: int64
   </thead>
   <tbody>
     <tr>
-      <th>13355670607852216099</th>
+      <th>8688552057745683191</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>12.403</td>
-      <td>0.040</td>
-      <td>12.623</td>
-      <td>0.017</td>
-      <td>14.190</td>
+      <td>12.353</td>
+      <td>0.637</td>
+      <td>13.042</td>
+      <td>0.299</td>
+      <td>15.878</td>
       <td>0.001</td>
-      <td>0.236</td>
-      <td>0.017</td>
+      <td>0.874</td>
+      <td>0.055</td>
       <td>...</td>
-      <td>-0.220</td>
-      <td>0.858</td>
-      <td>201.361</td>
+      <td>-0.689</td>
+      <td>0.620</td>
+      <td>252.110</td>
       <td>0.001</td>
-      <td>0.312</td>
+      <td>0.194</td>
       <td>FDR correction BH</td>
       <td>False</td>
-      <td>3.120</td>
+      <td>3.265</td>
       <td>One-way ancova</td>
-      <td>0.312</td>
+      <td>0.194</td>
     </tr>
     <tr>
-      <th>1112105867821620295</th>
+      <th>4803564648587047687</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>10.492</td>
-      <td>0.519</td>
-      <td>11.170</td>
-      <td>0.215</td>
-      <td>11.367</td>
+      <td>12.092</td>
+      <td>0.044</td>
+      <td>11.818</td>
+      <td>0.021</td>
+      <td>-13.572</td>
       <td>0.001</td>
-      <td>0.915</td>
-      <td>0.080</td>
+      <td>-0.284</td>
+      <td>0.021</td>
       <td>...</td>
-      <td>-0.678</td>
-      <td>0.625</td>
-      <td>129.210</td>
+      <td>0.274</td>
+      <td>1.209</td>
+      <td>184.207</td>
       <td>0.001</td>
-      <td>0.312</td>
+      <td>0.194</td>
       <td>FDR correction BH</td>
       <td>False</td>
-      <td>2.835</td>
+      <td>3.063</td>
       <td>One-way ancova</td>
-      <td>0.312</td>
+      <td>0.194</td>
     </tr>
     <tr>
-      <th>10071800264895666972</th>
+      <th>122927701965791210</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>13.361</td>
-      <td>0.817</td>
-      <td>14.093</td>
-      <td>0.308</td>
-      <td>16.132</td>
+      <td>13.368</td>
+      <td>0.809</td>
+      <td>14.097</td>
+      <td>0.306</td>
+      <td>14.470</td>
       <td>0.001</td>
-      <td>1.106</td>
-      <td>0.069</td>
+      <td>0.957</td>
+      <td>0.066</td>
       <td>...</td>
-      <td>-0.732</td>
-      <td>0.602</td>
-      <td>260.233</td>
+      <td>-0.729</td>
+      <td>0.603</td>
+      <td>209.372</td>
       <td>0.001</td>
-      <td>0.312</td>
+      <td>0.194</td>
       <td>FDR correction BH</td>
       <td>False</td>
-      <td>3.286</td>
+      <td>3.145</td>
       <td>One-way ancova</td>
-      <td>0.312</td>
+      <td>0.194</td>
     </tr>
     <tr>
-      <th>3746828480965334286</th>
+      <th>14183644523572007298</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>14.185</td>
-      <td>0.471</td>
-      <td>14.402</td>
-      <td>0.162</td>
-      <td>10.613</td>
-      <td>0.002</td>
-      <td>0.430</td>
-      <td>0.041</td>
+      <td>11.362</td>
+      <td>0.828</td>
+      <td>12.072</td>
+      <td>0.356</td>
+      <td>21.223</td>
+      <td>0.000</td>
+      <td>0.948</td>
+      <td>0.045</td>
       <td>...</td>
-      <td>-0.218</td>
-      <td>0.860</td>
-      <td>112.644</td>
-      <td>0.002</td>
-      <td>0.312</td>
+      <td>-0.710</td>
+      <td>0.611</td>
+      <td>450.404</td>
+      <td>0.000</td>
+      <td>0.194</td>
       <td>FDR correction BH</td>
       <td>False</td>
-      <td>2.748</td>
+      <td>3.640</td>
       <td>One-way ancova</td>
-      <td>0.312</td>
+      <td>0.194</td>
     </tr>
     <tr>
-      <th>12876383393801034065</th>
+      <th>16452322344680482043</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>16.808</td>
-      <td>0.543</td>
-      <td>10.533</td>
-      <td>0.534</td>
-      <td>-12.068</td>
-      <td>0.001</td>
-      <td>-6.167</td>
-      <td>0.511</td>
+      <td>14.418</td>
+      <td>0.588</td>
+      <td>15.296</td>
+      <td>0.362</td>
+      <td>7.963</td>
+      <td>0.004</td>
+      <td>1.054</td>
+      <td>0.132</td>
       <td>...</td>
-      <td>6.276</td>
-      <td>77.478</td>
-      <td>145.641</td>
-      <td>0.001</td>
-      <td>0.312</td>
+      <td>-0.879</td>
+      <td>0.544</td>
+      <td>63.409</td>
+      <td>0.004</td>
+      <td>0.318</td>
       <td>FDR correction BH</td>
       <td>False</td>
-      <td>2.912</td>
+      <td>2.384</td>
       <td>One-way ancova</td>
-      <td>0.312</td>
+      <td>0.318</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1279,128 +1308,128 @@ Length: 463, dtype: int64
       <td>...</td>
     </tr>
     <tr>
-      <th>17135774470838275225</th>
+      <th>15322232151823440986</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>10.891</td>
-      <td>1.609</td>
-      <td>11.328</td>
-      <td>1.097</td>
-      <td>-0.010</td>
-      <td>0.993</td>
-      <td>-0.012</td>
-      <td>1.170</td>
+      <td>12.649</td>
+      <td>0.145</td>
+      <td>12.693</td>
+      <td>0.164</td>
+      <td>0.027</td>
+      <td>0.980</td>
+      <td>0.003</td>
+      <td>0.106</td>
       <td>...</td>
-      <td>-0.437</td>
-      <td>0.739</td>
+      <td>-0.044</td>
+      <td>0.970</td>
+      <td>0.001</td>
+      <td>0.980</td>
+      <td>0.992</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>0.009</td>
+      <td>One-way ancova</td>
+      <td>0.992</td>
+    </tr>
+    <tr>
+      <th>13146520139614759536</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>11.517</td>
+      <td>0.213</td>
+      <td>11.555</td>
+      <td>0.121</td>
+      <td>0.010</td>
+      <td>0.993</td>
+      <td>0.001</td>
+      <td>0.138</td>
+      <td>...</td>
+      <td>-0.038</td>
+      <td>0.974</td>
       <td>0.000</td>
       <td>0.993</td>
-      <td>0.999</td>
+      <td>0.994</td>
       <td>FDR correction BH</td>
       <td>False</td>
       <td>0.003</td>
       <td>One-way ancova</td>
-      <td>0.999</td>
+      <td>0.994</td>
     </tr>
     <tr>
-      <th>14138485004156634592</th>
+      <th>3927519029408433709</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>9.128</td>
-      <td>1.435</td>
-      <td>9.460</td>
-      <td>0.312</td>
-      <td>0.004</td>
-      <td>0.997</td>
-      <td>0.004</td>
-      <td>0.893</td>
+      <td>13.941</td>
+      <td>0.112</td>
+      <td>13.919</td>
+      <td>0.142</td>
+      <td>-0.009</td>
+      <td>0.993</td>
+      <td>-0.001</td>
+      <td>0.111</td>
       <td>...</td>
-      <td>-0.332</td>
-      <td>0.794</td>
+      <td>0.022</td>
+      <td>1.015</td>
       <td>0.000</td>
-      <td>0.997</td>
-      <td>0.999</td>
+      <td>0.993</td>
+      <td>0.994</td>
       <td>FDR correction BH</td>
       <td>False</td>
-      <td>0.001</td>
+      <td>0.003</td>
       <td>One-way ancova</td>
-      <td>0.999</td>
+      <td>0.994</td>
     </tr>
     <tr>
-      <th>14119326314702324995</th>
+      <th>18162318233842994935</th>
       <td>CTR</td>
       <td>CVD</td>
-      <td>9.600</td>
-      <td>1.696</td>
-      <td>9.894</td>
-      <td>1.179</td>
-      <td>0.007</td>
-      <td>0.995</td>
-      <td>0.010</td>
-      <td>1.393</td>
+      <td>13.669</td>
+      <td>0.374</td>
+      <td>13.720</td>
+      <td>0.325</td>
+      <td>-0.012</td>
+      <td>0.991</td>
+      <td>-0.004</td>
+      <td>0.308</td>
       <td>...</td>
-      <td>-0.294</td>
-      <td>0.816</td>
+      <td>-0.051</td>
+      <td>0.965</td>
       <td>0.000</td>
-      <td>0.995</td>
-      <td>0.999</td>
+      <td>0.991</td>
+      <td>0.994</td>
+      <td>FDR correction BH</td>
+      <td>False</td>
+      <td>0.004</td>
+      <td>One-way ancova</td>
+      <td>0.994</td>
+    </tr>
+    <tr>
+      <th>491936035475549414</th>
+      <td>CTR</td>
+      <td>CVD</td>
+      <td>11.796</td>
+      <td>2.677</td>
+      <td>12.144</td>
+      <td>2.116</td>
+      <td>0.005</td>
+      <td>0.996</td>
+      <td>0.010</td>
+      <td>2.165</td>
+      <td>...</td>
+      <td>-0.348</td>
+      <td>0.786</td>
+      <td>0.000</td>
+      <td>0.996</td>
+      <td>0.996</td>
       <td>FDR correction BH</td>
       <td>False</td>
       <td>0.002</td>
       <td>One-way ancova</td>
-      <td>0.999</td>
-    </tr>
-    <tr>
-      <th>4889835201691593275</th>
-      <td>CTR</td>
-      <td>CVD</td>
-      <td>10.503</td>
-      <td>0.260</td>
-      <td>10.523</td>
-      <td>0.175</td>
-      <td>-0.003</td>
-      <td>0.998</td>
-      <td>-0.001</td>
-      <td>0.221</td>
-      <td>...</td>
-      <td>-0.020</td>
-      <td>0.986</td>
-      <td>0.000</td>
-      <td>0.998</td>
-      <td>0.999</td>
-      <td>FDR correction BH</td>
-      <td>False</td>
-      <td>0.001</td>
-      <td>One-way ancova</td>
-      <td>0.999</td>
-    </tr>
-    <tr>
-      <th>4004978455990527558</th>
-      <td>CTR</td>
-      <td>CVD</td>
-      <td>12.416</td>
-      <td>0.178</td>
-      <td>12.463</td>
-      <td>0.433</td>
-      <td>0.001</td>
-      <td>0.999</td>
-      <td>0.000</td>
-      <td>0.324</td>
-      <td>...</td>
-      <td>-0.047</td>
-      <td>0.968</td>
-      <td>0.000</td>
-      <td>0.999</td>
-      <td>0.999</td>
-      <td>FDR correction BH</td>
-      <td>False</td>
-      <td>0.000</td>
-      <td>One-way ancova</td>
-      <td>0.999</td>
+      <td>0.996</td>
     </tr>
   </tbody>
 </table>
-<p>1286 rows × 22 columns</p>
+<p>897 rows × 22 columns</p>
 </div></div></div>
 </div>
 <p>Let’s see if we could identify features from the differential regulations
@@ -1461,9 +1490,20 @@ results stored. Rerun with new data!</p>
   </thead>
   <tbody>
     <tr>
+      <th>YZUUTMGDONTGTN</th>
+      <td>C01731</td>
+      <td>4051789042754256385</td>
+      <td>0.409</td>
+      <td>22.935</td>
+      <td>414.301</td>
+      <td>437.236</td>
+      <td>Nonaethylene glycol|2-[2-[2-[2-[2-[2-[2-[2-(2-...</td>
+      <td>OCCOCCOCCOCCOCCOCCOCCOCCOCCO</td>
+    </tr>
+    <tr>
       <th>KBKUJJFDSHBPPA</th>
       <td>C12048</td>
-      <td>9988206023938663754</td>
+      <td>4051789042754256385</td>
       <td>0.409</td>
       <td>44.929</td>
       <td>414.301</td>
@@ -1474,7 +1514,7 @@ results stored. Rerun with new data!</p>
     <tr>
       <th>IOYZYMQFUSNATM</th>
       <td>C02429</td>
-      <td>9988206023938663754</td>
+      <td>4051789042754256385</td>
       <td>0.409</td>
       <td>97.137</td>
       <td>414.301</td>
@@ -1483,69 +1523,106 @@ results stored. Rerun with new data!</p>
       <td>CCCCCCCCCCCCCCCC[N+](C)(C)CCN(Cc1ccc(OC)cc1)c1...</td>
     </tr>
     <tr>
-      <th>WVVSZNPYNCNODU</th>
-      <td>C03194</td>
-      <td>11438838801741346891</td>
-      <td>0.528</td>
-      <td>39.930</td>
-      <td>366.116</td>
-      <td>326.186</td>
-      <td>(6aR,9S)-N-[(2S)-1-hydroxypropan-2-yl]-7-methy...</td>
-      <td>C[C@@H](CO)NC(=O)[C@@H]1CN([C@@H]2CC3=CNC4=CC=...</td>
-    </tr>
-    <tr>
-      <th>QSLJIVKCVHQPLV</th>
-      <td>C02962</td>
-      <td>11438838801741346891</td>
-      <td>0.409</td>
-      <td>269.312</td>
-      <td>366.116</td>
-      <td>635.428</td>
-      <td>h_61_17_epioxandrolone</td>
-      <td>O=C1OC[C@@]2(C)C(CCC3C2CC[C@@]4(C)C3CC[C@@]4(C...</td>
-    </tr>
-    <tr>
-      <th>HSCJRCZFDFQWRP</th>
-      <td>C06393</td>
-      <td>11438838801741346891</td>
-      <td>0.409</td>
-      <td>199.294</td>
-      <td>366.116</td>
-      <td>565.410</td>
-      <td>UDP-glucopyranoside</td>
-      <td>C1=CN(C(=O)NC1=O)C2C(C(C(O2)COP(=O)(O)OP(=O)(O...</td>
-    </tr>
-    <tr>
       <th>WVULKSPCQVQLCU</th>
       <td>C00193</td>
-      <td>15780731469960021248</td>
-      <td>0.569</td>
-      <td>0.001</td>
-      <td>472.304</td>
-      <td>472.303</td>
+      <td>4051789042754256385</td>
+      <td>0.594</td>
+      <td>0.000</td>
+      <td>414.301</td>
+      <td>414.301</td>
       <td>glycodeoxycholic acid</td>
       <td>C[C@H](CCC(=O)NCC(=O)O)[C@H]1CCC2[C@@]1([C@H](...</td>
     </tr>
     <tr>
-      <th>GHCZAUBVMUEKKP</th>
-      <td>C10358</td>
-      <td>15780731469960021248</td>
-      <td>0.567</td>
-      <td>0.001</td>
-      <td>472.304</td>
-      <td>472.303</td>
-      <td>GLYCOCHENODEOXYCHOLATE</td>
-      <td>CC(CCC(=O)NCC(=O)O)C1CCC2C1(CCC3C2C(CC4C3(CCC(...</td>
+      <th>WVULKSPCQVQLCU</th>
+      <td>C00193</td>
+      <td>17351696255561211830</td>
+      <td>0.409</td>
+      <td>35.801</td>
+      <td>414.299</td>
+      <td>450.100</td>
+      <td>glycodeoxycholate</td>
+      <td>C(C2([H])3)CC([H])(C1)C(C)(C(CC([H])(O)C(C(C([...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>IVENSCMCQBJAKW</th>
+      <td>C11713</td>
+      <td>9750239525216332245</td>
+      <td>0.378</td>
+      <td>36.001</td>
+      <td>138.053</td>
+      <td>174.054</td>
+      <td>Desisopropylatrazine</td>
+      <td>CCNc1nc(N)nc(Cl)n1</td>
+    </tr>
+    <tr>
+      <th>PKOFBDHYTMYVGJ</th>
+      <td>C06241</td>
+      <td>9750239525216332245</td>
+      <td>0.378</td>
+      <td>76.995</td>
+      <td>138.053</td>
+      <td>215.048</td>
+      <td>N-(4-sulfamoylphenyl)acetamide</td>
+      <td>CC(=O)NC1=CC=C(C=C1)S(N)(=O)=O</td>
+    </tr>
+    <tr>
+      <th>COESHZUDRKCEPA</th>
+      <td>C08640</td>
+      <td>9750239525216332245</td>
+      <td>0.346</td>
+      <td>199.850</td>
+      <td>138.053</td>
+      <td>337.903</td>
+      <td>beta-(3,5-dibromo-4-hydroxyphenyl)alanine</td>
+      <td>C1=C(C=C(C(=C1Br)O)Br)CC(C(=O)O)N</td>
+    </tr>
+    <tr>
+      <th>YNBADRVTZLEFNH</th>
+      <td>C04545</td>
+      <td>9750239525216332245</td>
+      <td>0.764</td>
+      <td>0.002</td>
+      <td>138.053</td>
+      <td>138.055</td>
+      <td>METHYL NICOTINIC ACID</td>
+      <td>COC(=O)C1=CC=CN=C1</td>
+    </tr>
+    <tr>
+      <th>BHTRKEVKTKCXOH</th>
+      <td>C08395</td>
+      <td>3043165930917491123</td>
+      <td>0.809</td>
+      <td>0.004</td>
+      <td>538.255</td>
+      <td>538.251</td>
+      <td>tauroursodeoxycholic acid</td>
+      <td>C[C@H](CCC(=O)NCCS(=O)(=O)O)[C@H]1CC[C@@H]2[C@...</td>
     </tr>
   </tbody>
 </table>
+<p>100 rows × 8 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regex_filter</span> <span class="o">=</span> <span class="s2">&quot;pval|padj|reject|FC&quot;</span>
 <span class="n">ids_found_inMS2</span> <span class="o">=</span> <span class="n">inchikey_to_kegg</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS2</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;pvalue&quot;</span><span class="p">)</span>
+<span class="n">ids_found_inMS_also_in_ancova</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ids_found_inMS2</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">ancova</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+<span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS_also_in_ancova</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="s2">&quot;pvalue&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1591,37 +1668,37 @@ results stored. Rerun with new data!</p>
   </thead>
   <tbody>
     <tr>
-      <th>9988206023938663754</th>
-      <td>0.019</td>
-      <td>1.558</td>
-      <td>2.945</td>
-      <td>0.019</td>
-      <td>0.472</td>
+      <th>4051789042754256385</th>
+      <td>0.025</td>
+      <td>1.598</td>
+      <td>3.027</td>
+      <td>0.025</td>
+      <td>0.562</td>
       <td>False</td>
-      <td>1.720</td>
-      <td>0.472</td>
+      <td>1.596</td>
+      <td>0.562</td>
     </tr>
     <tr>
-      <th>15780731469960021248</th>
-      <td>0.073</td>
-      <td>1.049</td>
-      <td>2.070</td>
-      <td>0.073</td>
-      <td>0.777</td>
+      <th>7939233295536706460</th>
+      <td>0.067</td>
+      <td>1.033</td>
+      <td>2.046</td>
+      <td>0.067</td>
+      <td>0.712</td>
       <td>False</td>
-      <td>1.135</td>
-      <td>0.777</td>
+      <td>1.176</td>
+      <td>0.712</td>
     </tr>
     <tr>
-      <th>11438838801741346891</th>
-      <td>0.261</td>
-      <td>-0.099</td>
-      <td>0.933</td>
-      <td>0.261</td>
-      <td>0.848</td>
+      <th>356441345885270616</th>
+      <td>0.396</td>
+      <td>-0.096</td>
+      <td>0.935</td>
+      <td>0.396</td>
+      <td>0.854</td>
       <td>False</td>
-      <td>0.583</td>
-      <td>0.848</td>
+      <td>0.402</td>
+      <td>0.854</td>
     </tr>
   </tbody>
 </table>
@@ -1630,8 +1707,10 @@ results stored. Rerun with new data!</p>
 <p>Make the few identified features significant for illustration purposes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS2</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS2</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;pvalue&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS_also_in_ancova</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">ancova</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ids_found_inMS_also_in_ancova</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">regex_filter</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="s2">&quot;pvalue&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1677,37 +1756,37 @@ results stored. Rerun with new data!</p>
   </thead>
   <tbody>
     <tr>
-      <th>9988206023938663754</th>
-      <td>0.019</td>
-      <td>1.558</td>
-      <td>2.945</td>
+      <th>356441345885270616</th>
+      <td>0.396</td>
+      <td>-0.096</td>
+      <td>0.935</td>
       <td>0.010</td>
-      <td>0.472</td>
+      <td>0.854</td>
       <td>False</td>
-      <td>1.720</td>
-      <td>0.472</td>
+      <td>0.402</td>
+      <td>0.854</td>
     </tr>
     <tr>
-      <th>11438838801741346891</th>
-      <td>0.261</td>
-      <td>-0.099</td>
-      <td>0.933</td>
+      <th>4051789042754256385</th>
+      <td>0.025</td>
+      <td>1.598</td>
+      <td>3.027</td>
       <td>0.010</td>
-      <td>0.848</td>
+      <td>0.562</td>
       <td>False</td>
-      <td>0.583</td>
-      <td>0.848</td>
+      <td>1.596</td>
+      <td>0.562</td>
     </tr>
     <tr>
-      <th>15780731469960021248</th>
-      <td>0.073</td>
-      <td>1.049</td>
-      <td>2.070</td>
+      <th>7939233295536706460</th>
+      <td>0.067</td>
+      <td>1.033</td>
+      <td>2.046</td>
       <td>0.010</td>
-      <td>0.777</td>
+      <td>0.712</td>
       <td>False</td>
-      <td>1.135</td>
-      <td>0.777</td>
+      <td>1.176</td>
+      <td>0.712</td>
     </tr>
   </tbody>
 </table>
@@ -1724,7 +1803,10 @@ results stored. Rerun with new data!</p>
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inchikey_to_kegg</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inchikey_to_kegg_of_interest</span> <span class="o">=</span> <span class="n">inchikey_to_kegg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">inchikey_to_kegg</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ids_found_inMS_also_in_ancova</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">inchikey_to_kegg_of_interest</span>
 </pre></div>
 </div>
 </div>
@@ -1771,9 +1853,20 @@ results stored. Rerun with new data!</p>
   </thead>
   <tbody>
     <tr>
+      <th>YZUUTMGDONTGTN</th>
+      <td>C01731</td>
+      <td>4051789042754256385</td>
+      <td>0.409</td>
+      <td>22.935</td>
+      <td>414.301</td>
+      <td>437.236</td>
+      <td>Nonaethylene glycol|2-[2-[2-[2-[2-[2-[2-[2-(2-...</td>
+      <td>OCCOCCOCCOCCOCCOCCOCCOCCOCCO</td>
+    </tr>
+    <tr>
       <th>KBKUJJFDSHBPPA</th>
       <td>C12048</td>
-      <td>9988206023938663754</td>
+      <td>4051789042754256385</td>
       <td>0.409</td>
       <td>44.929</td>
       <td>414.301</td>
@@ -1784,7 +1877,7 @@ results stored. Rerun with new data!</p>
     <tr>
       <th>IOYZYMQFUSNATM</th>
       <td>C02429</td>
-      <td>9988206023938663754</td>
+      <td>4051789042754256385</td>
       <td>0.409</td>
       <td>97.137</td>
       <td>414.301</td>
@@ -1793,9 +1886,20 @@ results stored. Rerun with new data!</p>
       <td>CCCCCCCCCCCCCCCC[N+](C)(C)CCN(Cc1ccc(OC)cc1)c1...</td>
     </tr>
     <tr>
+      <th>WVULKSPCQVQLCU</th>
+      <td>C00193</td>
+      <td>4051789042754256385</td>
+      <td>0.594</td>
+      <td>0.000</td>
+      <td>414.301</td>
+      <td>414.301</td>
+      <td>glycodeoxycholic acid</td>
+      <td>C[C@H](CCC(=O)NCC(=O)O)[C@H]1CCC2[C@@]1([C@H](...</td>
+    </tr>
+    <tr>
       <th>WVVSZNPYNCNODU</th>
       <td>C03194</td>
-      <td>11438838801741346891</td>
+      <td>356441345885270616</td>
       <td>0.528</td>
       <td>39.930</td>
       <td>366.116</td>
@@ -1806,7 +1910,7 @@ results stored. Rerun with new data!</p>
     <tr>
       <th>QSLJIVKCVHQPLV</th>
       <td>C02962</td>
-      <td>11438838801741346891</td>
+      <td>356441345885270616</td>
       <td>0.409</td>
       <td>269.312</td>
       <td>366.116</td>
@@ -1817,7 +1921,7 @@ results stored. Rerun with new data!</p>
     <tr>
       <th>HSCJRCZFDFQWRP</th>
       <td>C06393</td>
-      <td>11438838801741346891</td>
+      <td>356441345885270616</td>
       <td>0.409</td>
       <td>199.294</td>
       <td>366.116</td>
@@ -1826,20 +1930,9 @@ results stored. Rerun with new data!</p>
       <td>C1=CN(C(=O)NC1=O)C2C(C(C(O2)COP(=O)(O)OP(=O)(O...</td>
     </tr>
     <tr>
-      <th>WVULKSPCQVQLCU</th>
-      <td>C00193</td>
-      <td>15780731469960021248</td>
-      <td>0.569</td>
-      <td>0.001</td>
-      <td>472.304</td>
-      <td>472.303</td>
-      <td>glycodeoxycholic acid</td>
-      <td>C[C@H](CCC(=O)NCC(=O)O)[C@H]1CCC2[C@@]1([C@H](...</td>
-    </tr>
-    <tr>
       <th>GHCZAUBVMUEKKP</th>
       <td>C10358</td>
-      <td>15780731469960021248</td>
+      <td>7939233295536706460</td>
       <td>0.567</td>
       <td>0.001</td>
       <td>472.304</td>
@@ -1854,9 +1947,9 @@ results stored. Rerun with new data!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rename_index</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;9988206023938663754&quot;</span><span class="p">:</span> <span class="s2">&quot;C12048&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;11438838801741346891&quot;</span><span class="p">:</span> <span class="s2">&quot;C03194&quot;</span><span class="p">,</span>  <span class="c1"># C02962</span>
-    <span class="s2">&quot;15780731469960021248&quot;</span><span class="p">:</span> <span class="s2">&quot;C00193&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;4051789042754256385&quot;</span><span class="p">:</span> <span class="s2">&quot;C12048&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;7939233295536706460&quot;</span><span class="p">:</span> <span class="s2">&quot;C10358&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;356441345885270616&quot;</span><span class="p">:</span> <span class="s2">&quot;C03194&quot;</span><span class="p">,</span>  <span class="c1"># C02962</span>
 <span class="p">}</span>
 <span class="n">ancova</span> <span class="o">=</span> <span class="n">ancova</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">rename_index</span><span class="p">)</span>
 </pre></div>
@@ -1912,36 +2005,36 @@ results stored. Rerun with new data!</p>
   <tbody>
     <tr>
       <th>C12048</th>
-      <td>0.019</td>
-      <td>1.558</td>
-      <td>2.945</td>
+      <td>0.025</td>
+      <td>1.598</td>
+      <td>3.027</td>
       <td>0.010</td>
-      <td>0.472</td>
+      <td>0.562</td>
       <td>False</td>
-      <td>1.720</td>
-      <td>0.472</td>
+      <td>1.596</td>
+      <td>0.562</td>
+    </tr>
+    <tr>
+      <th>C10358</th>
+      <td>0.067</td>
+      <td>1.033</td>
+      <td>2.046</td>
+      <td>0.010</td>
+      <td>0.712</td>
+      <td>False</td>
+      <td>1.176</td>
+      <td>0.712</td>
     </tr>
     <tr>
       <th>C03194</th>
-      <td>0.261</td>
-      <td>-0.099</td>
-      <td>0.933</td>
+      <td>0.396</td>
+      <td>-0.096</td>
+      <td>0.935</td>
       <td>0.010</td>
-      <td>0.848</td>
+      <td>0.854</td>
       <td>False</td>
-      <td>0.583</td>
-      <td>0.848</td>
-    </tr>
-    <tr>
-      <th>C00193</th>
-      <td>0.073</td>
-      <td>1.049</td>
-      <td>2.070</td>
-      <td>0.010</td>
-      <td>0.777</td>
-      <td>False</td>
-      <td>1.135</td>
-      <td>0.777</td>
+      <td>0.402</td>
+      <td>0.854</td>
     </tr>
   </tbody>
 </table>
@@ -2069,7 +2162,7 @@ results stored. Rerun with new data!</p>
     <span class="n">annotation_col</span><span class="o">=</span><span class="s2">&quot;pathway_id&quot;</span><span class="p">,</span>
     <span class="n">pval_col</span><span class="o">=</span><span class="s2">&quot;pvalue&quot;</span><span class="p">,</span>
     <span class="n">min_detected_in_set</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">lfc_cutoff</span><span class="o">=</span><span class="mf">0.012</span><span class="p">,</span>
+    <span class="n">lfc_cutoff</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">ret</span>
 </pre></div>
@@ -2119,10 +2212,10 @@ results stored. Rerun with new data!</p>
       <td>C03194</td>
       <td>1</td>
       <td>0</td>
-      <td>67</td>
-      <td>1286</td>
-      <td>0.052</td>
-      <td>0.052</td>
+      <td>46</td>
+      <td>897</td>
+      <td>0.051</td>
+      <td>0.051</td>
       <td>False</td>
     </tr>
     <tr>
@@ -2133,10 +2226,10 @@ results stored. Rerun with new data!</p>
       <td>C03194</td>
       <td>1</td>
       <td>0</td>
-      <td>67</td>
-      <td>1286</td>
-      <td>0.052</td>
-      <td>0.052</td>
+      <td>46</td>
+      <td>897</td>
+      <td>0.051</td>
+      <td>0.051</td>
       <td>False</td>
     </tr>
     <tr>
@@ -2147,10 +2240,10 @@ results stored. Rerun with new data!</p>
       <td>C03194</td>
       <td>1</td>
       <td>0</td>
-      <td>67</td>
-      <td>1286</td>
-      <td>0.052</td>
-      <td>0.052</td>
+      <td>46</td>
+      <td>897</td>
+      <td>0.051</td>
+      <td>0.051</td>
       <td>False</td>
     </tr>
   </tbody>
@@ -2206,36 +2299,36 @@ results stored. Rerun with new data!</p>
   <tbody>
     <tr>
       <th>C12048</th>
-      <td>0.019</td>
-      <td>1.558</td>
-      <td>2.945</td>
+      <td>0.025</td>
+      <td>1.598</td>
+      <td>3.027</td>
       <td>0.010</td>
-      <td>0.472</td>
+      <td>0.562</td>
       <td>False</td>
-      <td>1.720</td>
-      <td>0.472</td>
+      <td>1.596</td>
+      <td>0.562</td>
+    </tr>
+    <tr>
+      <th>C10358</th>
+      <td>0.067</td>
+      <td>1.033</td>
+      <td>2.046</td>
+      <td>0.010</td>
+      <td>0.712</td>
+      <td>False</td>
+      <td>1.176</td>
+      <td>0.712</td>
     </tr>
     <tr>
       <th>C03194</th>
-      <td>0.261</td>
-      <td>-0.099</td>
-      <td>0.933</td>
+      <td>0.396</td>
+      <td>-0.096</td>
+      <td>0.935</td>
       <td>0.010</td>
-      <td>0.848</td>
+      <td>0.854</td>
       <td>False</td>
-      <td>0.583</td>
-      <td>0.848</td>
-    </tr>
-    <tr>
-      <th>C00193</th>
-      <td>0.073</td>
-      <td>1.049</td>
-      <td>2.070</td>
-      <td>0.010</td>
-      <td>0.777</td>
-      <td>False</td>
-      <td>1.135</td>
-      <td>0.777</td>
+      <td>0.402</td>
+      <td>0.854</td>
     </tr>
   </tbody>
 </table>
@@ -2244,7 +2337,7 @@ results stored. Rerun with new data!</p>
 <p>Why do we only see one compound?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotations</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">annotations</span><span class="o">.</span><span class="n">identifier</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">inchikey_to_kegg</span><span class="o">.</span><span class="n">kegg_id</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotations</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">annotations</span><span class="o">.</span><span class="n">identifier</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">inchikey_to_kegg_of_interest</span><span class="o">.</span><span class="n">kegg_id</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
