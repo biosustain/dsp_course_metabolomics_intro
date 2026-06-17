@@ -500,17 +500,6 @@ data = data.drop(["charge", "RT", "mz", "quality", "adduct", "feature_ids"])
 data = data.where(data > 1, np.nan)
 data
 
-# %%
-data.isna().sum().sum()
-missing_per_feature = data.isna().sum(axis=0)
-missing_per_feature
-freq_table = missing_per_feature.value_counts().sort_index()
-
-df_freq = freq_table.reset_index()
-df_freq.columns = ["n_missing", "n_features"]
-
-df_freq
-
 # %% [markdown]
 # Now our data consists of only features in the columns, and samples in the rows.
 #
@@ -569,11 +558,22 @@ from acore import filter_metabolomics as fm
 # Let's first check how much missingness there is in the data.
 
 # %%
+data.isna().sum().sum()
+missing_per_feature = data.isna().sum(axis=0)
+missing_per_feature
+freq_table = missing_per_feature.value_counts().sort_index()
+
+df_freq = freq_table.reset_index()
+df_freq.columns = ["n_missing", "n_features"]
+
+df_freq
+
+# %%
 plot_feature_missingness(data)
 plot_intensity_distribution(data)
 
 # %% [markdown]
-# There are quite a lot of missing values, so it is important that we filter first.
+# There are a lot of missing values, so it is important that we filter first.
 
 # %% [markdown]
 # ## 80%-rule for filtering
@@ -618,7 +618,7 @@ df_freq.columns = ["n_missing", "n_features"]
 df_freq
 
 # %% [markdown]
-# Now we have removed 836 features.
+# Now we have removed a huge number of features, and we have 2402 features left, which is a number we can trust more to contain real metabolites.
 
 # %% [markdown]
 # ## CV-based filtering
@@ -826,7 +826,7 @@ pca_model, scores, var_explained = plot_pca(
 from acore import drift_correction as dc
 
 # %% [markdown]
-# ## Loess smoothing drift correction
+# ### Loess smoothing drift correction
 #
 # Pooled QC samples are injected at regular intervals over time throughout the experiment.
 # The QC intensities for each features should theoretically be consistent in each
@@ -876,14 +876,14 @@ correction_info[data_corrected_loess.columns[0]]
 # %%
 plot_loess_example_curve(
     df=data_imputed,
-    feature_idx=2,
+    feature_idx=1,
     samples=samples,
     qcs=qcs,
     sample_order=sample_order,
 )
 
 # %% [markdown]
-# ## CPCA
+# ### CPCA
 #
 # Standard PCA finds orthogonal directions (principal components) that capture maximum
 # variance in a single dataset. Common PCA extends this to multiple groups: instead of
@@ -988,7 +988,7 @@ pca_model, scores, var_explained = plot_pca(
 )
 
 # %% [markdown]
-# Continuing with ???
+# We will continue with the LOESS corrected data.
 
 # %% [markdown]
 # ## Normalization
@@ -1002,7 +1002,7 @@ pca_model, scores, var_explained = plot_pca(
 from acore import normalization
 
 # %%
-data_normalized = normalization.normalize_data(data_corrected_cpca, "zscore")
+data_normalized = normalization.normalize_data(data_corrected_loess, "zscore")
 data_normalized
 
 # %%
@@ -1017,13 +1017,15 @@ pca_model, scores, var_explained = plot_pca(
 )
 
 # %% [markdown]
-# We can see... ? depends on which data we choose.
+# We can see that sample C is still distorting the separation. To know what
+# went wrong with this control, we would need to know more about the sample preparation
+# and background about the patients.
 
 # %% [markdown]
 # ## Statistical analysis
 
 # %% [markdown]
-# ## ANCOVA
+# ### ANCOVA
 #
 # We will now do a statistical analysis. We want to find out which ones of our metabolites
 # are significantly more abundant in the cardiovascular disease group vs the control, or
@@ -1045,7 +1047,6 @@ import acore.differential_regulation as ad
 
 # %%
 # Create the variable with the data
-# data_ancova = data_corrected_cpca.copy()
 data_ancova = np.log2(data_imputed)
 
 # Prepare the data to fit the function input
@@ -1085,13 +1086,14 @@ ancova = (
 )  # need to be floats?
 ancova
 
-# %% We have filtered the table by the adjusted pvalue. We can look at the top [markdown]
+# %% [markdown]
+# We have filtered the table by the adjusted pvalue. We can look at the top
 # values to see how good our best hits are.
-#
-# ?? add more info when we have decided
+# We are sorting the data by the adjusted pvalue to see what our best hits are, and how good they actually are.
+# In this case, our best hits have adjusted pvalues of 0.321 and higher, which is quite high, and not significant.
 
 # %% [markdown]
-# Now we can inspect the results in a few different ways. First of all, we
+# We can inspect the results in a few different ways. First of all, we
 # can look at the group averages, which are shown in the first six columns.
 
 # %%
@@ -1110,6 +1112,9 @@ regex_filter = "pval|padj|reject|post"
 ancova.filter(regex=regex_filter)
 
 # %% [markdown]
+# As we could already see by the high adjusted pvalues in the data frame, none of the
+# values are significant, which is why rejected=False for all of them.
+#
 # You can also look at the rest of the results.
 
 # %%
@@ -1145,6 +1150,9 @@ scatter_plot_adv = vuecore.plots.basic.scatter.create_scatter_plot(
     height=600,
 )
 scatter_plot_adv
+
+# %% [markdown]
+# If we had significant values, they would show up in blue in this plot.
 
 # %%
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
@@ -1204,19 +1212,20 @@ print("padj < 0.1:  ", (ancova["padj"] < 0.1).sum())
 # our top hits, we can match the (for now unknown) features with library spectra and
 # identify which metabolites they are. Then, we can carry out further analyses such as
 # enrichment analysis.
+#
+# We can choose some thresholds for this, often we would choose an adjusted pvalue of 0.05 or lower, and an absolute log2 fold change of 1 or higher.
 
 # %%
 # Primary hit list for follow-up
-hits = ancova[(ancova["pvalue"] < 0.01) & (ancova["log2FC"].abs() > 1)]
+hits = ancova[(ancova["padj"] < 0.05) & (ancova["log2FC"].abs() > 1)]
 print(f"Candidate metabolites: {len(hits)}")
 print(f"Upregulated in CVD: {(hits['log2FC'] > 0).sum()}")
 print(f"Downregulated in CVD: {(hits['log2FC'] < 0).sum()}")
 
 # %% [markdown]
-# We can save and export our hits to a csv file.
+# We can save and export our hits to a csv file. Usually we would save the top hits and explore them further, but in this case, we will save the whole ancova, and just look further into the top metabolites here, although they are not significant.
 
 # %%
-# uncomment to overwrite the file
 ancova.to_csv("results_prepared/ancova_results.csv")
 
 # %% [markdown]

@@ -141,7 +141,9 @@ ancova.loc[ids_found_inMS_also_in_ancova].filter(regex=regex_filter).sort_values
 # - choose one compound per feature
 
 # %% tags=["hide-input"]
-inchikey_to_kegg_of_interest = inchikey_to_kegg.loc[inchikey_to_kegg["id"].isin(ids_found_inMS_also_in_ancova)]
+inchikey_to_kegg_of_interest = inchikey_to_kegg.loc[
+    inchikey_to_kegg["id"].isin(ids_found_inMS_also_in_ancova)
+]
 inchikey_to_kegg_of_interest
 
 # %%
