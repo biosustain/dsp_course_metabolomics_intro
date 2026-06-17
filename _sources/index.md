@@ -26,6 +26,7 @@ Hands-On <2_data_analysis>
 :caption: Interpretation
 :hidden:
 
+material/intro_interpretation
 Hands-On <3_enrichment_analysis>
 ```
 

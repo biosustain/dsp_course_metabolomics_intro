@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Datasets overview &#8212; Mass spectrometry-based Metabolomics introduction  documentation</title>
+    <title>Interpretation of Results &#8212; Mass spectrometry-based Metabolomics introduction  documentation</title>
   
   
   
@@ -47,12 +47,12 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'data/README';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'material/intro_interpretation';</script>
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data" href="MTBLS8735/README.html" />
-    <link rel="prev" title="Enrichment analysis" href="../3_enrichment_analysis.html" />
+    <link rel="next" title="Enrichment analysis" href="../3_enrichment_analysis.html" />
+    <link rel="prev" title="Metabolomics DSP Course - Data Analysis" href="../2_data_analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -159,24 +159,24 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Metaboigniter</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../material/intro_metabolomics.html">MS-based metabolomics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../material/nf_core_metaboigniter.html">Metaboigniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_metabolomics.html">MS-based metabolomics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_core_metaboigniter.html">Metaboigniter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_pyOpenMS_metabonaut_pipeline.html">Preprocessing manually using pyOpenMS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../material/intro_data_analysis.html">Downstream Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_data_analysis.html">Downstream Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_data_analysis.html">Hands-On</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretation</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../material/intro_interpretation.html">Interpretation of Results</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpretation of Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_enrichment_analysis.html">Hands-On</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Datasets overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MTBLS8735/README.html">Data</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data/README.html">Datasets overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/MTBLS8735/README.html">Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Codespace</span></p>
 <ul class="nav bd-sidenav">
@@ -255,7 +255,7 @@
       
       
       
-      <li><a href="../_sources/data/README.md" target="_blank"
+      <li><a href="../_sources/material/intro_interpretation.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -318,7 +318,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -329,11 +331,19 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Datasets overview</h1>
+    <h1>Interpretation of Results</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dependent-acquisition-dda">Data-dependent acquisition (DDA)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -343,12 +353,18 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="datasets-overview">
-<h1>Datasets overview<a class="headerlink" href="#datasets-overview" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="interpretation-of-results">
+<h1>Interpretation of Results<a class="headerlink" href="#interpretation-of-results" title="Link to this heading">#</a></h1>
+<p>See <a class="reference internal" href="../3_enrichment_analysis.html"><span class="std std-doc">3_enrichment_analysis.ipynb</span></a> for a walkthrough of the data analysis process.</p>
+<section id="data-dependent-acquisition-dda">
+<h2>Data-dependent acquisition (DDA)<a class="headerlink" href="#data-dependent-acquisition-dda" title="Link to this heading">#</a></h2>
+<p>Two videos from the NNF Center for Protein Research (CPR) on DDA
+timing:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.ebi.ac.uk/metabolights/editor/MTBLS8735/overview" rel="noreferrer" target="_blank">MTBLS8735</a>: Metabonaut example dataset with humans, see <a class="reference internal" href="MTBLS8735/README.html"><span class="std std-doc">Data</span></a></p></li>
-<li><p>[]</p></li>
+<li><p><a class="reference external" href="https://youtu.be/a69GTHHAMx8" rel="noreferrer" target="_blank">MS1 and MS2 scans</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/HNfUs5Fi9go" rel="noreferrer" target="_blank">Timing of acquisition</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -363,20 +379,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../3_enrichment_analysis.html"
+       href="../2_data_analysis.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Enrichment analysis</p>
+        <p class="prev-next-title">Metabolomics DSP Course - Data Analysis</p>
       </div>
     </a>
     <a class="right-next"
-       href="MTBLS8735/README.html"
+       href="../3_enrichment_analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data</p>
+        <p class="prev-next-title">Enrichment analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -386,6 +402,23 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dependent-acquisition-dda">Data-dependent acquisition (DDA)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
