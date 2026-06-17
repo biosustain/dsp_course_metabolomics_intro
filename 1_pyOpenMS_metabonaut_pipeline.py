@@ -7,7 +7,7 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.19.3
 #   kernelspec:
-#     display_name: umetaflow-pyopenms
+#     display_name: base
 #     language: python
 #     name: python3
 # ---

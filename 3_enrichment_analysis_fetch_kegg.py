@@ -48,10 +48,6 @@ to_lookup
 # Find PubChem CIDs for the InChIKeys
 
 # %%
-# inchikeys = to_lookup["inchikey"]
-# inchikeys")
-
-# %%
 for _inchikey in to_lookup.inchikey.unique():
     if _inchikey in compounds:
         continue
@@ -81,13 +77,16 @@ inchikey_to_kegg
 
 # %% [markdown]
 # And finally find KEGG pathways for those KEGG IDs.
-# inchikey_to_kegg = inchikey_to_kegg.join(
-#     to_lookup.reset_index().set_index("inchikey"), on="inchikey"
-# )
-# inchikey_to_kegg
+
+# %%
+inchikey_to_kegg = inchikey_to_kegg.join(
+    to_lookup.reset_index().set_index("inchikey"), on="inchikey"
+)
+inchikey_to_kegg
 
 # %%
 fname = "results_prepared/inchikey_to_kegg.csv"
 inchikey_to_kegg.to_csv(fname, index=False)
 
-# %%
+# %% [markdown]
+# Done.

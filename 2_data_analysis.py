@@ -7,7 +7,7 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.19.3
 #   kernelspec:
-#     display_name: Python
+#     display_name: base
 #     language: python
 #     name: python3
 # ---
@@ -41,9 +41,6 @@
 
 # %% [markdown]
 # ## Imports
-
-# %%
-# %pip install acore
 
 # %%
 import matplotlib.pyplot as plt
