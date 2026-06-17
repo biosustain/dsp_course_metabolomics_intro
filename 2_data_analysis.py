@@ -466,13 +466,17 @@ def pca_for_cpca_drift(
 # %% [markdown]
 # ## Data setup
 
+# %%
+fname_features = "results_prepared/output_quantification_Linked_data.tsv"
+fname_metadata = "data/MTBLS8735/metadata.csv"
+
 # %% [markdown]
 # First, let's load and have a look at our data. You can find it in the data
 # folder of this codespace.
 
 # %%
 metaboigniter_data = pd.read_csv(
-    "results_prepared/output_quantification_Linked_data.tsv",
+    fname_features,
     sep="\t",
     index_col=0,
     dtype={"id": str},
@@ -605,9 +609,7 @@ print(
 print(f"Difference: {data.shape[1]-data_filtered_1.shape[1]} features removed.")
 
 # %%
-data.isna().sum().sum()
 missing_per_feature = data_filtered_1.isna().sum(axis=0)
-missing_per_feature
 freq_table = missing_per_feature.value_counts().sort_index()
 
 df_freq = freq_table.reset_index()
@@ -845,7 +847,7 @@ from acore import drift_correction as dc
 # samples, including QCs, were run. We have this information in our metadata.
 
 # %%
-sample_order = pd.read_csv("data/MTBLS8735/metadata.csv").rename(
+sample_order = pd.read_csv(fname_metadata).rename(
     columns={"injection_index": "Sample ID", "derived_spectra_data_file": "File Name"}
 )
 sample_order
@@ -1215,7 +1217,7 @@ print(f"Downregulated in CVD: {(hits['log2FC'] < 0).sum()}")
 
 # %%
 # uncomment to overwrite the file
-# ancova.to_csv("results_prepared/ancova_results.csv")
+ancova.to_csv("results_prepared/ancova_results.csv")
 
 # %% [markdown]
 # Done!

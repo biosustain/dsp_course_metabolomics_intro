@@ -6,25 +6,8 @@
 # - [api-example for enrichment analysis](https://analytics-core.readthedocs.io/stable/api_examples/enrichment_analysis.html)
 
 # %% tags=["hide-input"]
-from collections import defaultdict
-
 import acore
 import pandas as pd
-
-
-def parse_compound_pathway_mapping(raw_mapping: str) -> dict[str, list[str]]:
-    """Parse tab-delimited KEGG-style compound/pathway mappings into a dictionary."""
-    compound_to_pathways: defaultdict[str, list[str]] = defaultdict(list)
-
-    for line in raw_mapping.strip().strip("'").splitlines():
-        compound_id, pathway_id = line.split("\t", maxsplit=1)
-        compound_to_pathways[compound_id].append(pathway_id)
-
-    return dict(compound_to_pathways)
-
-
-compounds = {}
-
 
 # %% [markdown]
 # ## List relevant files
@@ -139,27 +122,33 @@ inchikey_to_kegg  # .loc[ids_found_inMS2]
 # %%
 regex_filter = "pval|padj|reject|FC"
 ids_found_inMS2 = inchikey_to_kegg["id"].unique().tolist()
-ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values("pvalue")
+ids_found_inMS_also_in_ancova = list(set(ids_found_inMS2).intersection(ancova.index))
+ancova.loc[ids_found_inMS_also_in_ancova].filter(regex=regex_filter).sort_values(
+    "pvalue"
+)
 
 # %% [markdown]
 # Make the few identified features significant for illustration purposes.
 
 # %%
-ancova.loc[ids_found_inMS2, "pvalue"] = 0.01
-ancova.loc[ids_found_inMS2].filter(regex=regex_filter).sort_values("pvalue")
+ancova.loc[ids_found_inMS_also_in_ancova, "pvalue"] = 0.01
+ancova.loc[ids_found_inMS_also_in_ancova].filter(regex=regex_filter).sort_values(
+    "pvalue"
+)
 
 # %% [markdown]
 # Let's manually update some compound IDs for the few features we identified.
 # - choose one compound per feature
 
 # %% tags=["hide-input"]
-inchikey_to_kegg
+inchikey_to_kegg_of_interest = inchikey_to_kegg.loc[inchikey_to_kegg["id"].isin(ids_found_inMS_also_in_ancova)]
+inchikey_to_kegg_of_interest
 
 # %%
 rename_index = {
-    "9988206023938663754": "C12048",
-    "11438838801741346891": "C03194",  # C02962
-    "15780731469960021248": "C00193",
+    "4051789042754256385": "C12048",
+    "7939233295536706460": "C10358",
+    "356441345885270616": "C03194",  # C02962
 }
 ancova = ancova.rename(index=rename_index)
 
@@ -183,7 +172,7 @@ ret = acore.enrichment_analysis.run_up_down_regulation_enrichment(
     annotation_col="pathway_id",
     pval_col="pvalue",
     min_detected_in_set=1,
-    lfc_cutoff=0.012,
+    lfc_cutoff=0.0001,
 )
 ret
 
@@ -194,4 +183,6 @@ ancova.loc[rename_index.values()].filter(regex=regex_filter).sort_values("pvalue
 # Why do we only see one compound?
 
 # %%
-annotations.loc[annotations.identifier.isin(inchikey_to_kegg.kegg_id)]
+annotations.loc[annotations.identifier.isin(inchikey_to_kegg_of_interest.kegg_id)]
+
+# %%

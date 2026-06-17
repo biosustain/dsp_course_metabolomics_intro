@@ -55,6 +55,7 @@ to_lookup
 # %%
 for _inchikey in to_lookup.inchikey.unique():
     if _inchikey in compounds:
+        print(f"Already looked up {_inchikey} in PubChem, skipping...")
         continue
     print(f"Looking up {_inchikey} in PubChem...")
     compounds[_inchikey] = pcp.get_compounds(_inchikey, namespace="inchikey")
