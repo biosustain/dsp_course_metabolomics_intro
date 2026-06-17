@@ -1,6 +1,11 @@
+# %% [markdown]
+# # Enrichment analysis: fetching KEGG IDs for MS2Query results
+# - match InChIKeys to PubChem CIDs
+# - match PubChem CIDs to KEGG IDs
+# to annotate features identified by MS2Query with KEGG pathways.
+
 # %%
 from collections import defaultdict
-from pathlib import Path
 
 import pandas as pd
 import pubchempy as pcp
@@ -51,6 +56,7 @@ to_lookup
 for _inchikey in to_lookup.inchikey.unique():
     if _inchikey in compounds:
         continue
+    print(f"Looking up {_inchikey} in PubChem...")
     compounds[_inchikey] = pcp.get_compounds(_inchikey, namespace="inchikey")
 compounds
 
@@ -61,7 +67,6 @@ compounds
 cids = [c.cid for pcp_list in compounds.values() for c in pcp_list if c.cid is not None]
 kegg_compounds = lookup_cid_to_kegg_id(cids)
 kegg_compounds
-
 
 # %%
 inchikey_to_kegg = []
