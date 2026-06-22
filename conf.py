@@ -22,6 +22,9 @@ exclude_patterns = [
     "*.py",
     ".pytest_cache",
     "3_enrichment_analysis_fetch_kegg.ipynb",  # leave it out for now
+    "material/intro_data_analysis.md",
+    "material/intro_interpretation.md",
+    "data/README.md",
 ]
 
 #  https://myst-nb.readthedocs.io/en/latest/computation/execute.html
