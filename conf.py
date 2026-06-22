@@ -1,6 +1,6 @@
 project = "Mass spectrometry-based Metabolomics introduction"
-copyright = "2025, DTU Biosustain, Informatics Platform, DSP"
-author = "Henry Webel, Alberto Santos, Marco Reverenna"
+copyright = "2026, BRIGHT, Informatics Platform, DSP"
+author = "Henry Webel, Felicia Schulz, Maria Barranco-Altirribia, and Albert Palleja"
 
 extensions = [
     "myst_nb",
