@@ -1,6 +1,6 @@
 project = "Mass spectrometry-based Metabolomics introduction"
-copyright = "2025, DTU Biosustain, Informatics Platform, DSP"
-author = "Henry Webel, Alberto Santos, Marco Reverenna"
+copyright = "2026, BRIGHT, Informatics Platform, DSP"
+author = "Henry Webel, Felicia Schulz, Maria Barranco-Altirribia, and Albert Palleja"
 
 extensions = [
     "myst_nb",
@@ -22,6 +22,9 @@ exclude_patterns = [
     "*.py",
     ".pytest_cache",
     "3_enrichment_analysis_fetch_kegg.ipynb",  # leave it out for now
+    "material/intro_data_analysis.md",
+    "material/intro_interpretation.md",
+    "data/README.md",
 ]
 
 #  https://myst-nb.readthedocs.io/en/latest/computation/execute.html
