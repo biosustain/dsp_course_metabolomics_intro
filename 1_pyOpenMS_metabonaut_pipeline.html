@@ -51,7 +51,7 @@
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Downstream Data Analysis" href="material/intro_data_analysis.html" />
+    <link rel="next" title="Metabolomics DSP Course - Data Analysis" href="2_data_analysis.html" />
     <link rel="prev" title="Metaboigniter" href="material/nf_core_metaboigniter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -157,7 +157,7 @@
 </button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Metaboigniter</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data processing</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="material/intro_metabolomics.html">MS-based metabolomics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="material/nf_core_metaboigniter.html">Metaboigniter</a></li>
@@ -165,17 +165,14 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="material/intro_data_analysis.html">Downstream Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_data_analysis.html">Hands-On</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="material/intro_interpretation.html">Interpretation of Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_enrichment_analysis.html">Hands-On</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="data/README.html">Datasets overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data/MTBLS8735/README.html">Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Codespace</span></p>
@@ -1169,74 +1166,75 @@ which can be useful for downstream visualization and inspection.</p>
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress of &#39;mass trace detection&#39;:
--- done [took 1.90 s (CPU), 1.88 s (Wall)] -- 
+-- done [took 1.97 s (CPU), 1.96 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.64 s (CPU), 0.43 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.33 s (CPU), 0.41 s (Wall)] -- 
+-- done [took 1.64 s (CPU), 0.44 s (Wall)] -- 
 MS_QC_POOL_1_POS.mzML
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.33 s (CPU), 0.42 s (Wall)] -- 
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.34 s (CPU), 2.32 s (Wall)] --
+-- done [took 2.49 s (CPU), 2.46 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.44 s (CPU), 0.38 s (Wall)] -- 
+-- done [took 1.46 s (CPU), 0.38 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
 -- done [took 1.12 s (CPU), 0.30 s (Wall)] -- 
 MS_A_POS.mzML
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.10 s (CPU), 2.09 s (Wall)] -- 
+-- done [took 2.34 s (CPU), 2.32 s (Wall)] --
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.44 s (CPU), 0.37 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.12 s (CPU), 0.32 s (Wall)] -- 
+MS_B_POS.mzML
+Progress of &#39;mass trace detection&#39;:
+-- done [took 1.93 s (CPU), 1.91 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.64 s (CPU), 0.42 s (Wall)] --
+MS_QC_POOL_2_POS.mzML
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.30 s (CPU), 0.39 s (Wall)] --
+Progress of &#39;mass trace detection&#39;:
+MS_C_POS.mzML
+-- done [took 2.19 s (CPU), 2.17 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.47 s (CPU), 0.38 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.11 s (CPU), 0.30 s (Wall)] -- 
+Progress of &#39;mass trace detection&#39;:
+-- done [took 2.38 s (CPU), 2.35 s (Wall)] --
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.49 s (CPU), 0.40 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.21 s (CPU), 0.32 s (Wall)] -- 
+MS_D_POS.mzML
+Progress of &#39;mass trace detection&#39;:
+-- done [took 1.91 s (CPU), 1.90 s (Wall)] -- 
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.66 s (CPU), 0.46 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.31 s (CPU), 0.41 s (Wall)] -- 
+MS_QC_POOL_3_POS.mzML
+Progress of &#39;mass trace detection&#39;:
+-- done [took 2.21 s (CPU), 2.18 s (Wall)] -- 
+MS_E_POS.mzML
+Progress of &#39;elution peak detection&#39;:
+-- done [took 1.56 s (CPU), 0.44 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.31 s (CPU), 0.36 s (Wall)] --
+Progress of &#39;mass trace detection&#39;:
+-- done [took 2.40 s (CPU), 2.37 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
 -- done [took 1.43 s (CPU), 0.37 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.11 s (CPU), 0.30 s (Wall)] --
-MS_B_POS.mzML
-Progress of &#39;mass trace detection&#39;:
--- done [took 1.88 s (CPU), 1.86 s (Wall)] -- 
-Progress of &#39;elution peak detection&#39;:
-MS_QC_POOL_2_POS.mzML
--- done [took 1.60 s (CPU), 0.42 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.30 s (CPU), 0.40 s (Wall)] --
-Progress of &#39;mass trace detection&#39;:
--- done [took 2.10 s (CPU), 2.09 s (Wall)] -- 
-Progress of &#39;elution peak detection&#39;:
--- done [took 1.45 s (CPU), 0.38 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.16 s (CPU), 0.34 s (Wall)] --
-MS_C_POS.mzML
-Progress of &#39;mass trace detection&#39;:
--- done [took 2.22 s (CPU), 2.20 s (Wall)] -- 
-Progress of &#39;elution peak detection&#39;:
--- done [took 1.50 s (CPU), 0.39 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.21 s (CPU), 0.34 s (Wall)] -- 
-MS_D_POS.mzML
-Progress of &#39;mass trace detection&#39;:
--- done [took 1.81 s (CPU), 1.80 s (Wall)] -- 
-Progress of &#39;elution peak detection&#39;:
--- done [took 1.64 s (CPU), 0.43 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.28 s (CPU), 0.39 s (Wall)] -- 
-MS_QC_POOL_3_POS.mzML
-Progress of &#39;mass trace detection&#39;:
--- done [took 2.10 s (CPU), 2.08 s (Wall)] --
-Progress of &#39;elution peak detection&#39;:
-MS_E_POS.mzML
--- done [took 1.54 s (CPU), 0.40 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.30 s (CPU), 0.36 s (Wall)] --
-Progress of &#39;mass trace detection&#39;:
--- done [took 2.24 s (CPU), 2.22 s (Wall)] -- 
-Progress of &#39;elution peak detection&#39;:
--- done [took 1.42 s (CPU), 0.37 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.09 s (CPU), 0.30 s (Wall)] --
 MS_F_POS.mzML
+-- done [took 1.10 s (CPU), 0.31 s (Wall)] -- 
 Progress of &#39;mass trace detection&#39;:
--- done [took 1.79 s (CPU), 1.77 s (Wall)] -- 
+-- done [took 1.93 s (CPU), 1.91 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.63 s (CPU), 0.43 s (Wall)] -- 
+-- done [took 1.66 s (CPU), 0.43 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.32 s (CPU), 0.37 s (Wall)] --
+-- done [took 1.33 s (CPU), 0.40 s (Wall)] -- 
+MS_QC_POOL_4_POS.mzML
 </pre></div>
 </div>
 </div>
@@ -1328,7 +1326,7 @@ Progress of &#39;assembling mass traces to features&#39;:
   </thead>
   <tbody>
     <tr>
-      <th>12344841729298713557</th>
+      <th>12340598564427183724</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1344,7 +1342,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>143.119598</td>
     </tr>
     <tr>
-      <th>15918504474985079516</th>
+      <th>7377834359780688320</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1360,7 +1358,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>597.242554</td>
     </tr>
     <tr>
-      <th>8619663897128909768</th>
+      <th>12091388633663377036</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1376,7 +1374,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>104.045067</td>
     </tr>
     <tr>
-      <th>4102182381490633096</th>
+      <th>16074494847515516316</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1392,7 +1390,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>403.690704</td>
     </tr>
     <tr>
-      <th>7402578562390470657</th>
+      <th>2254585428803040763</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1424,7 +1422,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>...</td>
     </tr>
     <tr>
-      <th>14335628289958725517</th>
+      <th>16260332208537078878</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1440,7 +1438,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>58.130596</td>
     </tr>
     <tr>
-      <th>13374737727642458785</th>
+      <th>3013882760349571957</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1456,7 +1454,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>217.114456</td>
     </tr>
     <tr>
-      <th>10413429116578221900</th>
+      <th>10015033460781334711</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1472,7 +1470,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>101.281685</td>
     </tr>
     <tr>
-      <th>11765707028103549435</th>
+      <th>12475796884338894382</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1488,7 +1486,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>76.413040</td>
     </tr>
     <tr>
-      <th>3432279650768843722</th>
+      <th>10132953209935093175</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1593,12 +1591,10 @@ statistical analysis and annotation.</p>
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress of &#39;computing RT transformations&#39;:
-Total number of consensus features: 54872
-
-
--- done [took 0.93 s (CPU), 0.91 s (Wall)] -- 
+-- done [took 0.96 s (CPU), 0.94 s (Wall)] -- 
 Progress of &#39;linking features&#39;:
--- done [took 1.54 s (CPU), 1.53 s (Wall)] --
+-- done [took 1.57 s (CPU), 1.56 s (Wall)] -- 
+Total number of consensus features: 54872
 </pre></div>
 </div>
 </div>
@@ -1935,11 +1931,11 @@ Progress of &#39;linking features&#39;:
       </div>
     </a>
     <a class="right-next"
-       href="material/intro_data_analysis.html"
+       href="2_data_analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Downstream Data Analysis</p>
+        <p class="prev-next-title">Metabolomics DSP Course - Data Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1978,7 +1974,7 @@ Progress of &#39;linking features&#39;:
   <div class="footer-item">
     
 <p class="component-author">
-By Henry Webel, Alberto Santos, Marco Reverenna
+By Henry Webel, Felicia Schulz, Maria Barranco-Altirribia, and Albert Palleja
 </p>
 
   </div>
@@ -1988,7 +1984,7 @@ By Henry Webel, Alberto Santos, Marco Reverenna
 
   <p class="copyright">
     
-      © Copyright 2025, DTU Biosustain, Informatics Platform, DSP.
+      © Copyright 2026, BRIGHT, Informatics Platform, DSP.
       <br/>
     
   </p>

@@ -157,7 +157,7 @@
 </button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Metaboigniter</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data processing</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">MS-based metabolomics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nf_core_metaboigniter.html">Metaboigniter</a></li>
@@ -165,17 +165,14 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro_data_analysis.html">Downstream Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_data_analysis.html">Hands-On</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro_interpretation.html">Interpretation of Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_enrichment_analysis.html">Hands-On</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data/README.html">Datasets overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data/MTBLS8735/README.html">Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Codespace</span></p>
@@ -318,7 +315,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -334,6 +333,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dependent-acquisition-dda">Data-dependent acquisition (DDA)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -345,8 +352,17 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ms-based-metabolomics">
 <h1>MS-based metabolomics<a class="headerlink" href="#ms-based-metabolomics" title="Link to this heading">#</a></h1>
-<p>We will use metaboigniter that uses pyOpenMS to process raw data.</p>
-<p>However, a version of the workflow is presented in <a class="reference internal" href="../1_pyOpenMS_metabonaut_pipeline.html"><span class="std std-doc">1_pyOpenMS_metabonaut_pipeline.ipynb</span></a> for demonstration purposes.</p>
+<p>In our course, we will use metaboigniter for data processing, which uses pyOpenMS to process raw data.</p>
+<p>A manual workflow written in Python (pyOpenMS) is presented in <a class="reference internal" href="../1_pyOpenMS_metabonaut_pipeline.html"><span class="std std-doc">1_pyOpenMS_metabonaut_pipeline.ipynb</span></a> for demonstration purposes.</p>
+<section id="data-dependent-acquisition-dda">
+<h2>Data-dependent acquisition (DDA)<a class="headerlink" href="#data-dependent-acquisition-dda" title="Link to this heading">#</a></h2>
+<p>Two videos from the NNF Center for Protein Research (CPR) on DDA
+timing:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/a69GTHHAMx8" rel="noreferrer" target="_blank">MS1 and MS2 scans</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/HNfUs5Fi9go" rel="noreferrer" target="_blank">Timing of acquisition</a></p></li>
+</ul>
+</section>
 </section>
 
 
@@ -385,6 +401,23 @@
             
             
               
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dependent-acquisition-dda">Data-dependent acquisition (DDA)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -394,7 +427,7 @@
   <div class="footer-item">
     
 <p class="component-author">
-By Henry Webel, Alberto Santos, Marco Reverenna
+By Henry Webel, Felicia Schulz, Maria Barranco-Altirribia, and Albert Palleja
 </p>
 
   </div>
@@ -404,7 +437,7 @@ By Henry Webel, Alberto Santos, Marco Reverenna
 
   <p class="copyright">
     
-      © Copyright 2025, DTU Biosustain, Informatics Platform, DSP.
+      © Copyright 2026, BRIGHT, Informatics Platform, DSP.
       <br/>
     
   </p>

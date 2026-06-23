@@ -4,7 +4,7 @@
 
 ```{toctree}
 :maxdepth: 2
-:caption: Metaboigniter
+:caption: Data processing
 :hidden:
 
 material/intro_metabolomics
@@ -17,7 +17,6 @@ Preprocessing manually using pyOpenMS <1_pyOpenMS_metabonaut_pipeline>
 :caption: Data Analysis
 :hidden:
 
-material/intro_data_analysis
 Hands-On <2_data_analysis>
 ```
 
@@ -26,7 +25,6 @@ Hands-On <2_data_analysis>
 :caption: Interpretation
 :hidden:
 
-material/intro_interpretation
 Hands-On <3_enrichment_analysis>
 ```
 
@@ -35,7 +33,6 @@ Hands-On <3_enrichment_analysis>
 :caption: Datasets
 :hidden:
 
-data/README
 data/MTBLS8735/README
 ```
 
