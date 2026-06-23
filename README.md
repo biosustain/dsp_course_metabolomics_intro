@@ -56,6 +56,6 @@ See the slides for the statistical analysis: will be here
 
 #### 14.50 - 16.30 - Data cleaning, normalization and statistical analysis
 
-Find the instruction [here](material/intro_data_analysis.md) and
+Find the notebook [here](3_enrichment_analysis.ipynb) and
 the [slides](material/slides/metabolomics_course_slides.pdf).
 
