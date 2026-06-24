@@ -26,3 +26,10 @@ See csv file extracted from `20230710_V28_9_SelWtvsMutant.sld` in
 
 - Zenodo: https://zenodo.org/records/10041900
 - Massive: https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000092427
+
+```
+bash download.sh
+mkdir -p mzML_10micro
+ThermoRawFileParser -d raw_data -o mzML_10micro -m 0 -f 2
+```
+ 
