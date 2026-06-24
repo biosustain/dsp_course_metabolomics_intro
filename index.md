@@ -34,6 +34,7 @@ Hands-On <3_enrichment_analysis>
 :hidden:
 
 data/MTBLS8735/README
+data/MSV000092427/README.md
 ```
 
 ```{toctree}
