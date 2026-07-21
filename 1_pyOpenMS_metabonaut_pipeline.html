@@ -27,19 +27,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
@@ -48,6 +48,7 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '1_pyOpenMS_metabonaut_pipeline';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -56,20 +57,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -95,7 +102,51 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -144,8 +195,7 @@
           
           
           
-          <a href="https://github.com/biosustain/dsp_course_metabolomics_intro" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/biosustain/dsp_course_metabolomics_intro" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         <div class="sidebar-primary-item">
@@ -336,11 +386,18 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -368,7 +425,7 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data visualization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-detection">Pre-processing - peak detection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-alignment-and-matching">Pre-processing - peak alignment and matching</a></li>
@@ -475,7 +532,7 @@ potential issues that should be investigated before proceeding with further anal
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8439b0424e07aaef055c1656570b4a87181477bd05564448e76fc97588e7a4c8.png" src="_images/8439b0424e07aaef055c1656570b4a87181477bd05564448e76fc97588e7a4c8.png" />
+<img alt="_images/06e6f8c749a7b2ed775627aac468cb905a0e27aa61a3c230a57ccf666c6eb03a.png" src="_images/06e6f8c749a7b2ed775627aac468cb905a0e27aa61a3c230a57ccf666c6eb03a.png" />
 </div>
 </div>
 <p>The BPC profiles show that the final portion of the chromatographic run
@@ -525,7 +582,7 @@ would otherwise increase processing time and data size.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/08a43ef8a7cf417727e1ad2ef34054ed35c35b6a8b9e125c1d32775511ae651a.png" src="_images/08a43ef8a7cf417727e1ad2ef34054ed35c35b6a8b9e125c1d32775511ae651a.png" />
+<img alt="_images/3e938db44e2ad4365e0053180b1332e51f9952b26f2dc858d8823b088546f1c3.png" src="_images/3e938db44e2ad4365e0053180b1332e51f9952b26f2dc858d8823b088546f1c3.png" />
 </div>
 </div>
 <p>Next, we load a table containing a list of <strong>internal standards (IS)</strong>.
@@ -1052,7 +1109,7 @@ preprocessing parameters such as chromatographic width or signal-to-noise ratio.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/7295e4ca6d8b90393449df39f7637bfb67ec6364aec87c906d6d214efec8a28b.png" src="_images/7295e4ca6d8b90393449df39f7637bfb67ec6364aec87c906d6d214efec8a28b.png" />
+<img alt="_images/7a07316635619bd4c567a4782b80b9b16e51f82de3ddcaf5abf0558183755b2f.png" src="_images/7a07316635619bd4c567a4782b80b9b16e51f82de3ddcaf5abf0558183755b2f.png" />
 </div>
 </div>
 <p>The different internal standards can be inspected by modifying the
@@ -1166,75 +1223,75 @@ which can be useful for downstream visualization and inspection.</p>
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress of &#39;mass trace detection&#39;:
--- done [took 2.17 s (CPU), 2.16 s (Wall)] -- 
+-- done [took 2.05 s (CPU), 2.02 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.62 s (CPU), 0.42 s (Wall)] -- 
+-- done [took 1.60 s (CPU), 0.43 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.31 s (CPU), 0.38 s (Wall)] -- 
+-- done [took 1.29 s (CPU), 0.37 s (Wall)] -- 
 MS_QC_POOL_1_POS.mzML
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.74 s (CPU), 2.72 s (Wall)] -- 
+-- done [took 2.55 s (CPU), 2.52 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.42 s (CPU), 0.38 s (Wall)] -- 
+-- done [took 1.41 s (CPU), 0.37 s (Wall)] --
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.09 s (CPU), 0.31 s (Wall)] -- 
+-- done [took 1.09 s (CPU), 0.29 s (Wall)] -- 
 MS_A_POS.mzML
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.53 s (CPU), 2.51 s (Wall)] --
+-- done [took 2.34 s (CPU), 2.31 s (Wall)] --
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.42 s (CPU), 0.37 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
 MS_B_POS.mzML
--- done [took 1.11 s (CPU), 0.29 s (Wall)] -- 
+-- done [took 1.41 s (CPU), 0.37 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.10 s (CPU), 0.31 s (Wall)] -- 
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.21 s (CPU), 2.19 s (Wall)] -- 
+-- done [took 1.97 s (CPU), 1.95 s (Wall)] --
 Progress of &#39;elution peak detection&#39;:
 -- done [took 1.59 s (CPU), 0.42 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.26 s (CPU), 0.39 s (Wall)] -- 
+-- done [took 1.27 s (CPU), 0.38 s (Wall)] -- 
 MS_QC_POOL_2_POS.mzML
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.50 s (CPU), 2.47 s (Wall)] --
+-- done [took 2.29 s (CPU), 2.27 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
 -- done [took 1.42 s (CPU), 0.37 s (Wall)] -- 
-Progress of &#39;assembling mass traces to features&#39;:
 MS_C_POS.mzML
--- done [took 1.08 s (CPU), 0.30 s (Wall)] -- 
+Progress of &#39;assembling mass traces to features&#39;:
+-- done [took 1.09 s (CPU), 0.30 s (Wall)] -- 
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.58 s (CPU), 2.56 s (Wall)] --
+-- done [took 2.38 s (CPU), 2.37 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
 -- done [took 1.46 s (CPU), 0.39 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.20 s (CPU), 0.33 s (Wall)] -- 
+-- done [took 1.18 s (CPU), 0.33 s (Wall)] -- 
 MS_D_POS.mzML
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.13 s (CPU), 2.11 s (Wall)] -- 
+-- done [took 1.95 s (CPU), 1.94 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.65 s (CPU), 0.44 s (Wall)] -- 
+-- done [took 1.63 s (CPU), 0.43 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.26 s (CPU), 0.36 s (Wall)] -- 
 MS_QC_POOL_3_POS.mzML
+-- done [took 1.27 s (CPU), 0.37 s (Wall)] -- 
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.51 s (CPU), 2.48 s (Wall)] -- 
+-- done [took 2.26 s (CPU), 2.24 s (Wall)] -- 
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.54 s (CPU), 0.41 s (Wall)] -- 
+-- done [took 1.53 s (CPU), 0.40 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.25 s (CPU), 0.35 s (Wall)] -- 
+-- done [took 1.28 s (CPU), 0.35 s (Wall)] -- 
 MS_E_POS.mzML
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.57 s (CPU), 2.56 s (Wall)] -- 
+-- done [took 2.42 s (CPU), 2.42 s (Wall)] --
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.42 s (CPU), 0.38 s (Wall)] -- 
+-- done [took 1.41 s (CPU), 0.37 s (Wall)] --
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.04 s (CPU), 0.29 s (Wall)] -- 
 MS_F_POS.mzML
+-- done [took 1.05 s (CPU), 0.28 s (Wall)] -- 
 Progress of &#39;mass trace detection&#39;:
--- done [took 2.08 s (CPU), 2.06 s (Wall)] -- 
+-- done [took 1.93 s (CPU), 1.93 s (Wall)] --
 Progress of &#39;elution peak detection&#39;:
--- done [took 1.65 s (CPU), 0.44 s (Wall)] -- 
-MS_QC_POOL_4_POS.mzML
+-- done [took 1.62 s (CPU), 0.43 s (Wall)] -- 
 Progress of &#39;assembling mass traces to features&#39;:
--- done [took 1.29 s (CPU), 0.39 s (Wall)] --
+-- done [took 1.30 s (CPU), 0.39 s (Wall)] -- 
+MS_QC_POOL_4_POS.mzML
 </pre></div>
 </div>
 </div>
@@ -1326,7 +1383,7 @@ Progress of &#39;assembling mass traces to features&#39;:
   </thead>
   <tbody>
     <tr>
-      <th>18150722160459362468</th>
+      <th>1833999577074750867</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1342,7 +1399,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>143.119598</td>
     </tr>
     <tr>
-      <th>16805286024940683807</th>
+      <th>13383306840380705403</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1358,7 +1415,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>597.242554</td>
     </tr>
     <tr>
-      <th>2414666418493473419</th>
+      <th>599965011576065101</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1374,7 +1431,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>104.045067</td>
     </tr>
     <tr>
-      <th>9490087371879079824</th>
+      <th>11979195319107977121</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1390,7 +1447,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>403.690704</td>
     </tr>
     <tr>
-      <th>266221585248977951</th>
+      <th>8889047047326385384</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1422,7 +1479,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>...</td>
     </tr>
     <tr>
-      <th>8753426336643713475</th>
+      <th>14533627936225973421</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1438,7 +1495,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>58.130596</td>
     </tr>
     <tr>
-      <th>15046682326399216355</th>
+      <th>1618470150848079308</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1454,7 +1511,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>217.114456</td>
     </tr>
     <tr>
-      <th>326863294780278556</th>
+      <th>14375186932125917760</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1470,7 +1527,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>101.281685</td>
     </tr>
     <tr>
-      <th>3476066965605439048</th>
+      <th>13527016495694454653</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1486,7 +1543,7 @@ Progress of &#39;assembling mass traces to features&#39;:
       <td>76.413040</td>
     </tr>
     <tr>
-      <th>8872762211319364022</th>
+      <th>14500474598058031339</th>
       <td>None</td>
       <td>NaN</td>
       <td>None</td>
@@ -1591,12 +1648,10 @@ statistical analysis and annotation.</p>
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress of &#39;computing RT transformations&#39;:
-Total number of consensus features: 54872
-
-
--- done [took 1.06 s (CPU), 1.06 s (Wall)] -- 
+-- done [took 1.03 s (CPU), 1.03 s (Wall)] -- 
 Progress of &#39;linking features&#39;:
--- done [took 1.69 s (CPU), 1.68 s (Wall)] --
+-- done [took 1.65 s (CPU), 1.62 s (Wall)] -- 
+Total number of consensus features: 54872
 </pre></div>
 </div>
 </div>
@@ -1958,7 +2013,7 @@ Progress of &#39;linking features&#39;:
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data visualization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-detection">Pre-processing - peak detection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing-peak-alignment-and-matching">Pre-processing - peak alignment and matching</a></li>
@@ -2010,8 +2065,8 @@ By Henry Webel, Felicia Schulz, Maria Barranco-Altirribia, and Albert Palleja
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
   </footer>
